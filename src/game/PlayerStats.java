@@ -7,16 +7,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
+
 public class PlayerStats extends Main {
 
-    private int hunger = 100;
+    protected int hunger = 0;
     private int thirst = 99;
     private int fuel = 98;
     private int restroom = 97;
     private int fatigue = 96;
     private int carSpeed = 95;
     Date currentDate = new SimpleDateFormat("MMMMM dd, yyyy").parse("July 1, 2020");
-    private int distanceTraveled = 33;
+    private int distanceTraveled;
     private int distanceToNextLandmark = 44;
     private String defaultCarID = "car";
     private String defaultCarSpriteURL = "carSpriteDefault.png";
@@ -24,6 +26,7 @@ public class PlayerStats extends Main {
     private String carSpriteURL = defaultCarSpriteURL; // temporary, to change with more vehicle additions
     private volatile Boolean isMoving = false;
     private boolean setupComplete = false;
+    //private String nextLandMark;
 
 //    Map<String, Integer> landmarksDistancesSize = new HashMap<>() {{
 //        put("St. John's", 0, "large");
@@ -84,9 +87,41 @@ public class PlayerStats extends Main {
         //etc
     };
 
-
-    public PlayerStats() throws ParseException {
-
+    public PlayerStats(
+            int hunger,
+            int thirst,
+            int fuel,
+            int restroom,
+            int fatigue,
+            int carSpeed,
+            //Date currentDate
+            int distanceTraveled,
+//            int distanceToNextLandmark,
+//            String defaultCarID,
+//            String defaultCarSpriteURL,
+//            String vehicleID,
+//            String carSpriteURL,
+//            Boolean isMoving,
+//            boolean setupComplete, String[][] landmarksDistancesSize
+            String nextLandMark
+    ) throws ParseException {
+        this.hunger = hunger;
+        this.thirst = thirst;
+        this.fuel = fuel;
+        this.restroom = restroom;
+        this.fatigue = fatigue;
+        this.carSpeed = carSpeed;
+        //this.currentDate = currentDate;//
+        this.distanceTraveled = distanceTraveled;
+//        this.distanceToNextLandmark = distanceToNextLandmark;
+//        this.defaultCarID = defaultCarID;
+//        this.defaultCarSpriteURL = defaultCarSpriteURL;
+//        this.vehicleID = vehicleID;
+//        this.carSpriteURL = carSpriteURL;
+//        this.isMoving = isMoving;
+//        this.setupComplete = setupComplete;
+//        this.landmarksDistancesSize = landmarksDistancesSize;
+        //this.landmarksDistancesSize[1][0] = nextLandMark;
     }
 
     void checkPlayerStats() {
@@ -167,7 +202,7 @@ public class PlayerStats extends Main {
         carSpeed = CarSpeed;
     }
     int getDistanceTraveled() {
-        return distanceTraveled;
+        return parseInt(landmarksDistancesSize [1][1]);
     }
     void setDistanceTraveled(int DistanceTraveled) {
         distanceTraveled = DistanceTraveled;
@@ -184,7 +219,7 @@ public class PlayerStats extends Main {
     void setCurrentDate(Date CurrentDate) {
         currentDate = CurrentDate;
     }
-    int getHunger() {
+    public int getHunger() {
         return hunger;
     }
     void setHunger(int Hunger) {
@@ -238,5 +273,13 @@ public class PlayerStats extends Main {
     public void setFinishedSetup(boolean SetupComplete) {
         setupComplete = SetupComplete;
     }
+
+    public String getNextLandMark() {
+        return landmarksDistancesSize [1] [0];
+    }
+//    public void setNextLandMark(String nextLandMark) {
+//        this.nextLandMark = nextLandMark;
+//    }
+
 
 }

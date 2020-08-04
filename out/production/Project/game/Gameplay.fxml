@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameplayController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -158,7 +158,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="speedValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                        <Label fx:id="dateValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -210,12 +210,12 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="dateValueLabel1" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label fx:id="speedValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="speedUpButton" mnemonicParsing="false" text="Speed Up" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <Button fx:id="speedUpButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" text="Speed Up" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                         <Button fx:id="slowDownButton" mnemonicParsing="false" text="Slow Down" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                         <ImageView fitHeight="185.0" fitWidth="60.0" opacity="0.68" preserveRatio="true" GridPane.rowIndex="6">
                            <image>
