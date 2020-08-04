@@ -41,6 +41,7 @@ public class Main extends Application {
         //System.out.println(timeStamp);
         //Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("Gameplay.fxml"));
+
         //Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 
         Scene scene = new Scene(root);
