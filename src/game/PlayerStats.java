@@ -13,7 +13,7 @@ public class PlayerStats extends Main {
 
     protected int hunger = 0;
     private int thirst = 99;
-    private int fuel = 98;
+    private double fuel = 98;
     private int restroom = 97;
     private int fatigue = 96;
     private int carSpeed = 95;
@@ -90,11 +90,11 @@ public class PlayerStats extends Main {
     public PlayerStats(
             int hunger,
             int thirst,
-            int fuel,
+            double fuel,
             int restroom,
             int fatigue,
             int carSpeed,
-            //Date currentDate
+            //Date currentDate,
             int distanceTraveled,
 //            int distanceToNextLandmark,
 //            String defaultCarID,
@@ -231,10 +231,10 @@ public class PlayerStats extends Main {
     void setThirst(int Thirst) {
         thirst = Thirst;
     }
-    int getFuel() {
+    double getFuel() {
         return fuel;
     }
-    void setFuel(int Fuel) {
+    void setFuel(double Fuel) {
         fuel = Fuel;
     }
     int getRestroom() {

@@ -34,7 +34,6 @@ public class MainMenuController {
     void optionsBtnClikced(ActionEvent event) {
         //TODO: to be removed !
 
-        
     }
 
     @FXML

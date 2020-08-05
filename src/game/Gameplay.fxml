@@ -215,8 +215,8 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="speedUpButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" text="Speed Up" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                        <Button fx:id="slowDownButton" mnemonicParsing="false" text="Slow Down" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                        <Button fx:id="speedUpButton" mnemonicParsing="false" onAction="#speedUpBtnClicked" prefHeight="18.0" prefWidth="74.0" text="Speed Up" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <Button fx:id="slowDownButton" mnemonicParsing="false" onAction="#slowDownBtnClicked" text="Slow Down" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                         <ImageView fitHeight="185.0" fitWidth="60.0" opacity="0.68" preserveRatio="true" GridPane.rowIndex="6">
                            <image>
                               <Image url="@img/dashboardWarningLightIcon.png" />
