@@ -40,9 +40,9 @@ public class Main extends Application {
         //Date timeStamp = new SimpleDateFormat("MMMMM dd, yyyy").parse("July 1, 2020");
         //System.out.println(timeStamp);
         //Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("Gameplay.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("Gameplay.fxml"));
 
-        //Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 
         Scene scene = new Scene(root);
         stage.setTitle("Untitled Driver Game"); // displayed in window's title bar

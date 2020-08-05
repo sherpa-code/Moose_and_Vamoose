@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.MainMenuController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.MainMenuController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true">
          <image>
@@ -39,22 +39,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="startNewGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #42f59e;" text="Start New Game" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Button fx:id="startNewGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#startNewGameClicked" style="-fx-background-color: #42f59e;" text="Start New Game" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="loadGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #42f59e;" text="Load Game" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Button fx:id="loadGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadGameBtnClicked" style="-fx-background-color: #42f59e;" text="Load Game" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="optionsButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #42f59e;" text="Options" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Button fx:id="optionsButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#optionsBtnClikced" style="-fx-background-color: #42f59e;" text="Options" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="quitButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #42f59e;" text="Quit" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Button fx:id="quitButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#quitBtnClicked" style="-fx-background-color: #42f59e;" text="Quit" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
