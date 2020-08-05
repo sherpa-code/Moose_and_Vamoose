@@ -98,6 +98,60 @@ public class GameplayController {
         kmTraveledValueLabel.setText(String.valueOf(player.getDistanceTraveled()));
 
     }
+    
+        /**
+     * checks if car has collided with an 850lb ham on stilts
+     * @param moose moose object
+     * @param car car object
+     * @return true if horrific auto accident, false otherwise
+     */
+    public Boolean checkIfMooseCollision(ImageView moose, ImageView car) {
+
+        // calculate movement/collision bounds of the moose
+        double mooseXPosMax =  moose.getBoundsInParent().getMaxX();
+        double carXPosMin = car.getBoundsInParent().getMinX();
+
+        return (mooseXPosMax >= carXPosMin);
+    }
+
+    /**
+     * creates an Avoid Button for random placement
+     * @return avoidButton
+     */
+    protected Button createAvoidButton() {
+        Button avoidButton = new Button();
+        avoidButton.setText("AVOID");
+        avoidButton.setStyle("-fx-background-color: #ff0000; ");
+        return avoidButton;
+    }
+
+    /**
+     * creates a moose image for placement elsewhere
+     * @return moose
+     */
+    protected ImageView createMoose() {
+
+        File mooseFile = new File("img/moose.png");
+        Image mooseImage = new Image(mooseFile.toURI().toString());
+        ImageView moose = new ImageView();
+        moose.setImage(mooseImage);
+        return moose;
+    }
+
+    /**
+     * placeholder function
+     * needs to create objects, place moose on fxml line, start anim
+     */
+    public void initializeMooseInteraction() {
+        ImageView moose = createMoose();
+        Button avoidButton = createAvoidButton();
+
+        //TODO clean insertions into FXML, need to figure out pathing for anim
+
+    }
+    
+    
+    
     /**
      * Method that runs the properties of "GameplayController" class when it is called by "Main" app
      */
