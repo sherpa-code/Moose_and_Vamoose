@@ -53,26 +53,26 @@ public class PlayerStats extends Main {
 //    }};
 
     String[][] landmarksDistancesSize = {
-        {"St. John's", "0", "large"},
-        {"Paradise", "7", "large"},
-        {"CBS", "11", "large"},
-        {"Holyrood", "18", "small"},
-        {"Brigus Junction", "18", "small"},
-        {"Bellevue", "60", "small"},
-        {"Goobies", "54", "small"},
-        {"Clarenville", "30", "large"},
-        {"Glovertown", "87", "small"},
-        {"Gambo", "30", "small"},
-        {"Gander", "40", "large"},
-        {"Glenwood", "23", "small"},
-        {"Bishop's Falls", "57", "small"},
-        {"Grand Falls - Windsor", "17", "large"},
-        {"Badger", "30", "none"},
-        {"South Brook", "53", "small"},
-        {"Sheppardville", "33", "small"},
-        {"Deer Lake", "92", "large"},
-        {"Pasadena", "23", "small"},
-        {"Corner Brook", "78", "large"}
+            {"St. John's", "0", "large"},
+            {"Paradise", "7", "large"},
+            {"CBS", "11", "large"},
+            {"Holyrood", "18", "small"},
+            {"Brigus Junction", "18", "small"},
+            {"Bellevue", "60", "small"},
+            {"Goobies", "54", "small"},
+            {"Clarenville", "30", "large"},
+            {"Glovertown", "87", "small"},
+            {"Gambo", "30", "small"},
+            {"Gander", "40", "large"},
+            {"Glenwood", "23", "small"},
+            {"Bishop's Falls", "57", "small"},
+            {"Grand Falls - Windsor", "17", "large"},
+            {"Badger", "30", "none"},
+            {"South Brook", "53", "small"},
+            {"Sheppardville", "33", "small"},
+            {"Deer Lake", "92", "large"},
+            {"Pasadena", "23", "small"},
+            {"Corner Brook", "78", "large"}
 //        {"", "", ""},
 //        {"", "", ""},
 //        {"", "", ""},
@@ -84,7 +84,7 @@ public class PlayerStats extends Main {
 //        {"", "", ""},
 //        {"", "", ""}
 
-        //etc
+            //etc
     };
 
     public PlayerStats(
