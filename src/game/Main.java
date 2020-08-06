@@ -32,7 +32,6 @@ public class Main extends Application {
         launch(args);
     }
 
-
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -49,8 +48,5 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 
 }

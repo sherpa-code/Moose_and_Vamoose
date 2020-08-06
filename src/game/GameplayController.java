@@ -123,14 +123,11 @@ public class GameplayController {
         if (newSpeed > 75) {
             //TODO: Fuel should get consumed in faster rate
         }
-
-
     }
 
     //Should increase fuel consumption with higher speeds
     void highFuelConsumption(){
         fuelConsumptionRate = 0.75;
-
     }
 
     //checks player's stats over time and changes the properties over time
@@ -147,6 +144,7 @@ public class GameplayController {
         // TODO: A method that runs over time and changes player's stats
     }
 
+    
     /**
      * Method that runs the properties of "GameplayController" class when it is called by "Main" app
      */
