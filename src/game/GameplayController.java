@@ -75,14 +75,6 @@ public class GameplayController {
         mooseActive = false;
     }
 
-//    public void saveCarImageView() {
-//        File mooseFile = new File("img/moose.png");
-//        Image mooseImage = new Image(mooseFile.toURI().toString());
-//        ImageView moose = new ImageView();
-//        moose.setImage(mooseImage);
-//        return moose;
-//    }
-
     /**
      * Creates a Timer and Task that will execute every tickRateMS;
      * within updatePlayerStats, it will:
@@ -97,14 +89,96 @@ public class GameplayController {
             public void run() {
                 Platform.runLater(() -> {
                     updatePlayerStats(player);
-                    if (mooseActive == true) {
+                    if (reachedLandmark()) {
+                        cancelTick();
+                        loadNextLandmarkScene();
+                    } else if (mooseActive == true) {
                         tickMoose();
-                    }
+                    };
                 });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
 
+    }
+
+    public boolean reachedLandmark() {
+        //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
+        if (player.getDistanceTraveled() >=
+                Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
+            return true;
+        }
+        return false;
+    }
+
+    public void loadNextLandmarkScene() {
+        switch(player.getLastLandmarkIndex()+1) {
+            case 1:
+                // load St. John's landmark scene
+                break;
+            case 2:
+                // load Paradise landmark scene
+                break;
+            case 3:
+                // load CBS landmark scene
+                break;
+            case 4:
+                // load Holyrood landmark scene
+                break;
+            case 5:
+                // load Brigus Junction landmark scene
+                break;
+            case 6:
+                // load Bellevue landmark scene
+                break;
+            case 7:
+                // load Goobies landmark scene
+                break;
+            case 8:
+                // load Clarenville landmark scene
+                break;
+            case 9:
+                // load Glovertown landmark scene
+                break;
+            case 10:
+                // load Gambo landmark scene
+                break;
+            case 11:
+                // load Gander landmark scene
+                break;
+            case 12:
+                // load Glenwood landmark scene
+                break;
+            case 13:
+                // load Bishop's Falls landmark scene
+                break;
+            case 14:
+                // load Grand Falls - Windsor landmark scene
+                break;
+            case 15:
+                // load Badger landmark scene
+                break;
+            case 16:
+                // load South Brook landmark scene
+                break;
+            case 17:
+                // load Sheppardville landmark scene
+                break;
+            case 18:
+                // load Deer Lake landmark scene
+                break;
+            case 19:
+                // load Pasadena landmark scene
+                break;
+            case 20:
+                // load Corner Brook OR load the Game Win function
+                break;
+        }
+        for (int i=0; i < player.landmarkAttributes.length; i++) {
+            if (player.getLastLandmarkIndex()+1 == 1) {
+                // load St. John's scene
+            }
+        }
     }
 
     /**
@@ -164,13 +238,9 @@ public class GameplayController {
         currentGameTickTimer.purge();
     }
 
-    public GameplayController() throws ParseException, IOException, ClassNotFoundException {
+    public GameplayController() throws ParseException, IOException, ClassNotFoundException {}
 
-    }
-
-    public void main(String[] args) throws InterruptedException {
-
-    }
+    public void main(String[] args) throws InterruptedException {}
 
     public void startDriving() {
 
@@ -184,6 +254,11 @@ public class GameplayController {
     public void gameOver(String reason) {
         cancelTick();
         System.out.println(reason);
+    }
+
+    public void gameVictory() {
+        cancelTick();
+        // Display
     }
 
     public void animateCarStartStop(String startStop) {
@@ -370,26 +445,5 @@ public class GameplayController {
         //System.out.println(100);
         player.setSpeed(100);
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
-    }
-
-    // buy buttons are not yet implemented, need to be handled in landmark scene
-    @FXML
-    void buyFuelBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyFoodBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyDrinkBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyRestBtnClicked(ActionEvent event) {
-
     }
 }
