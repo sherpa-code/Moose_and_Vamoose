@@ -4,7 +4,9 @@ import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
@@ -12,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -20,6 +23,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 import java.util.function.Function;
 
 import static javafx.scene.paint.Color.*;
@@ -37,6 +41,7 @@ public class GameplayController {
             0, 0, 100, 0, 0, 0, 0, 500
     );
     int tickRateMS = 10;
+
     Timer currentGameTickTimer;
     Timer carAnimationTimer;
 
@@ -55,6 +60,9 @@ public class GameplayController {
     @FXML private Button slowDownButton;
     @FXML public ImageView moose;
     @FXML public ImageView carImageView;
+    @FXML public GridPane insertPane;
+    @FXML public Button avoidButton;
+    public boolean mooseActive;
 
 
     /**
@@ -64,6 +72,7 @@ public class GameplayController {
     public void initialize() {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
+        mooseActive = false;
     }
 
 //    public void saveCarImageView() {
@@ -88,6 +97,9 @@ public class GameplayController {
             public void run() {
                 Platform.runLater(() -> {
                     updatePlayerStats(player);
+                    if (mooseActive == true) {
+                        tickMoose();
+                    }
                 });
             }
         };
@@ -245,11 +257,11 @@ public class GameplayController {
 
     /**
      * checks if car has collided with an 850lb ham on stilts
-     *
      * @param moose moose object
      * @param car   car object
      * @return true if horrific auto accident, false otherwise
      */
+    @FXML
     public Boolean checkIfMooseCollision(ImageView moose, ImageView car) {
         // calculate movement/collision bounds of the moose
         double mooseXPosMax = moose.getBoundsInParent().getMaxX();
@@ -257,65 +269,73 @@ public class GameplayController {
         return (mooseXPosMax >= carXPosMin);
     }
 
-    /**
-     * creates an Avoid Button for random placement
-     *
-     * @return avoidButton
-     */
-
-    protected Button createAvoidButton() {
-        Button avoidButton = new Button();
-        avoidButton.setText("AVOID");
-        avoidButton.setStyle("-fx-background-color: #ff0000; ");
-        return avoidButton;
-    }
-
-    /**
-     * creates a moose image for placement elsewhere
-     *
-     * @return moose
-     */
-    private ImageView createMoose() {
-        File mooseFile = new File("img/moose.png");
-        Image mooseImage = new Image(mooseFile.toURI().toString());
-        ImageView moose = new ImageView();
-        moose.setImage(mooseImage);
-        return moose;
-    }
-
-    /**
-     * placeholder function
-     * needs to create objects, place moose on fxml line, start anim
-     */
-    public void initializeMooseInteraction() {
-        ImageView moose = createMoose();
-        Button avoidButton = createAvoidButton();
-
-        //TODO clean insertions into FXML, need to figure out pathing for anim
-
-    }
-
-
     @FXML
-    public void animateMoose(ActionEvent event) {
-        double mooseXPosition = moose.getTranslateX();
-        moose.setTranslateX(mooseXPosition + 10);
-        System.out.println("animateMoose() fired");//DEBUG
-        if (checkIfMooseCollision(moose, carImageView)) {
-            //System.out.println("COLLISION DETECTED");//DEBUG
-            gameOver("Game Over.\nYou hit a moose.");
+    public void avoidButtonClicked(ActionEvent event) {
+        mooseActive = false;
+        resetMooseEvent();
+    }
+
+    /**
+     * fired once for each tick while the moose is active
+     */
+    @FXML
+    public void tickMoose() {
+        if (mooseActive == true) {
+            if (checkIfMooseCollision(moose, carImageView)) {
+                gameOver("You hit a big ole moose"); //replace later
+                resetMooseEvent();
+                mooseActive = false;
+            } else {
+                animateMooseAtSpeed();
+            }
+        } else {
+            System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
         }
     }
 
+    /**
+     * begins the moose event, sets it to an active state
+     */
     @FXML
-    public void animateMooseAtSpeed(ActionEvent event) {
+    public void activateMooseEvent() {
+        System.out.println("MOOSE EVENT ACTIVATED"); //debug
+        mooseActive = true;
+
+        //place moose
+        moose.setTranslateX(0);
+        moose.setVisible(true);
+
+        //place button
+        double newButtonPositionX = 300 + (Math.random() * 100);
+        avoidButton.setVisible(true);
+        avoidButton.setTranslateX(newButtonPositionX);
+
+    }
+    /**
+     * resets the moose event to its original state
+     */
+    @FXML
+    public void resetMooseEvent() {
+        System.out.println("MOOSE EVENT RESET"); //debug
+        mooseActive = false;
+
+        moose.setTranslateX(0);
+        moose.setVisible(false);
+
+        avoidButton.setTranslateX(100);
+        avoidButton.setVisible(false);
+    }
+
+
+
+    /**
+     * animates moose relative to player's current speed
+     */
+    @FXML
+    public void animateMooseAtSpeed() {
         double mooseXPosition = moose.getTranslateX();
-        moose.setTranslateX(mooseXPosition + player.getSpeed());
+        moose.setTranslateX(mooseXPosition + (player.getSpeed() / 25));
         System.out.println("animateMooseAtSpeed() fired");//DEBUG
-        if (checkIfMooseCollision(moose, carImageView)) {
-            //System.out.println("COLLISION DETECTED");//DEBUG
-            gameOver("Game Over.\nYou hit a moose.");
-        }
     }
 
     @FXML
