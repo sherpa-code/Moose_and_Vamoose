@@ -1,5 +1,11 @@
 package game;
 
-public class Gameplay {
+//import java.text.ParseException;
 
+public class Gameplay {
+    //PlayerStats playerStats = new PlayerStats(85);
+
+    public Gameplay() {
+
+    }
 }
