@@ -37,10 +37,12 @@ public class GameplayController {
      * Simply instantiation of a player object
      */
     double fuelConsumptionRate = 1.0;
-    PlayerStats player = new PlayerStats(
-            0, 0, 100, 0, 0, 0, 0, 500
-    );
     int tickRateMS = 10;
+    PlayerStats player = new PlayerStats(
+            0, 0, 100, 0,
+            0, 0, 0.1, 500
+    );
+
 
     Timer currentGameTickTimer;
     Timer carAnimationTimer;
@@ -73,7 +75,9 @@ public class GameplayController {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
         mooseActive = false;
+        System.out.println("Initial lastLandmarkIndex = "+player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]);
     }
+
 
     /**
      * Creates a Timer and Task that will execute every tickRateMS;
@@ -89,21 +93,84 @@ public class GameplayController {
             public void run() {
                 Platform.runLater(() -> {
                     updatePlayerStats(player);
-                    if (reachedLandmark()) {
+
+                    if(player.getSpeed() > 0) {
+                        rumbleCar();
+                    }
+
+                    if (mooseActive) {
+                        tickMoose();
+                    } else if (reachedLandmark()) {
                         cancelTick();
                         loadNextLandmarkScene();
-                    } else if (mooseActive == true) {
-                        tickMoose();
-                    };
+                    } else {
+                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+                            activateMooseEvent();
+                        }
+                    }
                 });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+    }
+//    public void beginTick() {
+//        updatePlayerStatsLabels(player);
+//        currentGameTickTimer = new Timer();
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//                    updatePlayerStats(player);
+//
+//                    if(player.getSpeed() > 0) {
+//                        rumbleCar();
+//                    }
+//
+//                    if (reachedLandmark()) {
+//                        cancelTick();
+//                        loadNextLandmarkScene();
+//                    } else if (mooseActive == true) {
+//                        tickMoose();
+//                    };
+//                });
+//            }
+//        };
+//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+////        updatePlayerStatsLabels(player);
+////        currentGameTickTimer = new Timer();
+////        TimerTask task = new TimerTask() {
+////            @Override
+////            public void run() {
+////                Platform.runLater(() -> {
+////                    updatePlayerStats(player);
+////                    if (reachedLandmark()) {
+////                        cancelTick();
+////                        loadNextLandmarkScene();
+////                    } else if (mooseActive == true) {
+////                        tickMoose();
+////                    };
+////                });
+////            }
+////        };
+////        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+//
+//    }
 
+    public Boolean mooseSpawnRoll() {
+        Random random = new Random();
+        Float roll = random.nextFloat();
+
+        if (roll <= 0.001f && mooseActive == false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean reachedLandmark() {
         //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
+        System.out.println("reached landmark");
+        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]);
         if (player.getDistanceTraveled() >=
                 Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
             return true;
@@ -445,5 +512,14 @@ public class GameplayController {
         //System.out.println(100);
         player.setSpeed(100);
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
+    }
+
+    @FXML
+    public void rumbleCar() {
+        if (carImageView.getRotate() != 1) {
+            carImageView.setRotate(1);
+        } else {
+            carImageView.setRotate(-1);
+        }
     }
 }
