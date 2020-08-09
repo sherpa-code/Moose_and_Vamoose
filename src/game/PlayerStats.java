@@ -49,7 +49,7 @@ public class PlayerStats extends Main {
     /**
      * String array that contains the landmark names, distance from the starting point, and size (amenities available).
      */
-    String[][] landmarkAttributes = {
+    String[][] landmarksDistancesSize = {
             {"Home", "0", "none"},
             {"St. John's", "2", "large"},
             {"Paradise", "11", "small"},
@@ -92,7 +92,7 @@ public class PlayerStats extends Main {
 //            String vehicleID,
 //            String carSpriteURL,
 //            Boolean isMoving,
-//            boolean setupComplete, String[][] landmarkAttributes
+//            boolean setupComplete, String[][] landmarksDistancesSize
     ) throws ParseException {
         this.hunger = hunger;
         this.thirst = thirst;
@@ -110,8 +110,8 @@ public class PlayerStats extends Main {
 //        this.carSpriteURL = carSpriteURL;
 //        this.isMoving = isMoving;
 //        this.setupComplete = setupComplete;
-//        this.landmarkAttributes = landmarkAttributes;
-        //this.landmarkAttributes[1][0] = nextLandMark;
+//        this.landmarksDistancesSize = landmarksDistancesSize;
+        //this.landmarksDistancesSize[1][0] = nextLandMark;
     }
 
     public void clampPlayerStats() {
@@ -153,8 +153,8 @@ public class PlayerStats extends Main {
     }
 
     double getDistanceTraveled() {
-        //return String.valueOf(landmarkAttributes[0][1]);
-        //return Double.parseDouble(landmarkAttributes[0][1]);
+        //return String.valueOf(landmarksDistancesSize[0][1]);
+        //return Double.parseDouble(landmarksDistancesSize[0][1]);
         return distanceTraveled;
     }
     void setDistanceTraveled(double DistanceTraveled) {
@@ -241,15 +241,11 @@ public class PlayerStats extends Main {
     }
 
     public String getNextLandmarkName() {
-        return landmarkAttributes[lastLandmarkIndex+1][0];
+        return landmarksDistancesSize[lastLandmarkIndex+1][0];
     }
 
     public String getLastLandmarkName() {
-        return landmarkAttributes[lastLandmarkIndex][0];
-    }
-
-    public int getLastLandmarkIndex() {
-        return lastLandmarkIndex;
+        return landmarksDistancesSize[lastLandmarkIndex][0];
     }
     public void setLastLandmarkIndex(int newIndex) {
         lastLandmarkIndex = newIndex;
