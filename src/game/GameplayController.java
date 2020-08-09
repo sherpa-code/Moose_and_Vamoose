@@ -38,6 +38,7 @@ public class GameplayController {
     );
     int tickRateMS = 10;
     Timer currentGameTickTimer;
+    Timer carAnimationTimer;
 
     @FXML private Label dateValueLabel;
     @FXML private Label hungerValueLabel;
@@ -60,8 +61,7 @@ public class GameplayController {
      * Fired when the .fxml and controller has loaded.
      * Begins the gameplay ticking.
      */
-    public void initialize()
-    {
+    public void initialize() {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
     }
@@ -80,11 +80,94 @@ public class GameplayController {
             public void run() {
                 Platform.runLater(() -> {
                     updatePlayerStats(player);
+                    if (reachedLandmark()) {
+                        cancelTick();
+                        loadNextLandmarkScene();
+                    };
                 });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
 
+    }
+
+    public boolean reachedLandmark() {
+        //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
+        if (player.getDistanceTraveled() >=
+                Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
+            return true;
+        }
+        return false;
+    }
+
+    public void loadNextLandmarkScene() {
+        switch(player.getLastLandmarkIndex()+1) {
+            case 1:
+                // load St. John's landmark scene
+                break;
+            case 2:
+                // load Paradise landmark scene
+                break;
+            case 3:
+                // load CBS landmark scene
+                break;
+            case 4:
+                // load Holyrood landmark scene
+                break;
+            case 5:
+                // load Brigus Junction landmark scene
+                break;
+            case 6:
+                // load Bellevue landmark scene
+                break;
+            case 7:
+                // load Goobies landmark scene
+                break;
+            case 8:
+                // load Clarenville landmark scene
+                break;
+            case 9:
+                // load Glovertown landmark scene
+                break;
+            case 10:
+                // load Gambo landmark scene
+                break;
+            case 11:
+                // load Gander landmark scene
+                break;
+            case 12:
+                // load Glenwood landmark scene
+                break;
+            case 13:
+                // load Bishop's Falls landmark scene
+                break;
+            case 14:
+                // load Grand Falls - Windsor landmark scene
+                break;
+            case 15:
+                // load Badger landmark scene
+                break;
+            case 16:
+                // load South Brook landmark scene
+                break;
+            case 17:
+                // load Sheppardville landmark scene
+                break;
+            case 18:
+                // load Deer Lake landmark scene
+                break;
+            case 19:
+                // load Pasadena landmark scene
+                break;
+            case 20:
+                // load Corner Brook OR load the Game Win function
+                break;
+        }
+        for (int i=0; i < player.landmarkAttributes.length; i++) {
+            if (player.getLastLandmarkIndex()+1 == 1) {
+                // load St. John's scene
+            }
+        }
     }
 
     /**
@@ -104,7 +187,7 @@ public class GameplayController {
         player.setThirst(player.getThirst() + player.getThirstRate());
         player.setRestroom(player.getRestroom() + player.getRestroomRate());
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
-        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/80000); // numeric value controls the ratio between distance traveled and speed
+        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
@@ -144,13 +227,9 @@ public class GameplayController {
         currentGameTickTimer.purge();
     }
 
-    public GameplayController() throws ParseException, IOException, ClassNotFoundException {
+    public GameplayController() throws ParseException, IOException, ClassNotFoundException {}
 
-    }
-
-    public void main(String[] args) throws InterruptedException {
-
-    }
+    public void main(String[] args) throws InterruptedException {}
 
     public void startDriving() {
 
@@ -161,12 +240,83 @@ public class GameplayController {
         // load new scene, making sure it has a reference to the current player object
     }
 
-
-
     public void gameOver(String reason) {
         cancelTick();
         System.out.println(reason);
     }
+
+    public void gameVictory() {
+        cancelTick();
+        // Display
+    }
+
+    public void animateCarStartStop(String startStop) {
+        // TODO: use the code below to make the car slightly move up and down every second;
+        //  so animateCar should create a Timer that fires the code below regularly.
+        //  Then, we can add this into gameplay loop wherever the gameplay begins or resumes but only when speed > 0
+        //  implement a reference to the car sprite in the way that the moose sprite is handled
+//
+//
+//        if (startStop.equals("start")) {
+//            carAnimationTimer = new Timer();
+//            double carYoffset = 0;
+//            TimerTask task = new TimerTask() {
+//                @Override
+//                public void run() {
+//                Platform.runLater(() -> {
+//                    animateCar(carYoffset);
+//                    carYoffset = carYoffset + 1; // i left off on this hacky animation of the car here once i realized you cannot manipulate variables this way
+//
+//                });
+//                }
+//            };
+//            currentGameTickTimer.scheduleAtFixedRate(task, 0, 100);
+//
+//
+//
+//            if (plusMinusInversion) {
+//                plusMinusInversion = false;
+////               double carYPosition = car.getTranslateY();
+////               car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
+//            } else {
+//                plusMinusInversion = true;
+////                double carYPosition = car.getTranslateY();
+////                car.setTranslateX(carYPosition - 4); // put on a timer that alternates with the next line
+//            }
+//
+////        double carYPosition = car.getTranslateY();
+////        car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
+////        car.setTranslateX(carYPosition - 4); // alternates
+//        } else if (startStop.equals("stop")){
+//
+//        }
+
+
+//        System.out.println("animateCarStartStop() fired");//DEBUG
+    }
+//
+//    public void animateCar (double carYoffset) {
+//        boolean plusMinusInversion = false;
+//        if (startStop.equals("start")) {
+//            if (plusMinusInversion) {
+//                plusMinusInversion = false;
+////               double carYPosition = car.getTranslateY();
+////               car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
+//            } else {
+//                plusMinusInversion = true;
+////                double carYPosition = car.getTranslateY();
+////                car.setTranslateX(carYPosition - 4); // put on a timer that alternates with the next line
+//            }
+//
+////        double carYPosition = car.getTranslateY();
+////        car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
+////        car.setTranslateX(carYPosition - 4); // alternates
+//        } else if (startStop.equals("stop")){
+//
+//        }
+//        //        System.out.println("animateCar() fired");//DEBUG
+//    }
+
 
 
     /**
@@ -278,24 +428,5 @@ public class GameplayController {
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
     }
 
-    // buy buttons are not yet implemented, need to be handled in landmark scene
-    @FXML
-    void buyFuelBtnClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void buyFoodBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyDrinkBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyRestBtnClicked(ActionEvent event) {
-
-    }
 }

@@ -26,7 +26,8 @@ public class MainMenuController {
             stage.setTitle("Moose and Vamoose - LOOK OUT!"); // displayed in window's title bar
             stage.setScene(scene);
             stage.show();
-            // TODO: close the main menu here
+            Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
+            currentStage.close();
         } catch(Exception e){
             System.out.println("Can't Load New Game!");
         }
