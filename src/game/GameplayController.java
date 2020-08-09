@@ -4,9 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
@@ -14,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -23,7 +20,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Random;
 import java.util.function.Function;
 
 import static javafx.scene.paint.Color.*;
@@ -41,7 +37,6 @@ public class GameplayController {
             0, 0, 100, 0, 0, 0, 0, 500
     );
     int tickRateMS = 10;
-
     Timer currentGameTickTimer;
     Timer carAnimationTimer;
 
@@ -60,9 +55,6 @@ public class GameplayController {
     @FXML private Button slowDownButton;
     @FXML public ImageView moose;
     @FXML public ImageView carImageView;
-    @FXML public GridPane insertPane;
-    @FXML public Button avoidButton;
-    public boolean mooseActive;
 
 
     /**
@@ -72,16 +64,7 @@ public class GameplayController {
     public void initialize() {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
-        mooseActive = false;
     }
-
-//    public void saveCarImageView() {
-//        File mooseFile = new File("img/moose.png");
-//        Image mooseImage = new Image(mooseFile.toURI().toString());
-//        ImageView moose = new ImageView();
-//        moose.setImage(mooseImage);
-//        return moose;
-//    }
 
     /**
      * Creates a Timer and Task that will execute every tickRateMS;
@@ -97,14 +80,94 @@ public class GameplayController {
             public void run() {
                 Platform.runLater(() -> {
                     updatePlayerStats(player);
-                    if (mooseActive == true) {
-                        tickMoose();
-                    }
+                    if (reachedLandmark()) {
+                        cancelTick();
+                        loadNextLandmarkScene();
+                    };
                 });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
 
+    }
+
+    public boolean reachedLandmark() {
+        //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
+        if (player.getDistanceTraveled() >=
+                Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
+            return true;
+        }
+        return false;
+    }
+
+    public void loadNextLandmarkScene() {
+        switch(player.getLastLandmarkIndex()+1) {
+            case 1:
+                // load St. John's landmark scene
+                break;
+            case 2:
+                // load Paradise landmark scene
+                break;
+            case 3:
+                // load CBS landmark scene
+                break;
+            case 4:
+                // load Holyrood landmark scene
+                break;
+            case 5:
+                // load Brigus Junction landmark scene
+                break;
+            case 6:
+                // load Bellevue landmark scene
+                break;
+            case 7:
+                // load Goobies landmark scene
+                break;
+            case 8:
+                // load Clarenville landmark scene
+                break;
+            case 9:
+                // load Glovertown landmark scene
+                break;
+            case 10:
+                // load Gambo landmark scene
+                break;
+            case 11:
+                // load Gander landmark scene
+                break;
+            case 12:
+                // load Glenwood landmark scene
+                break;
+            case 13:
+                // load Bishop's Falls landmark scene
+                break;
+            case 14:
+                // load Grand Falls - Windsor landmark scene
+                break;
+            case 15:
+                // load Badger landmark scene
+                break;
+            case 16:
+                // load South Brook landmark scene
+                break;
+            case 17:
+                // load Sheppardville landmark scene
+                break;
+            case 18:
+                // load Deer Lake landmark scene
+                break;
+            case 19:
+                // load Pasadena landmark scene
+                break;
+            case 20:
+                // load Corner Brook OR load the Game Win function
+                break;
+        }
+        for (int i=0; i < player.landmarkAttributes.length; i++) {
+            if (player.getLastLandmarkIndex()+1 == 1) {
+                // load St. John's scene
+            }
+        }
     }
 
     /**
@@ -164,13 +227,9 @@ public class GameplayController {
         currentGameTickTimer.purge();
     }
 
-    public GameplayController() throws ParseException, IOException, ClassNotFoundException {
+    public GameplayController() throws ParseException, IOException, ClassNotFoundException {}
 
-    }
-
-    public void main(String[] args) throws InterruptedException {
-
-    }
+    public void main(String[] args) throws InterruptedException {}
 
     public void startDriving() {
 
@@ -184,6 +243,11 @@ public class GameplayController {
     public void gameOver(String reason) {
         cancelTick();
         System.out.println(reason);
+    }
+
+    public void gameVictory() {
+        cancelTick();
+        // Display
     }
 
     public void animateCarStartStop(String startStop) {
@@ -257,11 +321,11 @@ public class GameplayController {
 
     /**
      * checks if car has collided with an 850lb ham on stilts
+     *
      * @param moose moose object
      * @param car   car object
      * @return true if horrific auto accident, false otherwise
      */
-    @FXML
     public Boolean checkIfMooseCollision(ImageView moose, ImageView car) {
         // calculate movement/collision bounds of the moose
         double mooseXPosMax = moose.getBoundsInParent().getMaxX();
@@ -269,73 +333,65 @@ public class GameplayController {
         return (mooseXPosMax >= carXPosMin);
     }
 
-    @FXML
-    public void avoidButtonClicked(ActionEvent event) {
-        mooseActive = false;
-        resetMooseEvent();
+    /**
+     * creates an Avoid Button for random placement
+     *
+     * @return avoidButton
+     */
+
+    protected Button createAvoidButton() {
+        Button avoidButton = new Button();
+        avoidButton.setText("AVOID");
+        avoidButton.setStyle("-fx-background-color: #ff0000; ");
+        return avoidButton;
     }
 
     /**
-     * fired once for each tick while the moose is active
+     * creates a moose image for placement elsewhere
+     *
+     * @return moose
      */
+    private ImageView createMoose() {
+        File mooseFile = new File("img/moose.png");
+        Image mooseImage = new Image(mooseFile.toURI().toString());
+        ImageView moose = new ImageView();
+        moose.setImage(mooseImage);
+        return moose;
+    }
+
+    /**
+     * placeholder function
+     * needs to create objects, place moose on fxml line, start anim
+     */
+    public void initializeMooseInteraction() {
+        ImageView moose = createMoose();
+        Button avoidButton = createAvoidButton();
+
+        //TODO clean insertions into FXML, need to figure out pathing for anim
+
+    }
+
+
     @FXML
-    public void tickMoose() {
-        if (mooseActive == true) {
-            if (checkIfMooseCollision(moose, carImageView)) {
-                gameOver("You hit a big ole moose"); //replace later
-                resetMooseEvent();
-                mooseActive = false;
-            } else {
-                animateMooseAtSpeed();
-            }
-        } else {
-            System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
+    public void animateMoose(ActionEvent event) {
+        double mooseXPosition = moose.getTranslateX();
+        moose.setTranslateX(mooseXPosition + 10);
+        System.out.println("animateMoose() fired");//DEBUG
+        if (checkIfMooseCollision(moose, carImageView)) {
+            //System.out.println("COLLISION DETECTED");//DEBUG
+            gameOver("Game Over.\nYou hit a moose.");
         }
     }
 
-    /**
-     * begins the moose event, sets it to an active state
-     */
     @FXML
-    public void activateMooseEvent() {
-        System.out.println("MOOSE EVENT ACTIVATED"); //debug
-        mooseActive = true;
-
-        //place moose
-        moose.setTranslateX(0);
-        moose.setVisible(true);
-
-        //place button
-        double newButtonPositionX = 300 + (Math.random() * 100);
-        avoidButton.setVisible(true);
-        avoidButton.setTranslateX(newButtonPositionX);
-
-    }
-    /**
-     * resets the moose event to its original state
-     */
-    @FXML
-    public void resetMooseEvent() {
-        System.out.println("MOOSE EVENT RESET"); //debug
-        mooseActive = false;
-
-        moose.setTranslateX(0);
-        moose.setVisible(false);
-
-        avoidButton.setTranslateX(100);
-        avoidButton.setVisible(false);
-    }
-
-
-
-    /**
-     * animates moose relative to player's current speed
-     */
-    @FXML
-    public void animateMooseAtSpeed() {
+    public void animateMooseAtSpeed(ActionEvent event) {
         double mooseXPosition = moose.getTranslateX();
-        moose.setTranslateX(mooseXPosition + (player.getSpeed() / 25));
+        moose.setTranslateX(mooseXPosition + player.getSpeed());
         System.out.println("animateMooseAtSpeed() fired");//DEBUG
+        if (checkIfMooseCollision(moose, carImageView)) {
+            //System.out.println("COLLISION DETECTED");//DEBUG
+            gameOver("Game Over.\nYou hit a moose.");
+        }
     }
 
     @FXML
@@ -372,24 +428,5 @@ public class GameplayController {
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
     }
 
-    // buy buttons are not yet implemented, need to be handled in landmark scene
-    @FXML
-    void buyFuelBtnClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void buyFoodBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyDrinkBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buyRestBtnClicked(ActionEvent event) {
-
-    }
 }

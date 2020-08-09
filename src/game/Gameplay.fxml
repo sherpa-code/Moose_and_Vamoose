@@ -296,12 +296,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" />
-                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" text="AVOID" style="-fx-background-color: RED; " visible="false" />
-                  <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">
+                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />
+                  <ImageView fx:id="moose" GridPane.rowIndex="2">
                       <image>
                         <Image url="@img/moose.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </ImageView>
                </children>
             </GridPane>

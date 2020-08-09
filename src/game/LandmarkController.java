@@ -47,14 +47,6 @@ public class LandmarkController {
 
     }
 
-    /**
-     * Fired when the .fxml and controller has loaded.
-     * Begins the gameplay ticking.
-     */
-    public void initialize() {
-        updatePlayerStatsLabels();
-    }
-
     // buy buttons are not yet implemented, need to be handled in landmark scene
     @FXML
     void buyFuelBtnClicked(ActionEvent event) {
@@ -80,23 +72,6 @@ public class LandmarkController {
     void leaveLandmarkBtnClicked(ActionEvent event) {
         System.out.println("leave landmark");
         // TODO: must load back into the main gameplay loop and
-        //  update the on-screen labels (might already work when Gameplay is implemented, need to confirm)
-    }
-
-    /**
-     * A method that updates player status labels to current running values, truncated (via casting) to an integer
-     *
-     * @param player as an instance of PlayerStats class and gets its properties
-     */
-    //TODO: Should updates stats of the player during a time period (per second?!)
-    public void updatePlayerStatsLabels(PlayerStats player) {
-        hungerValueLabel.setText(String.valueOf((int) player.getHunger()));
-        thirstValueLabel.setText(String.valueOf((int) player.getThirst()));
-        fuelValueLabel.setText(String.valueOf((int) player.getFuel()));
-        restroomValueLabel.setText(String.valueOf((int) player.getRestroom()));
-        fatigueValueLabel.setText(String.valueOf((int) player.getFatigue()));
-        dateValueLabel.setText(player.getCurrentDate().toString());
-        nextLandmarkValueLabel.setText(player.getNextLandmarkName());
-        cashValueLabel.setText(String.valueOf(player.getCash()));
+        //  update the
     }
 }
