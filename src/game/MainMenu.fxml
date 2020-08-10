@@ -44,7 +44,7 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="loadGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadGameBtnClicked" style="-fx-background-color: #42f59e;" text="Load Game" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <Button fx:id="loadGameButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadGameBtnClicked" style="-fx-background-color: #42f59e;" text="Load Game" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
                     <font>
                         <Font size="24.0" />
                     </font>
