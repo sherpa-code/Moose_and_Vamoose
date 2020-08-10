@@ -298,13 +298,48 @@
                </rowConstraints>
                <children>
                   <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" />
-                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" text="AVOID" style="-fx-background-color: RED; " visible="false" />
+                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" />
                   <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">
                      <image>
                         <Image url="@img/moose.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="BACK TO MAIN MENU" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Georgia" size="64.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
+                     <image>
+                        <Image url="@img/explosion.png" />
+                     </image>
+                  </ImageView>
                </children>
+<!--               <children>-->
+<!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" />-->
+<!--                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" />-->
+<!--                  <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">-->
+<!--                     <image>-->
+<!--                        <Image url="@img/moose.png" />-->
+<!--                     </image>-->
+<!--                  </ImageView>-->
+<!--                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="BACK TO MAIN MENU" GridPane.columnIndex="1" GridPane.rowIndex="1" visible="false" />-->
+<!--                  <Label fx:id="gameOverLabel" text="Game Over" GridPane.columnIndex="1" visible="false">-->
+<!--                     <font>-->
+<!--                        <Font name="Georgia" size="64.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--               </children>-->
+<!--               <children>-->
+<!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" />-->
+<!--                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" text="AVOID" style="-fx-background-color: RED; " visible="false" />-->
+<!--                  <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">-->
+<!--                     <image>-->
+<!--                        <Image url="@img/moose.png" />-->
+<!--                     </image>-->
+<!--                  </ImageView>-->
+<!--               </children>-->
             </GridPane>
          </children>
       </GridPane>

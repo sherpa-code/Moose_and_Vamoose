@@ -30,8 +30,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Gameplay.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("Gameplay.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Landmark.fxml"));
 
         Scene scene = new Scene(root);

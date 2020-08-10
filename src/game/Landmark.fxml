@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -15,7 +16,7 @@
 
 <!--<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">-->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -296,11 +297,11 @@
                            </font>
                         </Label>
                         <Button fx:id="saveGameButton" mnemonicParsing="false" text="Save Game" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
-                        <Button mnemonicParsing="false" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button mnemonicParsing="false" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button mnemonicParsing="false" text="Buy Hunger" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button mnemonicParsing="false" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button mnemonicParsing="false" text="Depart Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                        <Button fx:id="buyFuelButton" mnemonicParsing="false" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="buyDrinkButton" mnemonicParsing="false" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="buyHungerButton" mnemonicParsing="false" text="Buy Hunger" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="rentHotelButton" mnemonicParsing="false" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="departLandmarkButton" mnemonicParsing="false" text="Depart Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
                      </children>
                   </GridPane>
                </children>
@@ -310,7 +311,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#358294" height="300.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
             <ImageView fx:id="carImageView" fitHeight="250.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets bottom="54.0" right="50.0" />
+                  <Insets bottom="54.0" right="30.0" />
                </GridPane.margin>
                <image>
                   <Image url="@img/carSpriteDefault.png" />
@@ -335,7 +336,7 @@
               </rowConstraints>
                <children>
 <!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />-->
-                  <ImageView fx:id="hotelImageView" fitHeight="280.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="hotelImageView" fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/landmarkHotel.png" />
                      </image>
@@ -345,21 +346,40 @@
                         <Image url="@img/landmarkStore.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="gasStationImageView" fitHeight="250.0" fitWidth="600.0" pickOnBounds="true" scaleX="-1.0" visible="false" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="gasStationImageView" fitHeight="250.0" fitWidth="600.0" pickOnBounds="true" scaleX="-1.0" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/landmarkGas.png" />
                      </image>
                   </ImageView>
                </children>
             </GridPane>
-            <Label fx:id="landmarkNameLabel" minWidth="0.0" prefHeight="35.0" prefWidth="320.0" text="Landmark Name" textFill="#b5b5b5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <font>
-                  <Font name="Californian FB Bold" size="44.0" />
-               </font>
-               <padding>
-                  <Insets bottom="-590.0" />
-               </padding>
-            </Label>
+            <HBox GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" />
+               </GridPane.margin>
+               <children>
+                  <Label fx:id="landmarkNameLabel" minWidth="0.0" prefHeight="35.0" prefWidth="320.0" text="Landmark Name" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label minWidth="0.0" prefHeight="35.0" prefWidth="80.0" text="     (" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="landmarkSizeLabel" layoutX="10.0" layoutY="10.0" minWidth="0.0" prefHeight="35.0" prefWidth="90.0" text="Size" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="650.0" layoutY="10.0" minWidth="0.0" prefHeight="35.0" prefWidth="320.0" text=")" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </center>

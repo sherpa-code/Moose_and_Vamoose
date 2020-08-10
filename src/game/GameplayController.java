@@ -40,18 +40,27 @@ import static javafx.scene.paint.Color.RED;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-
 public class GameplayController {
     /**
      * Simply instantiation of a player object
      */
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
+    // debug player stats
     PlayerStats player = new PlayerStats(
-            0, 0, 100, 0,0,
-            0, 0.1, 500
+        0, 0, 100, 0,0,
+        0, 1.95, 500
     );
+//    PlayerStats player = new PlayerStats(
+//        0, 0, 100, 0,0,
+//        0, 691, 500, 19
+//    );
+
+    // default player stats
+//    PlayerStats player = new PlayerStats(
+//            0, 0, 100, 0,0,
+//            0, 0.1, 500
+//    );
 
     //MOH:  Multidimensional String, stores all player's stats as string
     String [][] savingObj = {
@@ -85,6 +94,10 @@ public class GameplayController {
     @FXML public ImageView carImageView;
     @FXML public GridPane insertPane;
     @FXML public Button avoidButton;
+    @FXML public Label gameOverLabel;
+    @FXML public Button backToMainMenuButton;
+    @FXML public ImageView explosion;
+
     public boolean mooseActive;
 
 
@@ -124,11 +137,15 @@ public class GameplayController {
                     if (mooseActive) {
                         tickMoose();
                     } else if (reachedLandmark()) {
-                        cancelTick();
-                        try {
-                            loadNextLandmarkScene();
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
+                        if (player.getLastLandmarkIndex()+1 == 21) {
+                            gameVictory();
+                        } else {
+                            cancelTick();
+                            try {
+                                loadNextLandmarkScene();
+                            } catch (IOException ioException) {
+                                ioException.printStackTrace();
+                            }
                         }
                     } else {
                         if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
@@ -140,6 +157,38 @@ public class GameplayController {
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
     }
+//    public void beginTick() {
+//        updatePlayerStatsLabels(player);
+//        currentGameTickTimer = new Timer();
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//                    updatePlayerStats(player);
+//
+//                    if(player.getSpeed() > 0) {
+//                        rumbleCar();
+//                    }
+//
+//                    if (mooseActive) {
+//                        tickMoose();
+//                    } else if (reachedLandmark()) {
+//                        cancelTick();
+//                        try {
+//                            loadNextLandmarkScene();
+//                        } catch (IOException ioException) {
+//                            ioException.printStackTrace();
+//                        }
+//                    } else {
+//                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+//                            activateMooseEvent();
+//                        }
+//                    }
+//                });
+//            }
+//        };
+//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+//    }
 
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
@@ -159,18 +208,25 @@ public class GameplayController {
         switch(currentLandmarkIndex) {
             case 1:
                 Stage currentStage = (Stage) carImageView.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
 
-                Parent root = FXMLLoader.load(getClass().getResource("Landmark.fxml"));
-//                System.out.println("loading Landmark - St. John's");
+                Parent root = (Parent) loader.load();
+                LandmarkController landmarkController = loader.getController();
+                landmarkController.storePlayer(player);
+                //landmarkController.updatePlayerStatsLabels(player);
+                landmarkController.updateLandmarkStatsLabels(player);
+
+                //landmarkController.init(table.getSelectionModel().getSelectedItem());
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
+
                 stage.setTitle("You are at a Landmark. Make the right choice!");
                 stage.setScene(scene);
+
+                System.out.println(landmarkController);
+
                 stage.show();
                 currentStage.close();
-//                LandmarkController landmarkController = fxmlLoader.getController();
-//                landmarkController.getPlayer(player);
-
                 break;
             case 2:
                 // load Paradise landmark scene
@@ -278,11 +334,42 @@ public class GameplayController {
         savingObj[3][1] = String.valueOf(player.getRestroom());
 
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
+        savingObj[4][1] = String.valueOf(player.getFatigue());
+
+        savingObj[5][1] = String.valueOf(player.getSpeed());
+
         player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
+        savingObj[6][1] = String.valueOf(player.getDistanceTraveled());
+
+        savingObj[7][1] = String.valueOf(player.getCash());
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
     }
+//    public void updatePlayerStats(PlayerStats player) {
+//        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 100kmh
+//            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed());
+//        } else {
+//            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.1);
+//        }
+//        // MOH: Stores all changing stats to multidimensional String called savingObj (Line 55)
+//        savingObj[2][1] = String.valueOf(player.getFuel());
+//
+//        player.setHunger(player.getHunger() + player.getHungerRate());
+//        savingObj[0][1] = String.valueOf(player.getHunger());
+//
+//        player.setThirst(player.getThirst() + player.getThirstRate());
+//        savingObj[1][1] = String.valueOf(player.getThirst());
+//
+//        player.setRestroom(player.getRestroom() + player.getRestroomRate());
+//        savingObj[3][1] = String.valueOf(player.getRestroom());
+//
+//        player.setFatigue(player.getFatigue() + player.getFatigueRate());
+//        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
+//
+//        player.clampPlayerStats();
+//        updatePlayerStatsLabels(player);
+//    }
 
     /**
      * A method that updates player status labels to current running values, truncated (via casting) to an integer
@@ -331,10 +418,36 @@ public class GameplayController {
         // load new scene, making sure it has a reference to the current player object
     }
 
+    public void backToMainMenu() throws IOException {
+        Stage currentStage = (Stage) carImageView.getScene().getWindow();
+
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setTitle("Moose and Vamoose");
+        stage.setScene(scene);
+        stage.show();
+        currentStage.close();
+    }
+
     public void gameOver(String reason) {
         cancelTick();
         System.out.println(reason);
+        gameOverLabel.setVisible(true);
+        backToMainMenuButton.setVisible(true);
+        backToMainMenuButton.setOnAction(event -> {
+            try {
+                backToMainMenu();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
+
+//    public void gameOver(String reason) {
+//        cancelTick();
+//        System.out.println(reason);
+//    }
 
     public void gameVictory() {
         cancelTick();
@@ -468,9 +581,9 @@ public class GameplayController {
     public void tickMoose() {
         if (mooseActive == true) {
             if (checkIfMooseCollision(moose, carImageView)) {
+                showExplosion();
                 gameOver("Game Over.\n You hit a moose."); //replace later
                 resetMooseEvent();
-                mooseActive = false;
             } else {
                 animateMooseAtSpeed();
             }
@@ -478,6 +591,20 @@ public class GameplayController {
             System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
         }
     }
+//    @FXML
+//    public void tickMoose() {
+//        if (mooseActive == true) {
+//            if (checkIfMooseCollision(moose, carImageView)) {
+//                gameOver("Game Over.\n You hit a moose."); //replace later
+//                resetMooseEvent();
+//                mooseActive = false;
+//            } else {
+//                animateMooseAtSpeed();
+//            }
+//        } else {
+//            System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
+//        }
+//    }
 
     /**
      * begins the moose event, sets it to an active state
@@ -566,5 +693,10 @@ public class GameplayController {
         } else {
             carImageView.setRotate(-1);
         }
+    }
+
+    @FXML
+    public void showExplosion() {
+        explosion.setVisible(true);
     }
 }
