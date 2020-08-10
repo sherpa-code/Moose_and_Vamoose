@@ -77,7 +77,8 @@ public class GameplayController {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
         mooseActive = false;
-        System.out.println("Initial lastLandmarkIndex = "+player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]);
+//        System.out.println("Initial lastLandmarkIndex = "+player.landmarkAttributes[player.getLastLandmarkIndex()][1]);
+        System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
     }
 
 
@@ -93,27 +94,36 @@ public class GameplayController {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> {
-                    updatePlayerStats(player);
+            Platform.runLater(() -> {
+                updatePlayerStats(player);
 
-                    if(player.getSpeed() > 0) {
-                        rumbleCar();
-                    }
+                if(player.getSpeed() > 0) {
+                    rumbleCar();
+                }
 
-                    if (mooseActive) {
-                        tickMoose();
-                    } else if (reachedLandmark()) {
-                        cancelTick();
-                        loadNextLandmarkScene();
-                    } else {
-                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
-                            activateMooseEvent();
-                        }
+                if (mooseActive) {
+                    tickMoose();
+                } else if (reachedLandmark()) {
+                    cancelTick();
+                    loadNextLandmarkScene();
+                } else {
+                    if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+                        activateMooseEvent();
                     }
-                });
+                }
+            });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+    }
+
+    public boolean reachedLandmark() {
+        if (player.getDistanceTraveled() >=
+                Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
+            System.out.println("reachedLandmark()\nLast landmark index = "+player.getLastLandmarkIndex());
+            return true;
+        }
+        return false;
     }
 
     public Boolean mooseSpawnRoll() {
@@ -127,19 +137,7 @@ public class GameplayController {
         }
     }
 
-    public boolean reachedLandmark() {
-        //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
-        System.out.println("reachedLandmark() fired");
-        System.out.println("Last landmark index = "+player.getLastLandmarkIndex());
-//        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]); // prints landmark's distance from st johns
-        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1]);
 
-        if (player.getDistanceTraveled() >=
-                Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
-            return true;
-        }
-        return false;
-    }
 
     public void loadNextLandmarkScene() {
         switch(player.getLastLandmarkIndex()+1) {
@@ -387,7 +385,7 @@ public class GameplayController {
     public void tickMoose() {
         if (mooseActive == true) {
             if (checkIfMooseCollision(moose, carImageView)) {
-                gameOver("You hit a big ole moose"); //replace later
+                gameOver("Game Over.\n You hit a moose."); //replace later
                 resetMooseEvent();
                 mooseActive = false;
             } else {
@@ -421,7 +419,7 @@ public class GameplayController {
      */
     @FXML
     public void resetMooseEvent() {
-        System.out.println("Moose event reset"); //debug
+        System.out.println("Moose event reset (has been de-spawned)"); //debug
         mooseActive = false;
 
         moose.setTranslateX(0);
@@ -440,16 +438,17 @@ public class GameplayController {
     public void animateMooseAtSpeed() {
         double mooseXPosition = moose.getTranslateX();
         moose.setTranslateX(mooseXPosition + (player.getSpeed() / 25));
-        System.out.println("animateMooseAtSpeed() fired");//DEBUG
+        //System.out.println("animateMooseAtSpeed() fired");//DEBUG
     }
 
     @FXML
     void slowDownBtnClicked(ActionEvent event) {
-        double newSpeed = player.getSpeed() - 5;
-        //System.out.println(newSpeed);
-        player.setSpeed(newSpeed);
-        speedValueLabel.setText(String.valueOf((player.getSpeed())));
-
+        if ((player.getSpeed()-5) > 0) {
+            double newSpeed = player.getSpeed() - 5;
+            player.setSpeed(newSpeed);
+            speedValueLabel.setText(String.valueOf((player.getSpeed())));
+            //System.out.println(newSpeed);
+        }
     }
 
     @FXML
