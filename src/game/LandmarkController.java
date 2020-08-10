@@ -43,6 +43,16 @@ public class LandmarkController {
     @FXML private Button buyDrinkButton;
     @FXML private Button rentHotelButton;
 
+    private PlayerStats player;
+
+    public void initialize() {
+
+    }
+
+    public void getPlayer(PlayerStats Player) {
+        player = Player;
+    }
+
     LandmarkController() {
 
     }
@@ -69,9 +79,26 @@ public class LandmarkController {
     }
 
     @FXML
+    public void saveGameBtnClicked(ActionEvent event) {
+
+    }
+
+    @FXML
     void leaveLandmarkBtnClicked(ActionEvent event) {
         System.out.println("leave landmark");
         // TODO: must load back into the main gameplay loop and
         //  update the
     }
+
+
+
+    public void displayLandmarkAmenities(String size) {
+        if (size.equals("small")) {
+
+        } else if (size.equals("large")) {
+
+        }
+    }
+
+
 }

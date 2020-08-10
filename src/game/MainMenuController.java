@@ -32,7 +32,7 @@ public class MainMenuController {
     @FXML void startNewGameClicked(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root1);
             stage.setTitle("Moose and Vamoose - LOOK OUT!"); // displayed in window's title bar

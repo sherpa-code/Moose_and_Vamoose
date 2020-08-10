@@ -88,6 +88,7 @@ public class GameplayController {
     public boolean mooseActive;
 
 
+
     /**
      * Fired when the .fxml and controller has loaded.
      * Begins the gameplay ticking.
@@ -143,23 +144,13 @@ public class GameplayController {
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
                 Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
-            System.out.println("reachedLandmark()" +
-                    "\nLast landmark index = "+player.getLastLandmarkIndex());
+            //System.out.println("reachedLandmark(); Last landmark index = "+player.getLastLandmarkIndex());
             return true;
         }
         return false;
     }
 
-    public Boolean mooseSpawnRoll() {
-        Random random = new Random();
-        Float roll = random.nextFloat();
 
-        if (roll <= 0.001f && mooseActive == false) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 
 
@@ -167,17 +158,19 @@ public class GameplayController {
         int currentLandmarkIndex = player.getLastLandmarkIndex()+1;
         switch(currentLandmarkIndex) {
             case 1:
-//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-//                Parent root = fxmlLoader.load();
+                Stage currentStage = (Stage) carImageView.getScene().getWindow();
+
+                Parent root = FXMLLoader.load(getClass().getResource("Landmark.fxml"));
+//                System.out.println("loading Landmark - St. John's");
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setTitle("You are at a Landmark. Make the right choice!");
+                stage.setScene(scene);
+                stage.show();
+                currentStage.close();
 //                LandmarkController landmarkController = fxmlLoader.getController();
-//                landmarkController.transferMessage("some string");
-//                Stage stage = new Stage();
-//                Scene scene = new Scene(root1);
-//                stage.setTitle("Moose and Vamoose - LOOK OUT!"); // displayed in window's title bar
-//                stage.setScene(scene);
-//                stage.show();
-//                Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
-//                currentStage.close();
+//                landmarkController.getPlayer(player);
+
                 break;
             case 2:
                 // load Paradise landmark scene
@@ -242,6 +235,21 @@ public class GameplayController {
 //                // load St. John's scene
 //            }
 //        }
+    }
+
+    /**
+     * has a change to spawn a moose
+     * @return if a moose was spawned by this
+     */
+    public Boolean mooseSpawnRoll() {
+        Random random = new Random();
+        Float roll = random.nextFloat();
+
+        if (roll <= 0.001f && mooseActive == false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

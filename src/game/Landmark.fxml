@@ -13,7 +13,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">
+<!--<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">-->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -188,8 +190,6 @@
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buyDrinkButton" mnemonicParsing="false" onAction="#buyDrinkBtnClicked" prefHeight="18.0" prefWidth="74.0" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button fx:id="rentHotelButton" mnemonicParsing="false" onAction="#rentHotelBtnClicked" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                         <ImageView fitHeight="185.0" fitWidth="60.0" opacity="0.68" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="5">
                            <image>
                               <Image url="@img/dashboardWarningLightIcon.png" />
@@ -198,8 +198,6 @@
                               <Insets left="80.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <Button fx:id="buyFoodButton" mnemonicParsing="false" onAction="#buyFoodBtnClicked" prefHeight="18.0" prefWidth="74.0" text="Buy Food" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                        <Button fx:id="buyFuelButton" mnemonicParsing="false" onAction="#buyFuelBtnClicked" prefHeight="18.0" prefWidth="74.0" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                         <Label fx:id="cashLabel" text="Cash" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <font>
                               <Font name="System Bold" size="16.0" />
@@ -217,7 +215,6 @@
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="rentHotelButton1" mnemonicParsing="false" onAction="#leaveLandmarkBtnClicked" text="Leave Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
                         <Label fx:id="landmarkFuelCostLabel" text="\$20" textFill="#b5b5b5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                            <font>
                               <Font name="System Bold" size="16.0" />
@@ -298,7 +295,12 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="rentHotelButton11" mnemonicParsing="false" onAction="#leaveLandmarkBtnClicked" text="Save Game" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
+                        <Button fx:id="saveGameButton" mnemonicParsing="false" text="Save Game" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
+                        <Button mnemonicParsing="false" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button mnemonicParsing="false" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button mnemonicParsing="false" text="Buy Hunger" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button mnemonicParsing="false" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button mnemonicParsing="false" text="Depart Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
                      </children>
                   </GridPane>
                </children>
@@ -332,7 +334,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />
+<!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />-->
                   <ImageView fx:id="hotelImageView" fitHeight="280.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/landmarkHotel.png" />
