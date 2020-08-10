@@ -1,3 +1,4 @@
+
 package game;
 
 import javafx.animation.Animation;
@@ -22,6 +23,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.io.*;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.function.Function;
@@ -45,7 +50,17 @@ public class GameplayController {
             0, 0, 0.1, 500
     );
 
-
+    //MOH:  Multidimensional String, stores all player's stats as string
+    String [][] savingObj = {
+            {"hunger", String.valueOf(player.getHunger())},
+            {"thirst", String.valueOf(player.getThirst())},
+            {"fuel", String.valueOf(player.getFuel())},
+            {"restroom", String.valueOf(player.getRestroom())},
+            {"fatigue", String.valueOf(player.getFatigue())},
+            {"speed", String.valueOf(player.getSpeed())},
+            {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
+            {"cash", String.valueOf(player.getCash())}
+    };
     Timer currentGameTickTimer;
     Timer carAnimationTimer;
 
@@ -62,6 +77,7 @@ public class GameplayController {
     @FXML private Label cashValueLabel;
     @FXML private Button speedUpButton;
     @FXML private Button slowDownButton;
+    @FXML private Button saveGameButton;
     @FXML public ImageView moose;
     @FXML public ImageView carImageView;
     @FXML public GridPane insertPane;
@@ -94,24 +110,24 @@ public class GameplayController {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-            Platform.runLater(() -> {
-                updatePlayerStats(player);
+                Platform.runLater(() -> {
+                    updatePlayerStats(player);
 
-                if(player.getSpeed() > 0) {
-                    rumbleCar();
-                }
-
-                if (mooseActive) {
-                    tickMoose();
-                } else if (reachedLandmark()) {
-                    cancelTick();
-                    loadNextLandmarkScene();
-                } else {
-                    if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
-                        activateMooseEvent();
+                    if(player.getSpeed() > 0) {
+                        rumbleCar();
                     }
-                }
-            });
+
+                    if (mooseActive) {
+                        tickMoose();
+                    } else if (reachedLandmark()) {
+                        cancelTick();
+                        loadNextLandmarkScene();
+                    } else {
+                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+                            activateMooseEvent();
+                        }
+                    }
+                });
             }
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
@@ -217,16 +233,32 @@ public class GameplayController {
      * @param player
      */
     public void updatePlayerStats(PlayerStats player) {
-        if (player.getFuel() <= 110) { // Player burns 20% more fuel traveling over 100kmh
+        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 100kmh
             player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed());
         } else {
             player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.1);
         }
+        // MOH: Stores all changing stats to multidimensional String called savingObj (Line 55)
+        savingObj[2][1] = String.valueOf(player.getFuel());
+
         player.setHunger(player.getHunger() + player.getHungerRate());
+        savingObj[0][1] = String.valueOf(player.getHunger());
+
         player.setThirst(player.getThirst() + player.getThirstRate());
+        savingObj[1][1] = String.valueOf(player.getThirst());
+
         player.setRestroom(player.getRestroom() + player.getRestroomRate());
+        savingObj[3][1] = String.valueOf(player.getRestroom());
+
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
-        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
+        savingObj[4][1] = String.valueOf(player.getFatigue());
+
+        savingObj[5][1] = String.valueOf(player.getSpeed());
+
+        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/80000); // numeric value controls the ratio between distance traveled and speed
+        savingObj[6][1] = String.valueOf(player.getDistanceTraveled());
+
+        savingObj[7][1] = String.valueOf(player.getCash());
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
@@ -289,71 +321,91 @@ public class GameplayController {
         // Display
     }
 
-    public void animateCarStartStop(String startStop) {
-        // TODO: use the code below to make the car slightly move up and down every second;
-        //  so animateCar should create a Timer that fires the code below regularly.
-        //  Then, we can add this into gameplay loop wherever the gameplay begins or resumes but only when speed > 0
-        //  implement a reference to the car sprite in the way that the moose sprite is handled
+    @FXML
+    void saveGameClicked(ActionEvent event) throws IOException {
+        //TODO: Should save and store player's values and game features
+//        savePointForDoubles.put("Distance Traveled", player.getDistanceTraveled());
+//        savePointForDoubles.put("Hunger", player.getHunger());
+//        savePointForDoubles.put("Thirst", player.getThirst());
+//        savePointForDoubles.put("Fuel", player.getFuel());
+//        savePointForDoubles.put("Restroom", player.getRestroom());
+//        savePointForDoubles.put("Fatigue", player.getFatigue());
+//        savePointForDoubles.put("Speed", player.getSpeed());
+//        savePointForDoubles.put("Distance to Next Landmark", player.getDistanceToNextLandmark());
 //
+//        savePointForDates.put("Game Date", player.getCurrentDate());
 //
-//        if (startStop.equals("start")) {
-//            carAnimationTimer = new Timer();
-//            double carYoffset = 0;
-//            TimerTask task = new TimerTask() {
-//                @Override
-//                public void run() {
-//                Platform.runLater(() -> {
-//                    animateCar(carYoffset);
-//                    carYoffset = carYoffset + 1; // i left off on this hacky animation of the car here once i realized you cannot manipulate variables this way
+//        savePointForIntegers.put("Cash", player.getCash());
 //
-//                });
-//                }
-//            };
-//            currentGameTickTimer.scheduleAtFixedRate(task, 0, 100);
+//        savePointForStrings.put("Last Landmark", player.getLastLandmarkName());
 //
-//
-//
-//            if (plusMinusInversion) {
-//                plusMinusInversion = false;
-////               double carYPosition = car.getTranslateY();
-////               car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
-//            } else {
-//                plusMinusInversion = true;
-////                double carYPosition = car.getTranslateY();
-////                car.setTranslateX(carYPosition - 4); // put on a timer that alternates with the next line
-//            }
-//
-////        double carYPosition = car.getTranslateY();
-////        car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
-////        car.setTranslateX(carYPosition - 4); // alternates
-//        } else if (startStop.equals("stop")){
-//
+//        Properties properties = new Properties();
+//        for(Map.Entry<String, Double> entry : savePointForDoubles.entrySet()) {
+//            properties.put(entry.getKey(), entry.getValue());
 //        }
+//
+//        properties.store(new FileOutputStream("savingGame.properties"), null);
+
+//        oos.writeObject(savePointForBooleans);
+//        oos.close();
+//        fos.close();
+//        System.out.printf("Serialized HashMap data is saved in double.ser");
+
+        System.out.println("Save game button works properly");
+//
+//        for (Double i : savePointForDoubles.values()) {
+//            System.out.println(i);
+//        }
+//        System.out.println(savePointForDoubles.get("Distance Traveled"));
+
+//        System.out.println(savePointForDoubles.values());
 
 
-//        System.out.println("animateCarStartStop() fired");//DEBUG
+        // --------------------- String [] [] saving point codes:
+        try {
+            // MOH: Writes & Stores all current stats from "savingObj" to "SavedData.txt" file
+
+            File myObj = new File("SavedData.txt"); // Text file created
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            // Moh: Contents of saveObj are being coppied to the text file
+            FileWriter writerObj = new FileWriter("SavedData.txt");
+
+            for (int i = 0; i < savingObj.length; i++) {
+                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
+            }
+            writerObj.close();
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
+
+
+//    @FXML
+//    public void testForReadSer(ActionEvent event) throws IOException, ClassNotFoundException {
+//        savePointForDoubles = (HashMap) ois.readObject();
+//        ois.close();
+//        fis.close();
 //
-//    public void animateCar (double carYoffset) {
-//        boolean plusMinusInversion = false;
-//        if (startStop.equals("start")) {
-//            if (plusMinusInversion) {
-//                plusMinusInversion = false;
-////               double carYPosition = car.getTranslateY();
-////               car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
-//            } else {
-//                plusMinusInversion = true;
-////                double carYPosition = car.getTranslateY();
-////                car.setTranslateX(carYPosition - 4); // put on a timer that alternates with the next line
-//            }
-//
-////        double carYPosition = car.getTranslateY();
-////        car.setTranslateX(carYPosition + 4); // put on a timer that alternates with the next line
-////        car.setTranslateX(carYPosition - 4); // alternates
-//        } else if (startStop.equals("stop")){
+//        Set set = savePointForDoubles.entrySet();
+//        Iterator iterator = set.iterator();
+//        while (iterator.hasNext()) {
+//            Map.Entry mentry = (Map.Entry) iterator.next();
+//            System.out.print("key: " + mentry.getKey() + " & Value: ");
+//            System.out.println(mentry.getValue());
 //
 //        }
-//        //        System.out.println("animateCar() fired");//DEBUG
 //    }
 
 
