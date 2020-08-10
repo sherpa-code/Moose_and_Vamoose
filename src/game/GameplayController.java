@@ -32,6 +32,8 @@ import static javafx.scene.paint.Color.RED;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+
 public class GameplayController {
     /**
      * Simply instantiation of a player object
@@ -113,48 +115,6 @@ public class GameplayController {
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
     }
-//    public void beginTick() {
-//        updatePlayerStatsLabels(player);
-//        currentGameTickTimer = new Timer();
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//                Platform.runLater(() -> {
-//                    updatePlayerStats(player);
-//
-//                    if(player.getSpeed() > 0) {
-//                        rumbleCar();
-//                    }
-//
-//                    if (reachedLandmark()) {
-//                        cancelTick();
-//                        loadNextLandmarkScene();
-//                    } else if (mooseActive == true) {
-//                        tickMoose();
-//                    };
-//                });
-//            }
-//        };
-//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
-////        updatePlayerStatsLabels(player);
-////        currentGameTickTimer = new Timer();
-////        TimerTask task = new TimerTask() {
-////            @Override
-////            public void run() {
-////                Platform.runLater(() -> {
-////                    updatePlayerStats(player);
-////                    if (reachedLandmark()) {
-////                        cancelTick();
-////                        loadNextLandmarkScene();
-////                    } else if (mooseActive == true) {
-////                        tickMoose();
-////                    };
-////                });
-////            }
-////        };
-////        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
-//
-//    }
 
     public Boolean mooseSpawnRoll() {
         Random random = new Random();
@@ -169,8 +129,11 @@ public class GameplayController {
 
     public boolean reachedLandmark() {
         //if (player.getDistanceTraveled() >= player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]) {
-        System.out.println("reached landmark");
-        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]);
+        System.out.println("reachedLandmark() fired");
+        System.out.println("Last landmark index = "+player.getLastLandmarkIndex());
+//        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]); // prints landmark's distance from st johns
+        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1]);
+
         if (player.getDistanceTraveled() >=
                 Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
             return true;
@@ -440,7 +403,7 @@ public class GameplayController {
      */
     @FXML
     public void activateMooseEvent() {
-        System.out.println("MOOSE EVENT ACTIVATED"); //debug
+        System.out.println("Moose has spawned"); //debug
         mooseActive = true;
 
         //place moose
@@ -458,7 +421,7 @@ public class GameplayController {
      */
     @FXML
     public void resetMooseEvent() {
-        System.out.println("MOOSE EVENT RESET"); //debug
+        System.out.println("Moose event reset"); //debug
         mooseActive = false;
 
         moose.setTranslateX(0);
