@@ -1,4 +1,3 @@
-
 package game;
 
 import javafx.animation.Animation;
@@ -7,7 +6,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
@@ -18,6 +20,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,8 +49,8 @@ public class GameplayController {
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
     PlayerStats player = new PlayerStats(
-            0, 0, 100, 0,
-            0, 0, 0.1, 500
+            0, 0, 100, 0,0,
+            0, 0.1, 500
     );
 
     //MOH:  Multidimensional String, stores all player's stats as string
@@ -121,7 +124,11 @@ public class GameplayController {
                         tickMoose();
                     } else if (reachedLandmark()) {
                         cancelTick();
-                        loadNextLandmarkScene();
+                        try {
+                            loadNextLandmarkScene();
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
                     } else {
                         if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
                             activateMooseEvent();
@@ -136,7 +143,8 @@ public class GameplayController {
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
                 Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
-            System.out.println("reachedLandmark()\nLast landmark index = "+player.getLastLandmarkIndex());
+            System.out.println("reachedLandmark()" +
+                    "\nLast landmark index = "+player.getLastLandmarkIndex());
             return true;
         }
         return false;
@@ -155,10 +163,21 @@ public class GameplayController {
 
 
 
-    public void loadNextLandmarkScene() {
-        switch(player.getLastLandmarkIndex()+1) {
+    public void loadNextLandmarkScene() throws IOException {
+        int currentLandmarkIndex = player.getLastLandmarkIndex()+1;
+        switch(currentLandmarkIndex) {
             case 1:
-                // load St. John's landmark scene
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+//                Parent root = fxmlLoader.load();
+//                LandmarkController landmarkController = fxmlLoader.getController();
+//                landmarkController.transferMessage("some string");
+//                Stage stage = new Stage();
+//                Scene scene = new Scene(root1);
+//                stage.setTitle("Moose and Vamoose - LOOK OUT!"); // displayed in window's title bar
+//                stage.setScene(scene);
+//                stage.show();
+//                Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
+//                currentStage.close();
                 break;
             case 2:
                 // load Paradise landmark scene
@@ -218,11 +237,11 @@ public class GameplayController {
                 // load Corner Brook OR load the Game Win function
                 break;
         }
-        for (int i=0; i < player.landmarkAttributes.length; i++) {
-            if (player.getLastLandmarkIndex()+1 == 1) {
-                // load St. John's scene
-            }
-        }
+//        for (int i=0; i < player.landmarkAttributes.length; i++) {
+//            if (player.getLastLandmarkIndex()+1 == 1) {
+//                // load St. John's scene
+//            }
+//        }
     }
 
     /**
@@ -251,14 +270,7 @@ public class GameplayController {
         savingObj[3][1] = String.valueOf(player.getRestroom());
 
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
-        savingObj[4][1] = String.valueOf(player.getFatigue());
-
-        savingObj[5][1] = String.valueOf(player.getSpeed());
-
-        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/80000); // numeric value controls the ratio between distance traveled and speed
-        savingObj[6][1] = String.valueOf(player.getDistanceTraveled());
-
-        savingObj[7][1] = String.valueOf(player.getCash());
+        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
@@ -335,9 +347,20 @@ public class GameplayController {
 //
 //        savePointForDates.put("Game Date", player.getCurrentDate());
 //
-//        savePointForIntegers.put("Cash", player.getCash());
+//        if (startStop.equals("start")) {
+//            carAnimationTimer = new Timer();
+//            double carYoffset = 0;
+//            TimerTask task = new TimerTask() {
+//                @Override
+//                public void run() {
+//                Platform.runLater(() -> {
+//                    animateCar(carYoffset);
+//                    carYoffset = carYoffset + 1; // i left off on this hacky animation of the car here once i realized you cannot manipulate variables this way
 //
-//        savePointForStrings.put("Last Landmark", player.getLastLandmarkName());
+//                });
+//                }
+//            };
+//            currentGameTickTimer.scheduleAtFixedRate(task, 0, 100);
 //
 //        Properties properties = new Properties();
 //        for(Map.Entry<String, Double> entry : savePointForDoubles.entrySet()) {
@@ -453,7 +476,7 @@ public class GameplayController {
      */
     @FXML
     public void activateMooseEvent() {
-        System.out.println("Moose has spawned"); //debug
+        //System.out.println("Moose has spawned"); //debug
         mooseActive = true;
 
         //place moose
