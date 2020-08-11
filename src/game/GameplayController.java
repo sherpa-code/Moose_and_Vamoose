@@ -123,10 +123,11 @@ public class GameplayController {
                     if (mooseActive) {
                         tickMoose();
                     } else if (reachedLandmark()) {
+                        cancelTick();
                         if (player.getLastLandmarkIndex()+1 == 21) {
                             gameVictory();
                         } else {
-                            cancelTick();
+
                             try {
                                 loadNextLandmarkScene();
                             } catch (IOException ioException) {
@@ -143,6 +144,42 @@ public class GameplayController {
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
     }
+//    public void beginTick() {
+//        updatePlayerStatsLabels(player);
+//        currentGameTickTimer = new Timer();
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//                    updatePlayerStats(player);
+//
+//                    if(player.getSpeed() > 0) {
+//                        rumbleCar();
+//                    }
+//
+//                    if (mooseActive) {
+//                        tickMoose();
+//                    } else if (reachedLandmark()) {
+//                        if (player.getLastLandmarkIndex()+1 == 21) {
+//                            gameVictory();
+//                        } else {
+//                            cancelTick();
+//                            try {
+//                                loadNextLandmarkScene();
+//                            } catch (IOException ioException) {
+//                                ioException.printStackTrace();
+//                            }
+//                        }
+//                    } else {
+//                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+//                            activateMooseEvent();
+//                        }
+//                    }
+//                });
+//            }
+//        };
+//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
+//    }
 
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
@@ -499,6 +536,7 @@ public class GameplayController {
         if (mooseActive == true) {
             if (checkIfMooseCollision(moose, carImageView)) {
                 showExplosion();
+                cancelTick();
                 gameOver("Game Over.\n You hit a moose."); //replace later
                 resetMooseEvent();
             } else {

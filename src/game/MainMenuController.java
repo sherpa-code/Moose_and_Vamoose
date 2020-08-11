@@ -31,10 +31,16 @@ public class MainMenuController {
 
     @FXML void startNewGameClicked(ActionEvent event) throws ParseException {
         System.out.println("startNewGameClicked()");
+        // debug new game distanceTraveled value
         PlayerStats player = new PlayerStats(
                 0, 0, 100, 0,0,
                 0, 500
         );
+        // TODO: set it back to this for default values of this function
+//        PlayerStats player = new PlayerStats(
+//                0, 0, 100, 0,0,
+//                0, 500
+//        );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));

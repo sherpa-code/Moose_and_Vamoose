@@ -288,7 +288,7 @@ public class LandmarkController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
-        stage.setTitle("You are at a Landmark. Make the right choice!");
+        stage.setTitle("You are back on the road. Stay vigilant.");
         stage.setScene(scene);
 
 //        gameplayController.player.setFuel(player.getFuel());
