@@ -38,35 +38,13 @@ public class MainMenuController {
             stage.setTitle("Moose and Vamoose - LOOK OUT!"); // displayed in window's title bar
             stage.setScene(scene);
             stage.show();
-
-
-            // TODO: close the main menu here
-            // Moh: This closes the current menu in which the startNewGameButton is located in
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             currentStage.close();
 
         } catch(Exception e){
-            System.out.println("Can't Load New Game!");
+            System.out.println("Can't Start New Game!");
         }
     }
-
-//    private void loadGameplayerControllerAndCheck() {
-//        try {
-//            //Load GamplayController
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("game/GameplayController.fxml"));
-//            Parent root = loader.load();
-//
-//            //Get controller of Gameplay
-//            GameplayController gameplayController = loader.getController();
-//            //Pass whatever data you want. You can have multiple method calls here
-//            gameplayController.loadedFromFile = " %%%%%TESTTTTTTTTT";
-//
-//        } catch (IOException ex) {
-//            System.err.println(ex);
-//        }
-//    }
-
-
 
     @FXML void loadGameBtnClicked(ActionEvent event) {
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
@@ -96,9 +74,6 @@ public class MainMenuController {
 
     }
 
-    @FXML void optionsBtnClicked(ActionEvent event) {
-        //TODO: to be removed !
-    }
 
     @FXML void quitBtnClicked(ActionEvent event) {
         Platform.exit();

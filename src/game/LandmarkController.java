@@ -39,7 +39,6 @@ public class LandmarkController {
 //    @FXML private Label hungerValueLabel;
 //    @FXML private Label thirstValueLabel;
 //    @FXML private Label fuelValueLabel;
-//    @FXML private Label restroomValueLabel;
 //    @FXML private Label fatigueValueLabel;
 //    @FXML private Label nextLandmarkValueLabel;
 //    @FXML private Label cashValueLabel;
@@ -48,17 +47,14 @@ public class LandmarkController {
 //    @FXML private Button buyFoodButton;
 //    @FXML private Button buyDrinkButton;
 //    @FXML private Button rentHotelButton;
-    @FXML
-    private Label hungerLabel;
+    @FXML    private Label hungerLabel;
 
     @FXML    private Label thirstLabel;
     @FXML    private Label fuelLabel;
-    @FXML    private Label restroomLabel;
     @FXML    private Label fatigueLabel;
     @FXML    private Label hungerValueLabel;
     @FXML    private Label thirstValueLabel;
     @FXML    private Label fuelValueLabel;
-    @FXML    private Label restroomValueLabel;
     @FXML    private Label fatigueValueLabel;
     @FXML    private Label cashLabel;
     @FXML    private Label cashValueLabel;
@@ -72,7 +68,7 @@ public class LandmarkController {
     @FXML    private Label landmarkFatigueQuantity;
     @FXML    private Label advertisedFuelForLabel;
     @FXML    private Label advertisedFatigueForLabel;
-    @FXML    private Label advertisedFuleLabel;
+    @FXML    private Label advertisedFuelLabel;
     @FXML    private Label advertisedThirstlabel;
     @FXML    private Label advertisedFatigueLabel;
     @FXML    private Label notEnoughMoneyLabel;
@@ -87,11 +83,10 @@ public class LandmarkController {
     @FXML    private ImageView storeImageView;
     @FXML    private ImageView gasStationImageView;
     @FXML    private Label landmarkNameLabel;
-
+    @FXML    private Label landmarkSizeLabel;
+    @FXML    private Label landmarkInsufficientFundsLabel;
 
     private PlayerStats player;
-
-
 
     public void storePlayer(PlayerStats Player) {
         System.out.println("test");
@@ -108,17 +103,16 @@ public class LandmarkController {
         hungerValueLabel.setText(String.valueOf((int) player.getHunger()));
         thirstValueLabel.setText(String.valueOf((int) player.getThirst()));
         fuelValueLabel.setText(String.valueOf((int) player.getFuel()));
-        restroomValueLabel.setText(String.valueOf((int) player.getRestroom()));
         fatigueValueLabel.setText(String.valueOf((int) player.getFatigue()));
-        //dateValueLabel.setText(player.getCurrentDate().toString()); // replace this with a function to update only when X time has elapsed
-        //nextLandmarkValueLabel.setText(player.getNextLandmarkName());
         cashValueLabel.setText(String.valueOf(player.getCash()));
-        landmarkNameLabel.setText(player.getNextLandmarkName() + " _ "+
-                player.landmarkAttributes[player.getLastLandmarkIndex()+1][2]);
+        landmarkNameLabel.setText(player.getNextLandmarkName());
+        landmarkSizeLabel.setText(player.getNextLandmarkSize());
+        //player.landmarkAttributes[player.getLastLandmarkIndex()+1][2]);
     }
 
     @FXML
     void buyDrinkAtLandmarkClicked(ActionEvent event) {
+        System.out.println("buyDrinkAtLandmarkClicked()");
 //        System.out.println(player.getThirst());
 ////        System.out.println("Drink is ready");
 //        System.out.println("Current cash: " + player.getCash());
@@ -151,6 +145,7 @@ public class LandmarkController {
 
     @FXML
     void buyFoodAtLandmarkClicked(ActionEvent event) {
+        System.out.println("buyFoodAtLandmarkClicked(");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println("Hunger: "+player.getHunger());
         if (player.getCash() < 12) {
@@ -180,6 +175,7 @@ public class LandmarkController {
 
     @FXML
     void buyFuelAtLandmarkClicked(ActionEvent event) {
+        System.out.println("buyFuelAtLandmarkClicked()");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println(player.getFuel());
         if (player.getCash() < 20) {
@@ -209,7 +205,7 @@ public class LandmarkController {
 
     @FXML
     void rentHotelRoomAtLandmarkClicked(ActionEvent event) {
-
+        System.out.println("rentRoomAtLandmarkClicked()");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println(player.getFatigue());
         if (player.getCash() < 125) {
@@ -240,7 +236,7 @@ public class LandmarkController {
 
     @FXML
     void departCurrentLandmarkClicked(ActionEvent event) throws IOException {
-        System.out.println("Go for next level!");
+        System.out.println("departCurrentLandmarkClicked()");
 
         Stage currentStage = (Stage) departLandmarkButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
@@ -260,7 +256,6 @@ public class LandmarkController {
         gameplayController.player.setFuel(Double.parseDouble(this.fuelValueLabel.getText()));
         gameplayController.player.setHunger(Double.parseDouble(this.hungerValueLabel.getText()));
         gameplayController.player.setThirst(Double.parseDouble(this.thirstValueLabel.getText()));
-        gameplayController.player.setRestroom(Double.parseDouble(this.restroomValueLabel.getText()));
         gameplayController.player.setFatigue(Double.parseDouble(this.fatigueValueLabel.getText()));
 //        gameplayController.newCash = parseInt(this.cashValueLabel.getText());
 //        System.out.println(gameplayController.newCash);
@@ -278,7 +273,7 @@ public class LandmarkController {
 
     }
 
-    private void landmarkBackground(){
+    private void setLandmarkVisibility(){
         String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
 //        String landmarkSize = "small";
         System.out.println(landmarkSize);
@@ -303,7 +298,7 @@ public class LandmarkController {
             landmarkFuelCostLabel.setVisible(false);
             landmarkFuelQuantity.setVisible(false);
             advertisedFuelForLabel.setVisible(false);
-            advertisedFuleLabel.setVisible(false);
+            advertisedFuelLabel.setVisible(false);
         }
         else {
             System.out.println("Something went wrong here for background image");
@@ -312,9 +307,10 @@ public class LandmarkController {
 
     @FXML
     void saveGameAtLandmarkClicked(ActionEvent event) {
+        System.out.println("saveGameAtLandmarkClicked()");
 //        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
 //        System.out.println(landmarkSize);
-        landmarkBackground();
+        setLandmarkVisibility();
 
 
 

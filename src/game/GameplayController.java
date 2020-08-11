@@ -67,7 +67,7 @@ public class GameplayController {
             {"hunger", String.valueOf(player.getHunger())},
             {"thirst", String.valueOf(player.getThirst())},
             {"fuel", String.valueOf(player.getFuel())},
-            {"restroom", String.valueOf(player.getRestroom())},
+//            {"restroom", String.valueOf(player.getRestroom())}, // restroom is removed
             {"fatigue", String.valueOf(player.getFatigue())},
             {"speed", String.valueOf(player.getSpeed())},
             {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
@@ -110,7 +110,6 @@ public class GameplayController {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
         mooseActive = false;
-//        System.out.println("Initial lastLandmarkIndex = "+player.landmarkAttributes[player.getLastLandmarkIndex()][1]);
         System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
     }
 
@@ -157,38 +156,6 @@ public class GameplayController {
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
     }
-//    public void beginTick() {
-//        updatePlayerStatsLabels(player);
-//        currentGameTickTimer = new Timer();
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//                Platform.runLater(() -> {
-//                    updatePlayerStats(player);
-//
-//                    if(player.getSpeed() > 0) {
-//                        rumbleCar();
-//                    }
-//
-//                    if (mooseActive) {
-//                        tickMoose();
-//                    } else if (reachedLandmark()) {
-//                        cancelTick();
-//                        try {
-//                            loadNextLandmarkScene();
-//                        } catch (IOException ioException) {
-//                            ioException.printStackTrace();
-//                        }
-//                    } else {
-//                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
-//                            activateMooseEvent();
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
-//    }
 
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
@@ -199,24 +166,15 @@ public class GameplayController {
         return false;
     }
 
-
-
-
-
     public void loadNextLandmarkScene() throws IOException {
-        int currentLandmarkIndex = player.getLastLandmarkIndex()+1;
-        switch(currentLandmarkIndex) {
+        switch(player.getLastLandmarkIndex()+1) { // switch on the index of the reachedLandmark
             case 1:
                 Stage currentStage = (Stage) carImageView.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-
                 Parent root = (Parent) loader.load();
                 LandmarkController landmarkController = loader.getController();
                 landmarkController.storePlayer(player);
-                //landmarkController.updatePlayerStatsLabels(player);
                 landmarkController.updateLandmarkStatsLabels(player);
-
-                //landmarkController.init(table.getSelectionModel().getSelectedItem());
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
 
@@ -330,9 +288,6 @@ public class GameplayController {
         player.setThirst(player.getThirst() + player.getThirstRate());
         savingObj[1][1] = String.valueOf(player.getThirst());
 
-        player.setRestroom(player.getRestroom() + player.getRestroomRate());
-        savingObj[3][1] = String.valueOf(player.getRestroom());
-
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
         savingObj[4][1] = String.valueOf(player.getFatigue());
 
@@ -381,14 +336,14 @@ public class GameplayController {
         hungerValueLabel.setText(String.valueOf((int) player.getHunger()));
         thirstValueLabel.setText(String.valueOf((int) player.getThirst()));
         fuelValueLabel.setText(String.valueOf((int) player.getFuel()));
-        restroomValueLabel.setText(String.valueOf((int) player.getRestroom()));
+        restroomValueLabel.setText("0");
         fatigueValueLabel.setText(String.valueOf((int) player.getFatigue()));
         speedValueLabel.setText(String.valueOf(player.getSpeed()));
         //TODO: Date stats label should be updated later on the screen
 
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         //String strDate = dateFormat.format(player.getCurrentDate());
-        dateValueLabel.setText(player.getCurrentDate().toString()); // replace this with a function to update only when X time has elapsed
+        dateValueLabel.setText("0"); // replace this with a function to update only when X time has elapsed
         nextLandmarkValueLabel.setText(player.getNextLandmarkName());
         lastLandmarkValueLabel.setText(player.getLastLandmarkName());
         //distanceTraveledValueLabel.setText(String.valueOf(player.getDistanceTraveled()) + " km");
