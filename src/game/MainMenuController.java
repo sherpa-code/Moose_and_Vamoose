@@ -78,7 +78,7 @@ public class MainMenuController {
         // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
         PlayerStats player = new PlayerStats(
                 5, 10, 100, 20,0,
-                1.95, 455
+                1.95, 456
         );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();

@@ -26,11 +26,15 @@ public class GameplayController {
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
 
-    // player is always initialized to default values, will be loaded in separate function
     PlayerStats player = new PlayerStats(
-        0, 0, 100, 0,0,
-        1.95, 500
+            55, 55, 55, 55,0,
+            55, 55
     );
+    // player is always initialized to default values, will be loaded in separate function
+//    PlayerStats player = new PlayerStats(
+//        0, 0, 100, 0,0,
+//        1.95, 500
+//    );
 //    debug test - just before victory condition (game win at 692 traveled)
 //    PlayerStats player = new PlayerStats(
 //        0, 0, 100, 0,0,

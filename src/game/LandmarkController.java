@@ -301,8 +301,10 @@ public class LandmarkController {
         gameplayController.getPlayer().setThirst(player.getThirst());
         gameplayController.getPlayer().setFatigue(player.getFatigue());
         gameplayController.getPlayer().setCash(player.getCash());
-
+        gameplayController.getPlayer().setLastLandmarkIndex(player.getLastLandmarkIndex()+1);
+        //gameplayController.storePlayer(player);
         gameplayController.updatePlayerStatsLabels(player);
+        gameplayController.beginTick();
 
 //        gameplayController.player.setFuel(Double.parseDouble(this.fuelValueLabel.getText()));
 //        gameplayController.player.setHunger(Double.parseDouble(this.hungerValueLabel.getText()));
