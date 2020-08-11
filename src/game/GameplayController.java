@@ -27,8 +27,8 @@ public class GameplayController {
     int tickRateMS = 10;
 
     PlayerStats player = new PlayerStats(
-            55, 55, 55, 55,0,
-            55, 55
+            50, 51, 52, 53,0,
+            54, 55
     );
     // player is always initialized to default values, will be loaded in separate function
 //    PlayerStats player = new PlayerStats(

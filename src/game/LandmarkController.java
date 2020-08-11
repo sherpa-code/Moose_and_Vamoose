@@ -302,6 +302,7 @@ public class LandmarkController {
         gameplayController.getPlayer().setFatigue(player.getFatigue());
         gameplayController.getPlayer().setCash(player.getCash());
         gameplayController.getPlayer().setLastLandmarkIndex(player.getLastLandmarkIndex()+1);
+        gameplayController.getPlayer().setDistanceTraveled(player.getDistanceTraveled());
         //gameplayController.storePlayer(player);
         gameplayController.updatePlayerStatsLabels(player);
         gameplayController.beginTick();
