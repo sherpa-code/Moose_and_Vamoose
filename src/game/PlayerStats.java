@@ -1,15 +1,6 @@
 package game;
 
-import java.io.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.lang.Integer.parseInt;
 
 public class PlayerStats extends Main {
 
@@ -24,27 +15,15 @@ public class PlayerStats extends Main {
     private double thirstRate = 50*massStatModifier/rateFactor;
     private double fuel;
     private double fuelRate = massStatModifier/rateFactor;
-    private double restroom;
-    private double restroomRate = 35*massStatModifier/rateFactor;
     private double fatigue;
     private double fatigueRate = 12*massStatModifier/rateFactor;
     private int cash = 500;
 
     private double speed;
-    LocalDate currentDate = LocalDate.now(); // Create a date object - current date
-    //Date currentDate = new SimpleDateFormat("MMMMM dd, yyyy").parse("July 1, 2020");
-    //Date currentDate = Calendar.getInstance().getTime();
     private double distanceTraveled;
-    private double distanceToNextLandmark;
     private int lastLandmarkIndex = 0;
-    //private int nextLandmarkIndex = 1;
 
-    private String defaultCarID = "car";
-    private String defaultCarSpriteURL = "carSpriteDefault.png";
-    private String vehicleID = defaultCarID; // temporary, to change with more vehicle additions
-    private String carSpriteURL = defaultCarSpriteURL; // temporary, to change with more vehicle additions
-    //41private volatile Boolean isMoving = false;
-    private boolean setupComplete = false;
+
 
     /**
      * String array that contains the landmark names, distance from the starting point, and size (amenities available).
@@ -79,39 +58,18 @@ public class PlayerStats extends Main {
             double hunger,
             double thirst,
             double fuel,
-            double restroom,
             double fatigue,
             int speed,
-            //Date currentDate
             double distanceTraveled,
             int cash
-
-//            int distanceToNextLandmark,
-//            String defaultCarID,
-//            String defaultCarSpriteURL,
-//            String vehicleID,
-//            String carSpriteURL,
-//            Boolean isMoving,
-//            boolean setupComplete, String[][] landmarkAttributes
     ) throws ParseException {
         this.hunger = hunger;
         this.thirst = thirst;
         this.fuel = fuel;
-        this.restroom = restroom;
         this.fatigue = fatigue;
         this.speed = speed;
-        //this.currentDate = currentDate;//
         this.distanceTraveled = distanceTraveled;
         this.cash = cash;
-//        this.distanceToNextLandmark = distanceToNextLandmark;
-//        this.defaultCarID = defaultCarID;
-//        this.defaultCarSpriteURL = defaultCarSpriteURL;
-//        this.vehicleID = vehicleID;
-//        this.carSpriteURL = carSpriteURL;
-//        this.isMoving = isMoving;
-//        this.setupComplete = setupComplete;
-//        this.landmarkAttributes = landmarkAttributes;
-        //this.landmarkAttributes[1][0] = nextLandMark;
     }
 
     public void clampPlayerStats() {
@@ -129,11 +87,6 @@ public class PlayerStats extends Main {
             setThirst(0);
         } else if (getThirst() > 100) {
             setThirst(100);
-        }
-        if (getRestroom() < 0) {
-            setRestroom(0);
-        } else if (getRestroom() > 100) {
-            setRestroom(100);
         }
         if (getFatigue() < 0) {
             setFatigue(0);
@@ -153,26 +106,10 @@ public class PlayerStats extends Main {
     }
 
     double getDistanceTraveled() {
-        //return String.valueOf(landmarkAttributes[0][1]);
-        //return Double.parseDouble(landmarkAttributes[0][1]);
         return distanceTraveled;
     }
     void setDistanceTraveled(double DistanceTraveled) {
         distanceTraveled = DistanceTraveled;
-    }
-
-    double getDistanceToNextLandmark() {
-        return distanceToNextLandmark;
-    }
-    void setDistanceToNextLandmark(int DistanceToNextLandmark) {
-        distanceToNextLandmark = DistanceToNextLandmark;
-    }
-
-    LocalDate getCurrentDate() {
-        return currentDate;
-    }
-    void setCurrentDate(LocalDate CurrentDate) {
-        currentDate = CurrentDate;
     }
 
     public double getHunger() {
@@ -214,18 +151,7 @@ public class PlayerStats extends Main {
         return fuelRate;
     }
 
-    double getRestroom() {
-        if (restroom <= 0) {
-            restroom = 0;
-        }
-        return restroom;
-    }
-    void setRestroom(double Restroom) {
-        restroom = Restroom;
-    }
-    public double getRestroomRate() {
-        return restroomRate;
-    }
+
 
     double getFatigue() {
         if (fatigue <= 0) {
@@ -242,6 +168,9 @@ public class PlayerStats extends Main {
 
     public String getNextLandmarkName() {
         return landmarkAttributes[lastLandmarkIndex+1][0];
+    }
+    public String getNextLandmarkSize() {
+        return landmarkAttributes[lastLandmarkIndex+1][2];
     }
 
     public String getLastLandmarkName() {
@@ -262,66 +191,6 @@ public class PlayerStats extends Main {
         cash = Cash;
     }
 
-    //boolean isMoving() { return isMoving; }
-    //void setMoving(boolean IsMoving) { isMoving = IsMoving; }
-
-    String getCarSpriteURL() {
-        return carSpriteURL;
-    }
-    void setCarSpriteURL(String CarSpriteURL) {
-        carSpriteURL = CarSpriteURL;
-    }
-
-    String getVehicleID() {
-        return vehicleID;
-    }
-    void setVehicleID(String VehicleID) {
-        vehicleID = VehicleID;
-    }
-
-    public boolean isFinishedSetup() {
-        return setupComplete;
-    }
-    public void setFinishedSetup(boolean SetupComplete) {
-        setupComplete = SetupComplete;
-    }
-
-
-
-//    /**
-//     * Saves variables of game.PlayerStats to SaveGame.ser
-//     *
-//     * @throws IOException
-//     */
-//    static void saveData() throws IOException {
-//
-//        FileOutputStream fileOutputStream = new FileOutputStream("SaveGame.ser");
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-//
-//        //objectOutputStream.writeObject(game.PlayerStats);
-//
-//        objectOutputStream.close();
-//        fileOutputStream.close();
-//    }
-//
-//
-//    /**
-//     * Loads data from SaveGame.ser,
-//     * assigns data corresponding variables in game.PlayerStats.
-//     *
-//     * @throws IOException
-//     * @throws ClassNotFoundException
-//     */
-//    static void loadData() throws IOException, ClassNotFoundException {
-//
-//        FileInputStream fileInputStream = new FileInputStream("SaveGame.ser");
-//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//
-//        //game.PlayerStats = (PlayerStats) objectInputStream.readObject();
-//
-//        fileInputStream.close();
-//        objectInputStream.close();
-//    }
 }
 
 

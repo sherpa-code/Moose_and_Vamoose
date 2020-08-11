@@ -49,11 +49,6 @@
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="optionsButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#optionsBtnClicked" style="-fx-background-color: #42f59e;" text="Options" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Button>
                 <Button fx:id="quitButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#quitBtnClicked" style="-fx-background-color: #42f59e;" text="Quit" GridPane.columnIndex="1" GridPane.rowIndex="11">
                     <font>
                         <Font name="System Bold" size="24.0" />
