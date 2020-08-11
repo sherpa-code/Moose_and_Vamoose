@@ -288,15 +288,18 @@ public class GameplayController {
         player.setThirst(player.getThirst() + player.getThirstRate());
         savingObj[1][1] = String.valueOf(player.getThirst());
 
-        player.setFatigue(player.getFatigue() + player.getFatigueRate());
-        savingObj[4][1] = String.valueOf(player.getFatigue());
+//        player.setRestroom(player.getRestroom() + player.getRestroomRate());
+//        savingObj[3][1] = String.valueOf(player.getRestroom());
 
-        savingObj[5][1] = String.valueOf(player.getSpeed());
+        player.setFatigue(player.getFatigue() + player.getFatigueRate());
+        savingObj[3][1] = String.valueOf(player.getFatigue());
+
+        savingObj[4][1] = String.valueOf(player.getSpeed());
 
         player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
-        savingObj[6][1] = String.valueOf(player.getDistanceTraveled());
+        savingObj[5][1] = String.valueOf(player.getDistanceTraveled());
 
-        savingObj[7][1] = String.valueOf(player.getCash());
+        savingObj[6][1] = String.valueOf(player.getCash());
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
