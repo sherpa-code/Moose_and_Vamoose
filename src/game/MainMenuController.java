@@ -26,7 +26,7 @@ public class MainMenuController {
     // line of data which contains all saved stats of the palyer (last saved stats)
     //TODO: Play around with string loaded from text file to run a player with previously saved values
 
-    String loadedStr = ""; // Gets updated from "loadGameBtnClicked" method (when "Load Game" gets clicked)
+    public String loadedStr = ""; // Gets updated from "loadGameBtnClicked" method (when "Load Game" gets clicked)
 
 
     @FXML void startNewGameClicked(ActionEvent event) {
@@ -69,6 +69,7 @@ public class MainMenuController {
 
 
     @FXML void loadGameBtnClicked(ActionEvent event) {
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
         //TODO:  loading process should be added after creation of saving functions
         //loadGameplayerControllerAndCheck();
         // MOH: Reader object to load data
@@ -88,6 +89,7 @@ public class MainMenuController {
         }
 
         System.out.println(loadedStr);
+        System.out.println("loadGameButtonClicked"+loadedStr);
 
 
 
