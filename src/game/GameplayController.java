@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-//import sun.text.DictionaryBasedBreakIterator;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,35 +41,26 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameplayController {
-
     /**
      * Simply instantiation of a player object
      */
-
-
-    //double fuelConsumptionRate = 1.0;
-    public boolean isNewPlayer = true;
-    public static int newSpeed = 0;
-    public static int newCash = 250;
-
+    double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
     // debug player stats
-
-
-
     PlayerStats player = new PlayerStats(
-        10, 10, 50, 10,10,
-        newSpeed, 1.80, newCash
+        0, 0, 100, 0,0,
+        0, 1.95, 500
     );
 //    PlayerStats player = new PlayerStats(
 //        0, 0, 100, 0,0,
 //        0, 691, 500, 19
 //    );
-    PlayerStats defaultPlayer = new PlayerStats(
-            0, 0, 100, 0,0,
-            0, 0.01, 500
-    );
 
+    // default player stats
+//    PlayerStats player = new PlayerStats(
+//            0, 0, 100, 0,0,
+//            0, 0.1, 500
+//    );
 
     //MOH:  Multidimensional String, stores all player's stats as string
     String [][] savingObj = {
@@ -97,7 +87,6 @@ public class GameplayController {
     @FXML private Label distanceTraveledValueLabel;
     @FXML private Label speedValueLabel;
     @FXML private Label cashValueLabel;
-    @FXML public Label testBoolean;
     @FXML private Button speedUpButton;
     @FXML private Button slowDownButton;
     @FXML private Button saveGameButton;
@@ -111,11 +100,6 @@ public class GameplayController {
 
     public boolean mooseActive;
 
-
-    public void storePlayer(PlayerStats Player) {
-        System.out.println("test");
-        player = Player;
-    }
 
 
     /**
@@ -214,6 +198,10 @@ public class GameplayController {
         }
         return false;
     }
+
+
+
+
 
     public void loadNextLandmarkScene() throws IOException {
         int currentLandmarkIndex = player.getLastLandmarkIndex()+1;

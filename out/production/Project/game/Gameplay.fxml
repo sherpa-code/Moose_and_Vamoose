@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameplayController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameplayController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -268,11 +269,6 @@
                            </font>
                         </Label>
                         <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameClicked" prefHeight="26.0" prefWidth="76.0" text="Save Game" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                        <Label fx:id="testBoolean" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" text="Label" textFill="#fc0202" underline="true" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                      </children>
                   </GridPane>
                </children>
@@ -314,7 +310,7 @@
                         <Font name="Georgia" size="64.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
                      <image>
                         <Image url="@img/explosion.png" />
                      </image>

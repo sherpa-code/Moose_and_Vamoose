@@ -52,18 +52,32 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="340.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.halignment="LEFT" GridPane.rowIndex="13" GridPane.valignment="BOTTOM">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="340.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.halignment="LEFT" GridPane.rowIndex="15" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="-10.0" />
                            </GridPane.margin>
                         </Rectangle>
-                        <Label fx:id="hungerLabel" text="Hunger" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="dateLabel" alignment="CENTER_RIGHT" text="Date" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                 <image>
+                                    <Image url="@img/dashboardCalendarIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <Label fx:id="hungerLabel" text="Hunger" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -75,7 +89,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="thirstLabel" text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label fx:id="thirstLabel" text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -87,7 +101,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="fuelLabel" text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="fuelLabel" text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -99,7 +113,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="restroomLabel" text="Restroom" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="restroomLabel" text="Restroom" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -111,7 +125,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="fatigueLabel" text="Fatigue" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Label fx:id="fatigueLabel" text="Fatigue" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -123,29 +137,51 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="hungerValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <Label fx:id="nextLandmarkLabel" text="Next Landmark" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                 <image>
+                                    <Image url="@img/dashboardArrowUpIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <Label fx:id="dateValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="hungerValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="thirstValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Label fx:id="thirstValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fuelValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Label fx:id="fuelValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="restroomValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        <Label fx:id="restroomValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fatigueValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                        <Label fx:id="fatigueValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nextLandmarkValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
                         <ImageView fitHeight="185.0" fitWidth="60.0" opacity="0.68" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="5">
@@ -156,7 +192,7 @@
                               <Insets left="80.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <Label fx:id="cashLabel" text="Cash" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <Label fx:id="cashLabel" text="Cash" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -168,7 +204,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="cashValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                        <Label fx:id="cashValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="10">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
@@ -193,7 +229,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="advertisedFuelForLabel" text="for" textFill="#b5b5b5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                        <Label text="for" textFill="#b5b5b5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -208,12 +244,12 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="advertisedFatigueForLabel" text="for" textFill="#b5b5b5" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                        <Label text="for" textFill="#b5b5b5" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="advertisedFuleLabel" text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Label text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -223,12 +259,12 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="advertisedThirstlabel" text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Label text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="advertisedFatigueLabel" text="Fatigue" textFill="#b5b5b5" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Label text="Fatigue" textFill="#b5b5b5" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -253,12 +289,12 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameAtLandmarkClicked" text="Save Game" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="11" />
-                        <Button fx:id="buyFuelButton" mnemonicParsing="false" onAction="#buyFuelAtLandmarkClicked" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                        <Button fx:id="buyDrinkButton" mnemonicParsing="false" onAction="#buyDrinkAtLandmarkClicked" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                        <Button fx:id="buyHungerButton" mnemonicParsing="false" onAction="#buyFoodAtLandmarkClicked" text="Buy Food" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                        <Button fx:id="rentHotelButton" mnemonicParsing="false" onAction="#rentHotelRoomAtLandmarkClicked" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                        <Button fx:id="departLandmarkButton" mnemonicParsing="false" onAction="#departCurrentLandmarkClicked" text="Depart Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                        <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameAtLandmarkClicked" text="Save Game" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
+                        <Button fx:id="buyFuelButton" mnemonicParsing="false" onAction="#buyFuelAtLandmarkClicked" text="Buy Fuel" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="buyDrinkButton" mnemonicParsing="false" onAction="#buyDrinkAtLandmarkClicked" text="Buy Drink" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="buyHungerButton" mnemonicParsing="false" onAction="#buyFoodAtLandmarkClicked" text="Buy Hunger" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="rentHotelButton" mnemonicParsing="false" onAction="#rentHotelRoomAtLandmarkClicked" text="Rent Hotel Room" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <Button fx:id="departLandmarkButton" mnemonicParsing="false" onAction="#departCurrentLandmarkClicked" text="Depart Landmark" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
                      </children>
                   </GridPane>
                </children>
@@ -293,7 +329,7 @@
               </rowConstraints>
                <children>
 <!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />-->
-                  <ImageView fx:id="hotelImageView" fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="hotelImageView" fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/landmarkHotel.png" />
                      </image>
@@ -303,7 +339,7 @@
                         <Image url="@img/landmarkStore.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="gasStationImageView" fitHeight="250.0" fitWidth="600.0" pickOnBounds="true" scaleX="-1.0" visible="false" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="gasStationImageView" fitHeight="250.0" fitWidth="600.0" pickOnBounds="true" scaleX="-1.0" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/landmarkGas.png" />
                      </image>
@@ -315,18 +351,28 @@
                   <Insets bottom="10.0" left="20.0" />
                </GridPane.margin>
                <children>
-                  <Label fx:id="landmarkNameLabel" minWidth="0.0" prefHeight="35.0" prefWidth="580.0" text="Landmark Name" textFill="#b5b5b5">
+                  <Label fx:id="landmarkNameLabel" minWidth="0.0" prefHeight="35.0" prefWidth="320.0" text="Landmark Name" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label minWidth="0.0" prefHeight="35.0" prefWidth="80.0" text="     (" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="landmarkSizeLabel" layoutX="10.0" layoutY="10.0" minWidth="0.0" prefHeight="35.0" prefWidth="90.0" text="Size" textFill="#b5b5b5">
+                     <font>
+                        <Font name="Californian FB Bold" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="650.0" layoutY="10.0" minWidth="0.0" prefHeight="35.0" prefWidth="320.0" text=")" textFill="#b5b5b5">
                      <font>
                         <Font name="Californian FB Bold" size="44.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="notEnoughMoneyLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="400.0" text="Sorry! Not enough money!" textFill="#080e8c" visible="false" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold Italic" size="32.0" />
-               </font>
-            </Label>
          </children>
       </GridPane>
    </center>

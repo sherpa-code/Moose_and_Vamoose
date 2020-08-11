@@ -35,7 +35,7 @@ import java.util.TimerTask;
 
 public class LandmarkController {
 
-//    @FXML private Label dateValueLabel;
+    //    @FXML private Label dateValueLabel;
 //    @FXML private Label hungerValueLabel;
 //    @FXML private Label thirstValueLabel;
 //    @FXML private Label fuelValueLabel;
@@ -48,8 +48,8 @@ public class LandmarkController {
 //    @FXML private Button buyFoodButton;
 //    @FXML private Button buyDrinkButton;
 //    @FXML private Button rentHotelButton;
-@FXML
-private Label hungerLabel;
+    @FXML
+    private Label hungerLabel;
 
     @FXML    private Label thirstLabel;
     @FXML    private Label fuelLabel;
@@ -90,11 +90,7 @@ private Label hungerLabel;
 
 
     private PlayerStats player;
-//
-//    public void storePlayer() {
-//        System.out.println("test");
-//        player = Player;
-//    }
+
 
 
     public void storePlayer(PlayerStats Player) {
@@ -120,10 +116,6 @@ private Label hungerLabel;
         landmarkNameLabel.setText(player.getNextLandmarkName() + " _ "+
                 player.landmarkAttributes[player.getLastLandmarkIndex()+1][2]);
     }
-
-//    private void updateLandmarkNameLabel(String landmarkName){
-//        landmarkNameLabel.setText(landmarkName);
-//    }
 
     @FXML
     void buyDrinkAtLandmarkClicked(ActionEvent event) {
@@ -263,8 +255,8 @@ private Label hungerLabel;
         Scene scene = new Scene(root);
         stage.setTitle("You are at a Landmark. Make the right choice!");
         stage.setScene(scene);
-        gameplayController.isNewPlayer = false;
-        gameplayController.testBoolean.setText("Changed!");
+        //gameplayController.isNewPlayer = false;
+        //gameplayController.testBoolean.setText("Changed!");
         gameplayController.player.setFuel(Double.parseDouble(this.fuelValueLabel.getText()));
         gameplayController.player.setHunger(Double.parseDouble(this.hungerValueLabel.getText()));
         gameplayController.player.setThirst(Double.parseDouble(this.thirstValueLabel.getText()));
@@ -280,7 +272,7 @@ private Label hungerLabel;
 
 
 
-        System.out.println(gameplayController.isNewPlayer);
+        //System.out.println(gameplayController.isNewPlayer);
         stage.show();
         currentStage.close();
 
@@ -328,6 +320,8 @@ private Label hungerLabel;
 
     }
 
+
+
     public void departLandmark(PlayerStats player) {
 //        Stage currentStage = (Stage) carImageView.getScene().getWindow();
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
@@ -355,7 +349,11 @@ private Label hungerLabel;
 //
 //    }
 //
-////
+//    public void storePlayer(PlayerStats Player) {
+//        //player = Player;
+//        //System.out.println("Player stored in Landmark");
+//    }
+//
 //    LandmarkController() {
 //
 //    }
@@ -403,7 +401,5 @@ private Label hungerLabel;
 //        }
 //    }
 //
-
-
 
 }

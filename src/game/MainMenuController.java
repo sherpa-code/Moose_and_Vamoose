@@ -69,7 +69,7 @@ public class MainMenuController {
 
 
     @FXML void loadGameBtnClicked(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
         //TODO:  loading process should be added after creation of saving functions
         //loadGameplayerControllerAndCheck();
         // MOH: Reader object to load data
@@ -79,7 +79,7 @@ public class MainMenuController {
             while (readerObj.hasNextLine()) {
                 String data = readerObj.nextLine();
                 //System.out.println(data);
-                loadedStr = data; // loaderStr gets all stored data as one line string
+                loadedStr = data; // loaderStr gets all stored data as a one line string
 
             }
             readerObj.close();
@@ -88,6 +88,7 @@ public class MainMenuController {
             e.printStackTrace();
         }
 
+        System.out.println(loadedStr);
         System.out.println("loadGameButtonClicked"+loadedStr);
 
 
