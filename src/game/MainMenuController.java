@@ -28,7 +28,6 @@ public class MainMenuController {
 
     public String loadedStr = ""; // Gets updated from "loadGameBtnClicked" method (when "Load Game" gets clicked)
 
-
     @FXML void startNewGameClicked(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -68,9 +67,6 @@ public class MainMenuController {
 
         System.out.println(loadedStr);
         System.out.println("loadGameButtonClicked"+loadedStr);
-
-
-
 
     }
 

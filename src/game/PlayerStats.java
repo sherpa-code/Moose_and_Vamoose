@@ -1,11 +1,6 @@
 package game;
 
-import java.io.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-
-import static java.lang.Integer.parseInt;
 
 public class PlayerStats extends Main {
 
@@ -26,7 +21,6 @@ public class PlayerStats extends Main {
 
     private double speed;
     private double distanceTraveled;
-    private double distanceToNextLandmark;
     private int lastLandmarkIndex = 0;
 
 
@@ -64,19 +58,10 @@ public class PlayerStats extends Main {
             double hunger,
             double thirst,
             double fuel,
-            double restroom, // needs to be removed
             double fatigue,
             int speed,
             double distanceTraveled,
             int cash
-
-//            int distanceToNextLandmark,
-//            String defaultCarID,
-//            String defaultCarSpriteURL,
-//            String vehicleID,
-//            String carSpriteURL,
-//            Boolean isMoving,
-//            boolean setupComplete, String[][] landmarkAttributes
     ) throws ParseException {
         this.hunger = hunger;
         this.thirst = thirst;
@@ -85,15 +70,6 @@ public class PlayerStats extends Main {
         this.speed = speed;
         this.distanceTraveled = distanceTraveled;
         this.cash = cash;
-//        this.distanceToNextLandmark = distanceToNextLandmark;
-//        this.defaultCarID = defaultCarID;
-//        this.defaultCarSpriteURL = defaultCarSpriteURL;
-//        this.vehicleID = vehicleID;
-//        this.carSpriteURL = carSpriteURL;
-//        this.isMoving = isMoving;
-//        this.setupComplete = setupComplete;
-//        this.landmarkAttributes = landmarkAttributes;
-        //this.landmarkAttributes[1][0] = nextLandMark;
     }
 
     public void clampPlayerStats() {
@@ -130,19 +106,10 @@ public class PlayerStats extends Main {
     }
 
     double getDistanceTraveled() {
-        //return String.valueOf(landmarkAttributes[0][1]);
-        //return Double.parseDouble(landmarkAttributes[0][1]);
         return distanceTraveled;
     }
     void setDistanceTraveled(double DistanceTraveled) {
         distanceTraveled = DistanceTraveled;
-    }
-
-    double getDistanceToNextLandmark() {
-        return distanceToNextLandmark;
-    }
-    void setDistanceToNextLandmark(int DistanceToNextLandmark) {
-        distanceToNextLandmark = DistanceToNextLandmark;
     }
 
     public double getHunger() {
@@ -206,7 +173,6 @@ public class PlayerStats extends Main {
         return landmarkAttributes[lastLandmarkIndex+1][2];
     }
 
-
     public String getLastLandmarkName() {
         return landmarkAttributes[lastLandmarkIndex][0];
     }
@@ -225,47 +191,6 @@ public class PlayerStats extends Main {
         cash = Cash;
     }
 
-    //boolean isMoving() { return isMoving; }
-    //void setMoving(boolean IsMoving) { isMoving = IsMoving; }
-
-
-
-
-
-//    /**
-//     * Saves variables of game.PlayerStats to SaveGame.ser
-//     *
-//     * @throws IOException
-//     */
-//    static void saveData() throws IOException {
-//
-//        FileOutputStream fileOutputStream = new FileOutputStream("SaveGame.ser");
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-//
-//        //objectOutputStream.writeObject(game.PlayerStats);
-//
-//        objectOutputStream.close();
-//        fileOutputStream.close();
-//    }
-//
-//
-//    /**
-//     * Loads data from SaveGame.ser,
-//     * assigns data corresponding variables in game.PlayerStats.
-//     *
-//     * @throws IOException
-//     * @throws ClassNotFoundException
-//     */
-//    static void loadData() throws IOException, ClassNotFoundException {
-//
-//        FileInputStream fileInputStream = new FileInputStream("SaveGame.ser");
-//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//
-//        //game.PlayerStats = (PlayerStats) objectInputStream.readObject();
-//
-//        fileInputStream.close();
-//        objectInputStream.close();
-//    }
 }
 
 

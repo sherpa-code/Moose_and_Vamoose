@@ -1,42 +1,21 @@
 package game;
 
-import javafx.animation.Animation;
-import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.Effect;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.io.*;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.*;
-import java.text.SimpleDateFormat;
 import java.util.Random;
-import java.util.function.Function;
-
-import static javafx.scene.paint.Color.*;
-import static javafx.scene.paint.Color.RED;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -46,11 +25,12 @@ public class GameplayController {
      */
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
-    // debug player stats
+    // debug test - just before first landmark
     PlayerStats player = new PlayerStats(
         0, 0, 100, 0,0,
-        0, 1.95, 500
+        1.95, 500
     );
+//    debug test - just before victory condition (game win at 692 traveled)
 //    PlayerStats player = new PlayerStats(
 //        0, 0, 100, 0,0,
 //        0, 691, 500, 19
@@ -61,8 +41,9 @@ public class GameplayController {
 //            0, 0, 100, 0,0,
 //            0, 0.1, 500
 //    );
-
-    //MOH:  Multidimensional String, stores all player's stats as string
+    public boolean mooseActive;
+    Timer currentGameTickTimer;
+    Timer carAnimationTimer;
     String [][] savingObj = {
             {"hunger", String.valueOf(player.getHunger())},
             {"thirst", String.valueOf(player.getThirst())},
@@ -73,8 +54,7 @@ public class GameplayController {
             {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
             {"cash", String.valueOf(player.getCash())}
     };
-    Timer currentGameTickTimer;
-    Timer carAnimationTimer;
+
 
     @FXML private Label dateValueLabel;
     @FXML private Label hungerValueLabel;
@@ -98,7 +78,6 @@ public class GameplayController {
     @FXML public Button backToMainMenuButton;
     @FXML public ImageView explosion;
 
-    public boolean mooseActive;
 
 
 
