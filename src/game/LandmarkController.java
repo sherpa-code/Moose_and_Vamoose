@@ -83,10 +83,7 @@ public class LandmarkController {
 
     private PlayerStats player;
 
-    public void storePlayer(PlayerStats Player) {
-        System.out.println("test");
-        player = Player;
-    }
+
     /**
      * A method that updates player status labels to current running values, truncated (via casting) to an integer
      *
@@ -105,6 +102,52 @@ public class LandmarkController {
         //player.landmarkAttributes[player.getLastLandmarkIndex()+1][2]);
     }
 
+
+    private void setLandmarkVisibility(){
+        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
+        System.out.println(landmarkSize);
+        if (landmarkSize == "large") {
+            hotelImageView.setVisible(true);
+            gasStationImageView.setVisible(true);
+            storeImageView.setVisible(false);
+
+        }
+        else if(landmarkSize == "small"){
+            storeImageView.setVisible(true);
+            hotelImageView.setVisible(false);
+            gasStationImageView.setVisible(false);
+
+            rentHotelButton.setVisible(false);
+            landmarkHotelCostLabel.setVisible(false);
+            landmarkFatigueQuantity.setVisible(false);
+            advertisedFatigueForLabel.setVisible(false);
+            advertisedFatigueLabel.setVisible(false);
+
+            buyFuelButton.setVisible(false);
+            landmarkFuelCostLabel.setVisible(false);
+            landmarkFuelQuantity.setVisible(false);
+            advertisedFuelForLabel.setVisible(false);
+            advertisedFuelLabel.setVisible(false);
+        }
+        else {
+            System.out.println("Something went wrong here for background image");
+        }
+    }
+
+    public void storePlayer(PlayerStats Player) {
+        System.out.println("LandmarkController storePlayer(player)");
+        player = Player;
+    }
+
+    @FXML
+    void saveGameAtLandmarkClicked(ActionEvent event) {
+        System.out.println("saveGameAtLandmarkClicked()");
+//        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
+//        System.out.println(landmarkSize);
+        setLandmarkVisibility();
+    }
+
+
     @FXML
     void buyDrinkAtLandmarkClicked(ActionEvent event) {
         System.out.println("buyDrinkAtLandmarkClicked()");
@@ -118,6 +161,7 @@ public class LandmarkController {
             buyDrinkButton.setVisible(false);
 
         } else {
+            landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 3);
 
             if( player.getThirst() - Double.parseDouble(landmarkThirstQuantity.getText()) < 0 ) {
@@ -148,6 +192,7 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(true);
             buyHungerButton.setVisible(false);
         } else {
+            landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 12);
 
             if( player.getHunger() - Double.parseDouble(landmarkFoodQuantity.getText()) < 0 ) {
@@ -178,6 +223,7 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(true);
             buyFuelButton.setVisible(false);
         } else {
+            landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 20);
 
             if( player.getFuel() + Double.parseDouble(landmarkFuelQuantity.getText()) >= 100.00 ) {
@@ -208,6 +254,7 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(true);
             rentHotelButton.setVisible(false);
         } else {
+            landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 125);
 
             if( player.getFatigue() - Double.parseDouble(landmarkFatigueQuantity.getText()) <= 0.0 ) {
@@ -227,9 +274,7 @@ public class LandmarkController {
         }
 
     }
-    void gitTestFunction() {
 
-    }
 
     @FXML
     void departCurrentLandmarkClicked(ActionEvent event) throws IOException {
@@ -237,162 +282,38 @@ public class LandmarkController {
 
         Stage currentStage = (Stage) departLandmarkButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
-
         Parent root = (Parent) loader.load();
         GameplayController gameplayController = loader.getController();
-        //landmarkController.updatePlayerStatsLabels(player);
-        //gameplayController.updateLandmarkStatsLabels(player);
+        //gameplayController.storePlayer(player);
 
-        //landmarkController.init(table.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setTitle("You are at a Landmark. Make the right choice!");
         stage.setScene(scene);
-        //gameplayController.isNewPlayer = false;
-        //gameplayController.testBoolean.setText("Changed!");
-        gameplayController.player.setFuel(Double.parseDouble(this.fuelValueLabel.getText()));
-        gameplayController.player.setHunger(Double.parseDouble(this.hungerValueLabel.getText()));
-        gameplayController.player.setThirst(Double.parseDouble(this.thirstValueLabel.getText()));
-        gameplayController.player.setFatigue(Double.parseDouble(this.fatigueValueLabel.getText()));
-//        gameplayController.newCash = parseInt(this.cashValueLabel.getText());
-//        System.out.println(gameplayController.newCash);
-        //gameplayController.player.setCash(1000);
-        //System.out.println(gameplayController.player.getSpeed());
 
-        //gameplayController.player.setSpeed(0.0);
-        //gameplayController.player.setDistanceTraveled(player.getDistanceTraveled());
+//        gameplayController.player.setFuel(player.getFuel());
+//        gameplayController.player.setHunger(player.getHunger());
+//        gameplayController.player.setThirst(player.getThirst());
+//        gameplayController.player.setFatigue(player.getFatigue());
+//        gameplayController.player.setCash(player.getCash());
+        gameplayController.getPlayer().setFuel(player.getFuel());
+        gameplayController.getPlayer().setHunger(player.getHunger());
+        gameplayController.getPlayer().setThirst(player.getThirst());
+        gameplayController.getPlayer().setFatigue(player.getFatigue());
+        gameplayController.getPlayer().setCash(player.getCash());
 
+        gameplayController.updatePlayerStatsLabels(player);
 
+//        gameplayController.player.setFuel(Double.parseDouble(this.fuelValueLabel.getText()));
+//        gameplayController.player.setHunger(Double.parseDouble(this.hungerValueLabel.getText()));
+//        gameplayController.player.setThirst(Double.parseDouble(this.thirstValueLabel.getText()));
+//        gameplayController.player.setFatigue(Double.parseDouble(this.fatigueValueLabel.getText()));
+//        gameplayController.player.setCash(Double.parseDouble(this.fatigueValueLabel.getText()));
 
-        //System.out.println(gameplayController.isNewPlayer);
         stage.show();
         currentStage.close();
 
     }
 
-    private void setLandmarkVisibility(){
-        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
-//        String landmarkSize = "small";
-        System.out.println(landmarkSize);
-        if (landmarkSize == "large") {
-            hotelImageView.setVisible(true);
-            gasStationImageView.setVisible(true);
-            storeImageView.setVisible(false);
-
-        }
-        else if(landmarkSize == "small"){
-            storeImageView.setVisible(true);
-            hotelImageView.setVisible(false);
-            gasStationImageView.setVisible(false);
-
-            rentHotelButton.setVisible(false);
-            landmarkHotelCostLabel.setVisible(false);
-            landmarkFatigueQuantity.setVisible(false);
-            advertisedFatigueForLabel.setVisible(false);
-            advertisedFatigueLabel.setVisible(false);
-
-            buyFuelButton.setVisible(false);
-            landmarkFuelCostLabel.setVisible(false);
-            landmarkFuelQuantity.setVisible(false);
-            advertisedFuelForLabel.setVisible(false);
-            advertisedFuelLabel.setVisible(false);
-        }
-        else {
-            System.out.println("Something went wrong here for background image");
-        }
-    }
-
-    @FXML
-    void saveGameAtLandmarkClicked(ActionEvent event) {
-        System.out.println("saveGameAtLandmarkClicked()");
-//        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
-//        System.out.println(landmarkSize);
-        setLandmarkVisibility();
-
-
-
-    }
-
-
-
-    public void departLandmark(PlayerStats player) {
-//        Stage currentStage = (Stage) carImageView.getScene().getWindow();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-//
-//        Parent root = (Parent) loader.load();
-//        LandmarkController landmarkController = loader.getController();
-//        landmarkController.storePlayer(player);
-//        //landmarkController.updatePlayerStatsLabels(player);
-//        landmarkController.updateLandmarkStatsLabels(player);
-//
-//        //landmarkController.init(table.getSelectionModel().getSelectedItem());
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(root);
-//
-//        stage.setTitle("You are at a Landmark. Make the right choice!");
-//        stage.setScene(scene);
-//
-//        System.out.println(landmarkController);
-//
-//        stage.show();
-//        currentStage.close();
-    }
-
-//    public void initialize() {
-//
-//    }
-//
-//    public void storePlayer(PlayerStats Player) {
-//        //player = Player;
-//        //System.out.println("Player stored in Landmark");
-//    }
-//
-//    LandmarkController() {
-//
-//    }
-//
-//    // buy buttons are not yet implemented, need to be handled in landmark scene
-//    @FXML
-//    void buyFuelBtnClicked(ActionEvent event) {
-//        System.out.println("buy fuel");
-//    }
-//
-//    @FXML
-//    void buyFoodBtnClicked(ActionEvent event) {
-//        System.out.println("buy food");
-//    }
-//
-//    @FXML
-//    void buyDrinkBtnClicked(ActionEvent event) {
-//        System.out.println("buy drink");
-//    }
-//
-//    @FXML
-//    void rentHotelBtnClicked(ActionEvent event) {
-//        System.out.println("rent hotel");
-//    }
-//
-//    @FXML
-//    public void saveGameBtnClicked(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void leaveLandmarkBtnClicked(ActionEvent event) {
-//        System.out.println("leave landmark");
-//        // TODO: must load back into the main gameplay loop and
-//        //  update the
-//    }
-//
-//
-//
-//    public void displayLandmarkAmenities(String size) {
-//        if (size.equals("small")) {
-//
-//        } else if (size.equals("large")) {
-//
-//        }
-//    }
-//
 
 }

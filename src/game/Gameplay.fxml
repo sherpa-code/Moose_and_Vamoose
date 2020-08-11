@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -69,7 +68,7 @@
                               <Insets bottom="230.0" left="840.0" top="40.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <Label fx:id="dateLabel" alignment="CENTER_RIGHT" text="Date" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <Label fx:id="dateLabel" alignment="CENTER_RIGHT" text="Date" textFill="#b5b5b5" visible="false" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -81,7 +80,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="hungerLabel" text="Hunger" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="hungerLabel" text="Hunger" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -93,7 +92,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="thirstLabel" text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label fx:id="thirstLabel" text="Thirst" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -105,7 +104,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="fuelLabel" text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="fuelLabel" text="Fuel" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -117,7 +116,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="restroomLabel" text="Restroom" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="restroomLabel" text="Restroom" textFill="#b5b5b5" visible="false" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -141,7 +140,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="nextLandmarkLabel" text="Next Landmark" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <Label fx:id="nextLandmarkLabel" text="Next Landmark" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -153,7 +152,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="distanceTraveledLabel" text="Distance Traveled" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                        <Label fx:id="distanceTraveledLabel" text="Distance Traveled" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="9">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -165,27 +164,27 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="dateValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                        <Label fx:id="dateValueLabel" text="Label" textFill="#b5b5b5" visible="false" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="hungerValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <Label fx:id="hungerValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="thirstValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Label fx:id="thirstValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fuelValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Label fx:id="fuelValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="restroomValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        <Label fx:id="restroomValueLabel" text="Label" textFill="#b5b5b5" visible="false" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -195,17 +194,17 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nextLandmarkValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                        <Label fx:id="nextLandmarkValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="7">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="distanceTraveledValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="10">
+                        <Label fx:id="distanceTraveledValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="9">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="speedLabel" alignment="CENTER_RIGHT" text="Speed" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="speedLabel" alignment="CENTER_RIGHT" text="Speed" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -217,7 +216,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="speedValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label fx:id="speedValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
@@ -234,7 +233,7 @@
                         </ImageView>
                         <Button fx:id="speed100Button" mnemonicParsing="false" onAction="#speed100BtnClicked" prefHeight="18.0" prefWidth="74.0" text="100 km/h" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                         <Button fx:id="speed50Button" mnemonicParsing="false" onAction="#speed50BtnClicked" prefHeight="18.0" prefWidth="74.0" text="50 km/h" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <Label fx:id="nextLandmarkLabel1" text="Last Landmark" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <Label fx:id="nextLandmarkLabel1" text="Last Landmark" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -246,12 +245,12 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="lastLandmarkValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                        <Label fx:id="lastLandmarkValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="8">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="cashLabel" text="Cash" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                        <Label fx:id="cashLabel" text="Cash" textFill="#b5b5b5" GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -263,12 +262,12 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <Label fx:id="cashValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                        <Label fx:id="cashValueLabel" text="Label" textFill="#b5b5b5" GridPane.columnIndex="3" GridPane.rowIndex="10">
                            <font>
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameClicked" prefHeight="26.0" prefWidth="76.0" text="Save Game" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameClicked" prefHeight="26.0" prefWidth="76.0" text="Save Game" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>
@@ -310,7 +309,7 @@
                         <Font name="Georgia" size="64.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <image>
                         <Image url="@img/explosion.png" />
                      </image>

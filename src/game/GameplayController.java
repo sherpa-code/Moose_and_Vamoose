@@ -25,7 +25,8 @@ public class GameplayController {
      */
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
-    // debug test - just before first landmark
+
+    // player is always initialized to default values, will be loaded in separate function
     PlayerStats player = new PlayerStats(
         0, 0, 100, 0,0,
         1.95, 500
@@ -92,6 +93,9 @@ public class GameplayController {
         System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
     }
 
+    public PlayerStats getPlayer() {
+        return player;
+    }
 
     /**
      * Creates a Timer and Task that will execute every tickRateMS;
@@ -253,12 +257,11 @@ public class GameplayController {
      * @param player
      */
     public void updatePlayerStats(PlayerStats player) {
-        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 100kmh
+        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 110kmh
             player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed());
         } else {
             player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.1);
         }
-        // MOH: Stores all changing stats to multidimensional String called savingObj (Line 55)
         savingObj[2][1] = String.valueOf(player.getFuel());
 
         player.setHunger(player.getHunger() + player.getHungerRate());
@@ -266,9 +269,6 @@ public class GameplayController {
 
         player.setThirst(player.getThirst() + player.getThirstRate());
         savingObj[1][1] = String.valueOf(player.getThirst());
-
-//        player.setRestroom(player.getRestroom() + player.getRestroomRate());
-//        savingObj[3][1] = String.valueOf(player.getRestroom());
 
         player.setFatigue(player.getFatigue() + player.getFatigueRate());
         savingObj[3][1] = String.valueOf(player.getFatigue());
@@ -283,30 +283,6 @@ public class GameplayController {
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
     }
-//    public void updatePlayerStats(PlayerStats player) {
-//        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 100kmh
-//            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed());
-//        } else {
-//            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.1);
-//        }
-//        // MOH: Stores all changing stats to multidimensional String called savingObj (Line 55)
-//        savingObj[2][1] = String.valueOf(player.getFuel());
-//
-//        player.setHunger(player.getHunger() + player.getHungerRate());
-//        savingObj[0][1] = String.valueOf(player.getHunger());
-//
-//        player.setThirst(player.getThirst() + player.getThirstRate());
-//        savingObj[1][1] = String.valueOf(player.getThirst());
-//
-//        player.setRestroom(player.getRestroom() + player.getRestroomRate());
-//        savingObj[3][1] = String.valueOf(player.getRestroom());
-//
-//        player.setFatigue(player.getFatigue() + player.getFatigueRate());
-//        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
-//
-//        player.clampPlayerStats();
-//        updatePlayerStatsLabels(player);
-//    }
 
     /**
      * A method that updates player status labels to current running values, truncated (via casting) to an integer
@@ -321,15 +297,9 @@ public class GameplayController {
         restroomValueLabel.setText("0");
         fatigueValueLabel.setText(String.valueOf((int) player.getFatigue()));
         speedValueLabel.setText(String.valueOf(player.getSpeed()));
-        //TODO: Date stats label should be updated later on the screen
-
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        //String strDate = dateFormat.format(player.getCurrentDate());
-        dateValueLabel.setText("0"); // replace this with a function to update only when X time has elapsed
+        cashValueLabel.setText(String.valueOf((int) player.getCash()));
         nextLandmarkValueLabel.setText(player.getNextLandmarkName());
         lastLandmarkValueLabel.setText(player.getLastLandmarkName());
-        //distanceTraveledValueLabel.setText(String.valueOf(player.getDistanceTraveled()) + " km");
-//        distanceTraveledValueLabel.setText(player.getDistanceTraveled() + " km");
         distanceTraveledValueLabel.setText(Math.round(player.getDistanceTraveled()*100.0)/100.0 + " km"); // rounds the distance traveled to 2 decimal places for the Label
     }
 
@@ -389,6 +359,12 @@ public class GameplayController {
     public void gameVictory() {
         cancelTick();
         // Display
+    }
+
+
+    public void storePlayer(PlayerStats Player) {
+        System.out.println("GameplayController storePlayer(player)");
+        player = Player;
     }
 
     @FXML
