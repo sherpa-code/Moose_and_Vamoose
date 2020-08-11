@@ -35,43 +35,38 @@ import java.util.TimerTask;
 
 public class LandmarkController {
 
-    //    @FXML private Label dateValueLabel;
-//    @FXML private Label hungerValueLabel;
-//    @FXML private Label thirstValueLabel;
-//    @FXML private Label fuelValueLabel;
-//    @FXML private Label fatigueValueLabel;
-//    @FXML private Label nextLandmarkValueLabel;
-//    @FXML private Label cashValueLabel;
-//    @FXML private Label landmarkNameLabel;
-//    @FXML private Button buyFuelButton;
-//    @FXML private Button buyFoodButton;
-//    @FXML private Button buyDrinkButton;
-//    @FXML private Button rentHotelButton;
     @FXML    private Label hungerLabel;
-
     @FXML    private Label thirstLabel;
     @FXML    private Label fuelLabel;
     @FXML    private Label fatigueLabel;
+    @FXML    private Label cashLabel;
+
     @FXML    private Label hungerValueLabel;
     @FXML    private Label thirstValueLabel;
     @FXML    private Label fuelValueLabel;
     @FXML    private Label fatigueValueLabel;
-    @FXML    private Label cashLabel;
-    @FXML    private Label cashValueLabel;
+    @FXML    private Label cashValueLabel; // OK
+
     @FXML    private Label landmarkFuelCostLabel;
-    @FXML    private Label landmarkFoodCostLabel;
-    @FXML    private Label landmarkDrinkCostLabel;
-    @FXML    private Label landmarkHotelCostLabel;
-    @FXML    private Label landmarkFuelQuantity;
-    @FXML    private Label landmarkFoodQuantity;
-    @FXML    private Label landmarkThirstQuantity;
-    @FXML    private Label landmarkFatigueQuantity;
     @FXML    private Label advertisedFuelForLabel;
-    @FXML    private Label advertisedFatigueForLabel;
     @FXML    private Label advertisedFuelLabel;
-    @FXML    private Label advertisedThirstlabel;
+    @FXML    private Label landmarkFuelQuantity;
+
+    @FXML    private Label landmarkHotelCostLabel;
+    @FXML    private Label advertisedFatigueForLabel;
     @FXML    private Label advertisedFatigueLabel;
-    @FXML    private Label notEnoughMoneyLabel;
+    @FXML    private Label landmarkFatigueQuantity; // OK 2
+
+    @FXML    private Label landmarkFoodCostLabel;
+    @FXML    private Label advertisedHungerForLabel;
+    @FXML    private Label advertisedHungerLabel;
+    @FXML    private Label landmarkFoodQuantity; // OK 3
+
+    @FXML    private Label drinkCostLabel;
+    @FXML    private Label advertisedThirstForLabel;
+    @FXML    private Label advertisedThirstLabel;
+    @FXML    private Label landmarkThirstQuantity; // OK 4
+
     @FXML    private Button saveGameButton;
     @FXML    private Button buyFuelButton;
     @FXML    private Button buyDrinkButton;
@@ -119,7 +114,7 @@ public class LandmarkController {
         //System.out.println(String.valueOf(Double.parseDouble(landmarkDrinkCostLabel.getText())));
         if (player.getCash() < 3) {
             System.out.println("Sorry! Not enough money");
-            notEnoughMoneyLabel.setVisible(true);
+            landmarkInsufficientFundsLabel.setVisible(true);
             buyDrinkButton.setVisible(false);
 
         } else {
@@ -150,7 +145,7 @@ public class LandmarkController {
 //        System.out.println("Hunger: "+player.getHunger());
         if (player.getCash() < 12) {
             System.out.println("Sorry! Not enough money");
-            notEnoughMoneyLabel.setVisible(true);
+            landmarkInsufficientFundsLabel.setVisible(true);
             buyHungerButton.setVisible(false);
         } else {
             player.setCash(player.getCash() - 12);
@@ -180,7 +175,7 @@ public class LandmarkController {
 //        System.out.println(player.getFuel());
         if (player.getCash() < 20) {
             System.out.println("Sorry! Not enough money");
-            notEnoughMoneyLabel.setVisible(true);
+            landmarkInsufficientFundsLabel.setVisible(true);
             buyFuelButton.setVisible(false);
         } else {
             player.setCash(player.getCash() - 20);
@@ -210,7 +205,7 @@ public class LandmarkController {
 //        System.out.println(player.getFatigue());
         if (player.getCash() < 125) {
             System.out.println("Sorry! Not enough money");
-            notEnoughMoneyLabel.setVisible(true);
+            landmarkInsufficientFundsLabel.setVisible(true);
             rentHotelButton.setVisible(false);
         } else {
             player.setCash(player.getCash() - 125);
@@ -232,7 +227,9 @@ public class LandmarkController {
         }
 
     }
+    void gitTestFunction() {
 
+    }
 
     @FXML
     void departCurrentLandmarkClicked(ActionEvent event) throws IOException {
