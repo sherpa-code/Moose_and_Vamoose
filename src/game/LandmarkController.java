@@ -83,6 +83,19 @@ public class LandmarkController {
 
     private PlayerStats player;
 
+    String [][] savingObj;
+//    String [][] savingObj = {
+//            {"hunger", String.valueOf(player.getHunger())},
+//            {"thirst", String.valueOf(player.getThirst())},
+//            {"fuel", String.valueOf(player.getFuel())},
+////            {"restroom", String.valueOf(player.getRestroom())}, // restroom is removed
+//            {"fatigue", String.valueOf(player.getFatigue())},
+//            {"speed", String.valueOf(player.getSpeed())},
+//            {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
+//            {"cash", String.valueOf(player.getCash())},
+//            {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
+//    };
+
 
     /**
      * A method that updates player status labels to current running values, truncated (via casting) to an integer
@@ -137,6 +150,11 @@ public class LandmarkController {
     public void storePlayer(PlayerStats Player) {
         System.out.println("LandmarkController storePlayer(player)");
         player = Player;
+    }
+
+    public void storeSavingObj(String[][] SavingObj) {
+        System.out.println("LandmarkController storeSavingObj(savingObj)");
+        savingObj = SavingObj;
     }
 
     @FXML

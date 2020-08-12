@@ -125,7 +125,7 @@ public class GameplayController {
                         tickMoose();
                     } else if (reachedLandmark()) {
                         cancelTick();
-                        if (player.getLastLandmarkIndex()+1 == 21) {
+                        if (player.getLastLandmarkIndex()+1 == 20) {
                             gameVictory();
                         } else {
 
@@ -161,10 +161,11 @@ public class GameplayController {
 //                    if (mooseActive) {
 //                        tickMoose();
 //                    } else if (reachedLandmark()) {
+//                        cancelTick();
 //                        if (player.getLastLandmarkIndex()+1 == 21) {
 //                            gameVictory();
 //                        } else {
-//                            cancelTick();
+//
 //                            try {
 //                                loadNextLandmarkScene();
 //                            } catch (IOException ioException) {
@@ -199,6 +200,7 @@ public class GameplayController {
                 Parent root = (Parent) loader.load();
                 LandmarkController landmarkController = loader.getController();
                 landmarkController.storePlayer(player);
+                landmarkController.storeSavingObj(savingObj);
                 landmarkController.updateLandmarkStatsLabels(player);
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -399,11 +401,30 @@ public class GameplayController {
 //        cancelTick();
 //        System.out.println(reason);
 //    }
+public void gameVictory() {
+    System.out.println("gameVictory() has been triggered"); //debug
+    cancelTick();
+    System.out.println("cancelTick() should have fired"); //debug
 
-    public void gameVictory() {
-        cancelTick();
-        // Display
-    }
+    //change game over label to victory label
+    gameOverLabel.setText("You win!");
+    gameOverLabel.setVisible(true);
+
+    //main menu button, but fancied up
+    backToMainMenuButton.setText("End game");
+    backToMainMenuButton.setVisible(true);
+    backToMainMenuButton.setOnAction(event -> {
+        try {
+            backToMainMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    });
+}
+//    public void gameVictory() {
+//        cancelTick();
+//        // Display
+//    }
 
 
     public void storePlayer(PlayerStats Player) {
