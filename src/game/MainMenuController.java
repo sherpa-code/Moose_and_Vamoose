@@ -42,7 +42,7 @@ public class MainMenuController {
         System.out.println("startNewGameClicked()");
         PlayerStats player = new PlayerStats(
                 0, 0, 100, 0,0,
-                0, 500, 0
+                1.95, 500, 0
         );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();

@@ -397,139 +397,31 @@ public class GameplayController {
         });
     }
 
-//    public void gameOver(String reason) {
-//        cancelTick();
-//        System.out.println(reason);
-//    }
-public void gameVictory() {
-    System.out.println("gameVictory() has been triggered"); //debug
-    cancelTick();
-    System.out.println("cancelTick() should have fired"); //debug
+    public void gameVictory() {
+        System.out.println("gameVictory() has been triggered"); //debug
+        cancelTick();
+        System.out.println("cancelTick() should have fired"); //debug
 
-    //change game over label to victory label
-    gameOverLabel.setText("You win!");
-    gameOverLabel.setVisible(true);
+        //change game over label to victory label
+        gameOverLabel.setText("You win!");
+        gameOverLabel.setVisible(true);
 
-    //main menu button, but fancied up
-    backToMainMenuButton.setText("End game");
-    backToMainMenuButton.setVisible(true);
-    backToMainMenuButton.setOnAction(event -> {
-        try {
-            backToMainMenu();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    });
-}
-//    public void gameVictory() {
-//        cancelTick();
-//        // Display
-//    }
-
+        //main menu button, but fancied up
+        backToMainMenuButton.setText("End game");
+        backToMainMenuButton.setVisible(true);
+        backToMainMenuButton.setOnAction(event -> {
+            try {
+                backToMainMenu();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     public void storePlayer(PlayerStats Player) {
         System.out.println("GameplayController storePlayer(player)");
         player = Player;
     }
-
-    @FXML
-    void saveGameClicked(ActionEvent event) throws IOException {
-        //TODO: Should save and store player's values and game features
-//        savePointForDoubles.put("Distance Traveled", player.getDistanceTraveled());
-//        savePointForDoubles.put("Hunger", player.getHunger());
-//        savePointForDoubles.put("Thirst", player.getThirst());
-//        savePointForDoubles.put("Fuel", player.getFuel());
-//        savePointForDoubles.put("Restroom", player.getRestroom());
-//        savePointForDoubles.put("Fatigue", player.getFatigue());
-//        savePointForDoubles.put("Speed", player.getSpeed());
-//        savePointForDoubles.put("Distance to Next Landmark", player.getDistanceToNextLandmark());
-//
-//        savePointForDates.put("Game Date", player.getCurrentDate());
-//
-//        if (startStop.equals("start")) {
-//            carAnimationTimer = new Timer();
-//            double carYoffset = 0;
-//            TimerTask task = new TimerTask() {
-//                @Override
-//                public void run() {
-//                Platform.runLater(() -> {
-//                    animateCar(carYoffset);
-//                    carYoffset = carYoffset + 1; // i left off on this hacky animation of the car here once i realized you cannot manipulate variables this way
-//
-//                });
-//                }
-//            };
-//            currentGameTickTimer.scheduleAtFixedRate(task, 0, 100);
-//
-//        Properties properties = new Properties();
-//        for(Map.Entry<String, Double> entry : savePointForDoubles.entrySet()) {
-//            properties.put(entry.getKey(), entry.getValue());
-//        }
-//
-//        properties.store(new FileOutputStream("savingGame.properties"), null);
-
-//        oos.writeObject(savePointForBooleans);
-//        oos.close();
-//        fos.close();
-//        System.out.printf("Serialized HashMap data is saved in double.ser");
-
-        System.out.println("Save game button works properly");
-//
-//        for (Double i : savePointForDoubles.values()) {
-//            System.out.println(i);
-//        }
-//        System.out.println(savePointForDoubles.get("Distance Traveled"));
-
-//        System.out.println(savePointForDoubles.values());
-
-
-        // --------------------- String [] [] saving point codes:
-        try {
-            // MOH: Writes & Stores all current stats from "savingObj" to "SavedData.txt" file
-
-            File myObj = new File("SavedData.txt"); // Text file created
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        try {
-            // Moh: Contents of saveObj are being coppied to the text file
-            FileWriter writerObj = new FileWriter("SavedData.txt");
-
-            for (int i = 0; i < savingObj.length; i++) {
-                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
-            }
-            writerObj.close();
-        }
-        catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-
-//    @FXML
-//    public void testForReadSer(ActionEvent event) throws IOException, ClassNotFoundException {
-//        savePointForDoubles = (HashMap) ois.readObject();
-//        ois.close();
-//        fis.close();
-//
-//        Set set = savePointForDoubles.entrySet();
-//        Iterator iterator = set.iterator();
-//        while (iterator.hasNext()) {
-//            Map.Entry mentry = (Map.Entry) iterator.next();
-//            System.out.print("key: " + mentry.getKey() + " & Value: ");
-//            System.out.println(mentry.getValue());
-//
-//        }
-//    }
-
 
 
     /**
@@ -570,20 +462,6 @@ public void gameVictory() {
             System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
         }
     }
-//    @FXML
-//    public void tickMoose() {
-//        if (mooseActive == true) {
-//            if (checkIfMooseCollision(moose, carImageView)) {
-//                gameOver("Game Over.\n You hit a moose."); //replace later
-//                resetMooseEvent();
-//                mooseActive = false;
-//            } else {
-//                animateMooseAtSpeed();
-//            }
-//        } else {
-//            System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
-//        }
-//    }
 
     /**
      * begins the moose event, sets it to an active state

@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -163,6 +164,39 @@ public class LandmarkController {
 //        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
 //        System.out.println(landmarkSize);
         setLandmarkVisibility();
+    }
+
+    @FXML
+    void saveGameClicked(ActionEvent event) throws IOException {
+        System.out.println("saveGameClicked()");
+        // --------------------- String [] [] saving point codes:
+        try {
+            // MOH: Writes & Stores all current stats from "savingObj" to "SavedData.txt" file
+
+            File myObj = new File("SavedData.txt"); // Text file created
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            // Moh: Contents of saveObj are being coppied to the text file
+            FileWriter writerObj = new FileWriter("SavedData.txt");
+
+            for (int i = 0; i < savingObj.length; i++) {
+                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
+            }
+            writerObj.close();
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 

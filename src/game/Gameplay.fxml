@@ -267,7 +267,6 @@
                               <Font name="System Bold Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGameClicked" prefHeight="26.0" prefWidth="76.0" text="Save Game" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>
