@@ -285,7 +285,7 @@ public class LandmarkController {
         Parent root = (Parent) loader.load();
         GameplayController gameplayController = loader.getController();
         //gameplayController.storePlayer(player);
-
+        gameplayController.cancelTick();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setTitle("You are back on the road. Stay vigilant.");

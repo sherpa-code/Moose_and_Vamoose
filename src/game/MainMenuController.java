@@ -23,6 +23,14 @@ public class MainMenuController {
     @FXML private Button optionsButton;
     @FXML private Button quitButton;
 
+    private double extractedHunger;
+    private double extractedThirst;
+    private double extractedFuel;
+    private double extractedFatigue;
+    private double extractedSpeed = 0;
+    private double extractedDistanceTraveled;
+    private double extractedCash;
+
     // Moh: This variable gets updated by "Load Game" button and stores a
     // line of data which contains all saved stats of the palyer (last saved stats)
     //TODO: Play around with string loaded from text file to run a player with previously saved values
@@ -32,15 +40,15 @@ public class MainMenuController {
     @FXML void startNewGameClicked(ActionEvent event) throws ParseException {
         System.out.println("startNewGameClicked()");
         // debug new game distanceTraveled value
+//        PlayerStats player = new PlayerStats(
+//                0, 0, 100, 0,0,
+//                1.95, 500
+//        );
+        // TODO: set it back to this for default values of this function
         PlayerStats player = new PlayerStats(
                 0, 0, 100, 0,0,
                 0, 500
         );
-        // TODO: set it back to this for default values of this function
-//        PlayerStats player = new PlayerStats(
-//                0, 0, 100, 0,0,
-//                0, 500
-//        );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
@@ -80,12 +88,35 @@ public class MainMenuController {
 //    }
 
     @FXML void loadGameBtnClicked(ActionEvent event) throws ParseException {
-        System.out.println("startNewGameClicked()");
+        System.out.println("loadGameBtnClicked()");
+
         // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
         PlayerStats player = new PlayerStats(
                 5, 10, 100, 20,0,
                 1.95, 456
         );
+
+
+
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+        //TODO:  loading process should be added after creation of saving functions
+        //loadGameplayerControllerAndCheck();
+        // MOH: Reader object to load data
+        try {
+            File myObj = new File("SavedData.txt");
+            Scanner readerObj = new Scanner(myObj);
+            while (readerObj.hasNextLine()) {
+                String data = readerObj.nextLine();
+                //System.out.println(data);
+                loadedStr = data; // loaderStr gets all stored data as a one line string
+            }
+            extractAndSaveLoadedValues(loadedStr);
+            readerObj.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
@@ -106,28 +137,8 @@ public class MainMenuController {
             System.out.println("Can't Start New Game!");
         }
 
+        //System.out.println(loadedStr);
 
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-        //TODO:  loading process should be added after creation of saving functions
-        //loadGameplayerControllerAndCheck();
-        // MOH: Reader object to load data
-        try {
-            File myObj = new File("SavedData.txt");
-            Scanner readerObj = new Scanner(myObj);
-            while (readerObj.hasNextLine()) {
-                String data = readerObj.nextLine();
-                //System.out.println(data);
-                loadedStr = data; // loaderStr gets all stored data as a one line string
-
-            }
-            readerObj.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        System.out.println(loadedStr);
-        System.out.println("loadGameButtonClicked"+loadedStr);
 
     }
 
@@ -137,5 +148,25 @@ public class MainMenuController {
 
     }
 
+    public void extractAndSaveLoadedValues(String loadedStr) {
+        System.out.println("extractAndSaveLoadedValues() from \n      "+ loadedStr);
 
+        // add value extraction functionality here
+//        extractedHunger = ;
+//        extractedThirst = ;
+//        extractedFuel = ;
+//        extractedFatigue = ;
+//        extractedSpeed = ;
+//        extractedDistanceTraveled = ;
+//        extractedCash = ;
+//
+
+        System.out.println(extractedHunger);
+        System.out.println(extractedThirst);
+        System.out.println(extractedFuel);
+        System.out.println(extractedFatigue);
+        System.out.println(extractedSpeed);
+        System.out.println(extractedDistanceTraveled);
+        System.out.println(extractedCash);
+    }
 }

@@ -173,15 +173,15 @@ public class PlayerStats extends Main {
         return landmarkAttributes[lastLandmarkIndex+1][2];
     }
 
-    public String getLastLandmarkName() {
-        return landmarkAttributes[lastLandmarkIndex][0];
-    }
-
     public int getLastLandmarkIndex() {
         return lastLandmarkIndex;
     }
     public void setLastLandmarkIndex(int newIndex) {
         lastLandmarkIndex = newIndex;
+    }
+
+    public String getLastLandmarkName() {
+        return landmarkAttributes[lastLandmarkIndex][0];
     }
 
     public int getCash() {
