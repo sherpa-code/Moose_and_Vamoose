@@ -54,6 +54,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
             Parent root = (Parent) loader.load();
             GameplayController gameplayController = loader.getController();
+            extractLoadedValues();
             gameplayController.storePlayer(player);
             gameplayController.updatePlayerStatsLabels(player);
             Stage stage = new Stage();
@@ -110,7 +111,7 @@ public class MainMenuController {
                 //System.out.println(data);
                 loadedStr = data; // loaderStr gets all stored data as a one line string
             }
-            extractAndSaveLoadedValues(loadedStr);
+            extractLoadedValues();
             readerObj.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -148,25 +149,123 @@ public class MainMenuController {
 
     }
 
-    public void extractAndSaveLoadedValues(String loadedStr) {
+    public void extractLoadedValues() {
         System.out.println("extractAndSaveLoadedValues() from \n      "+ loadedStr);
 
-        // add value extraction functionality here
-//        extractedHunger = ;
-//        extractedThirst = ;
-//        extractedFuel = ;
-//        extractedFatigue = ;
-//        extractedSpeed = ;
-//        extractedDistanceTraveled = ;
-//        extractedCash = ;
-//
 
-        System.out.println(extractedHunger);
-        System.out.println(extractedThirst);
-        System.out.println(extractedFuel);
-        System.out.println(extractedFatigue);
-        System.out.println(extractedSpeed);
-        System.out.println(extractedDistanceTraveled);
-        System.out.println(extractedCash);
+
+
+        // add value extraction functionality here
+        extractedHunger = parseHunger(loadedStr);
+        extractedThirst = parseThirst(loadedStr);
+        extractedFuel = parseFuel(loadedStr);
+        extractedFatigue = parseFatigue(loadedStr);
+        extractedSpeed = 0;
+        extractedDistanceTraveled = parseDistanceTraveled(loadedStr);
+        extractedCash = parseCash(loadedStr);
+
+
+
+        System.out.println("debug extractedHunger = "+extractedHunger);
+        System.out.println("debug extractedThirst = "+extractedThirst);
+        System.out.println("debug extractedFuel = "+extractedFuel);
+        System.out.println("debug extractedFatigue = "+extractedFatigue);
+        System.out.println("debug extractedSpeed = "+extractedSpeed+" but this is always 0 upon Load");
+        System.out.println("debug extractedDistanceTraveled = "+extractedDistanceTraveled);
+        System.out.println("debug extractedCash = "+extractedCash);
+
+
+    }
+
+
+
+
+    public static double parseHunger(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("hunger") + "hunger".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+    }
+
+    public static double parseThirst(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("thirst") + "thirst".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+    }
+
+
+    public static double parseFuel(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("fuel") + "fuel".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+    }
+
+
+//    public static double restroomLoader(String str){
+//        String resultStr = "";
+//        int startPoint = str.indexOf("restroom") + "restroom".length()+1;
+//        for (int i = startPoint; i <str.length() ; i++) {
+//            if(str.charAt(i) != '|'){
+//                resultStr += str.charAt(i);
+//            }
+//            else {break;}
+//        }
+//        return Double.parseDouble(resultStr);
+//    }
+
+    public static double parseFatigue(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("fatigue") + "fatigue".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+
+    }
+
+    public static double parseDistanceTraveled(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("distanceTraveled") + "distanceTraveled".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+
+    }
+
+    public static double parseCash(String str){
+        String resultStr = "";
+        int startPoint = str.indexOf("cash") + "cash".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Double.parseDouble(resultStr);
+
     }
 }
