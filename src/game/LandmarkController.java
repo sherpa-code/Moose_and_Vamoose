@@ -158,6 +158,18 @@ public class LandmarkController {
         savingObj = SavingObj;
     }
 
+    public void updateDistanceTraveledToLandmarkDistance() {
+
+//        player.setDistanceTraveled(player.landmarkAttributes[player.getLastLandmarkIndex()][2]);
+        //player.setDistanceTraveled(Double.parseDouble(player.landmarkAttributes[player.getLastLandmarkIndex()][2]));
+        //player.setDistanceTraveled(66.6);
+        System.out.println("landmarkController.updateDistanceTraveledToLandmarkDistance()");
+        System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()][2]);
+
+//        player.setDistanceTraveled();
+//        player.getLastLandmarkIndex(landmarkIndex)
+    }
+
     @FXML
     void saveGameAtLandmarkClicked(ActionEvent event) {
         System.out.println("saveGameAtLandmarkClicked()");
@@ -368,6 +380,10 @@ public class LandmarkController {
         stage.show();
         currentStage.close();
 
+    }
+
+    public PlayerStats getPlayer() {
+        return player;
     }
 
 

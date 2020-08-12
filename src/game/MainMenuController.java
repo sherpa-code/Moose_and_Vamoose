@@ -42,7 +42,7 @@ public class MainMenuController {
         System.out.println("startNewGameClicked()");
         PlayerStats player = new PlayerStats(
                 0, 0, 100, 0,0,
-                1.95, 500, 0
+                0, 500, 0
         );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
@@ -84,14 +84,6 @@ public class MainMenuController {
 
     @FXML void loadGameBtnClicked(ActionEvent event) throws ParseException {
         System.out.println("loadGameBtnClicked()");
-
-        // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
-//        PlayerStats player = new PlayerStats(
-//                5, 10, 100, 20,0,
-//                1.95, 456
-//        );
-
-
         try {
             File myObj = new File("SavedData.txt");
             Scanner readerObj = new Scanner(myObj);
@@ -113,12 +105,21 @@ public class MainMenuController {
 
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
+//            Parent root = (Parent) loader.load();
+//            GameplayController gameplayController = loader.getController();
+//            gameplayController.storePlayer(player);
+//            System.out.println(gameplayController.player.getLastLandmarkIndex());
+//            gameplayController.updatePlayerStatsLabels(player);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
             Parent root = (Parent) loader.load();
-            GameplayController gameplayController = loader.getController();
-            gameplayController.storePlayer(player);
-            System.out.println(gameplayController.player.getLastLandmarkIndex());
-            gameplayController.updatePlayerStatsLabels(player);
+            LandmarkController landmarkController  = loader.getController();
+            landmarkController.storePlayer(player);
+            landmarkController.updateDistanceTraveledToLandmarkDistance();
+            //landmarkController.setDistanceTraveledToLandmarkDistance(player.landmarkAttributes[extractedLastLandmarkIndex][1]);
+            //landmarkController.player.setDistanceTraveled(player.landmarkAttributes[extractedLastLandmarkIndex][1]);
+            //System.out.println(gameplayController.player.getLastLandmarkIndex());
+            landmarkController.updateLandmarkStatsLabels(player);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
 
@@ -274,6 +275,6 @@ public class MainMenuController {
             }
             else {break;}
         }
-        return Integer.parseInt(resultStr);
+        return Integer.parseInt(resultStr)-1;
     }
 }
