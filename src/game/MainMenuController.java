@@ -29,7 +29,8 @@ public class MainMenuController {
     private double extractedFatigue;
     private double extractedSpeed = 0;
     private double extractedDistanceTraveled;
-    private double extractedCash;
+    private int extractedCash;
+    private int extractedLastLandmarkIndex;
 
     // Moh: This variable gets updated by "Load Game" button and stores a
     // line of data which contains all saved stats of the palyer (last saved stats)
@@ -39,22 +40,15 @@ public class MainMenuController {
 
     @FXML void startNewGameClicked(ActionEvent event) throws ParseException {
         System.out.println("startNewGameClicked()");
-        // debug new game distanceTraveled value
-//        PlayerStats player = new PlayerStats(
-//                0, 0, 100, 0,0,
-//                1.95, 500
-//        );
-        // TODO: set it back to this for default values of this function
         PlayerStats player = new PlayerStats(
                 0, 0, 100, 0,0,
-                0, 500
+                0, 500, 0
         );
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
             Parent root = (Parent) loader.load();
             GameplayController gameplayController = loader.getController();
-            extractLoadedValues();
             gameplayController.storePlayer(player);
             gameplayController.updatePlayerStatsLabels(player);
             Stage stage = new Stage();
@@ -90,19 +84,17 @@ public class MainMenuController {
 
     @FXML void loadGameBtnClicked(ActionEvent event) throws ParseException {
         System.out.println("loadGameBtnClicked()");
-
-        // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
         PlayerStats player = new PlayerStats(
-                5, 10, 100, 20,0,
-                1.95, 456
+                extractedHunger, extractedThirst, extractedFuel, extractedFatigue,
+                0, extractedDistanceTraveled, extractedCash, extractedLastLandmarkIndex
         );
+        // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
+//        PlayerStats player = new PlayerStats(
+//                5, 10, 100, 20,0,
+//                1.95, 456
+//        );
 
 
-
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-        //TODO:  loading process should be added after creation of saving functions
-        //loadGameplayerControllerAndCheck();
-        // MOH: Reader object to load data
         try {
             File myObj = new File("SavedData.txt");
             Scanner readerObj = new Scanner(myObj);
@@ -118,12 +110,14 @@ public class MainMenuController {
             e.printStackTrace();
         }
 
+
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
             Parent root = (Parent) loader.load();
             GameplayController gameplayController = loader.getController();
             gameplayController.storePlayer(player);
+            System.out.println(gameplayController.player.getLastLandmarkIndex());
             gameplayController.updatePlayerStatsLabels(player);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
@@ -163,6 +157,7 @@ public class MainMenuController {
         extractedSpeed = 0;
         extractedDistanceTraveled = parseDistanceTraveled(loadedStr);
         extractedCash = parseCash(loadedStr);
+        extractedLastLandmarkIndex = parseLastLandmarkIndex(loadedStr);
 
 
 
@@ -173,6 +168,7 @@ public class MainMenuController {
         System.out.println("debug extractedSpeed = "+extractedSpeed+" but this is always 0 upon Load");
         System.out.println("debug extractedDistanceTraveled = "+extractedDistanceTraveled);
         System.out.println("debug extractedCash = "+extractedCash);
+        System.out.println("debug lastLandmarkIndex = "+extractedLastLandmarkIndex);
 
 
     }
@@ -256,7 +252,7 @@ public class MainMenuController {
 
     }
 
-    public static double parseCash(String str){
+    public static int parseCash(String str){
         String resultStr = "";
         int startPoint = str.indexOf("cash") + "cash".length()+1;
         for (int i = startPoint; i <str.length() ; i++) {
@@ -265,7 +261,19 @@ public class MainMenuController {
             }
             else {break;}
         }
-        return Double.parseDouble(resultStr);
+        return Integer.parseInt(resultStr);
 
+    }
+
+    public static int parseLastLandmarkIndex(String str) {
+        String resultStr = "";
+        int startPoint = str.indexOf("lastLandmarkIndex") + "lastLandmarkIndex".length()+1;
+        for (int i = startPoint; i <str.length() ; i++) {
+            if(str.charAt(i) != '|'){
+                resultStr += str.charAt(i);
+            }
+            else {break;}
+        }
+        return Integer.parseInt(resultStr);
     }
 }

@@ -28,7 +28,7 @@ public class GameplayController {
 
     PlayerStats player = new PlayerStats(
             50, 51, 52, 53,0,
-            54, 55
+            10.5, 55, 1
     );
     // player is always initialized to default values, will be loaded in separate function
 //    PlayerStats player = new PlayerStats(
@@ -57,7 +57,8 @@ public class GameplayController {
             {"fatigue", String.valueOf(player.getFatigue())},
             {"speed", String.valueOf(player.getSpeed())},
             {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
-            {"cash", String.valueOf(player.getCash())}
+            {"cash", String.valueOf(player.getCash())},
+            {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
     };
 
 
@@ -94,7 +95,7 @@ public class GameplayController {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
         mooseActive = false;
-        System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
+        //System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
     }
 
     public PlayerStats getPlayer() {
@@ -320,6 +321,8 @@ public class GameplayController {
         savingObj[5][1] = String.valueOf(player.getDistanceTraveled());
 
         savingObj[6][1] = String.valueOf(player.getCash());
+
+        savingObj[7][1] = String.valueOf(player.getLastLandmarkIndex());
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);

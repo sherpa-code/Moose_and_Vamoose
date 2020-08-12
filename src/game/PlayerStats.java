@@ -61,7 +61,8 @@ public class PlayerStats extends Main {
             double fatigue,
             int speed,
             double distanceTraveled,
-            int cash
+            int cash,
+            int lastLandmarkIndex
     ) throws ParseException {
         this.hunger = hunger;
         this.thirst = thirst;
@@ -70,6 +71,7 @@ public class PlayerStats extends Main {
         this.speed = speed;
         this.distanceTraveled = distanceTraveled;
         this.cash = cash;
+        this.lastLandmarkIndex = lastLandmarkIndex;
     }
 
     public void clampPlayerStats() {
