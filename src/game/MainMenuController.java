@@ -115,7 +115,7 @@ public class MainMenuController {
             Parent root = (Parent) loader.load();
             LandmarkController landmarkController  = loader.getController();
             landmarkController.storePlayer(player);
-            landmarkController.updateDistanceTraveledToLandmarkDistance();
+            //landmarkController.updateDistanceTraveledToLandmarkDistance();
             //landmarkController.setDistanceTraveledToLandmarkDistance(player.landmarkAttributes[extractedLastLandmarkIndex][1]);
             //landmarkController.player.setDistanceTraveled(player.landmarkAttributes[extractedLastLandmarkIndex][1]);
             //System.out.println(gameplayController.player.getLastLandmarkIndex());

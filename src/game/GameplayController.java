@@ -125,6 +125,7 @@ public class GameplayController {
                         tickMoose();
                     } else if (reachedLandmark()) {
                         cancelTick();
+                        player.setDistanceTraveled(Double.parseDouble(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1]));
                         if (player.getLastLandmarkIndex()+1 == 20) {
                             gameVictory();
                         } else {
@@ -195,6 +196,7 @@ public class GameplayController {
     public void loadNextLandmarkScene() throws IOException {
         switch(player.getLastLandmarkIndex()+1) { // switch on the index of the reachedLandmark
             case 1:
+                // load St. John's landmark scene
                 Stage currentStage = (Stage) carImageView.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
                 Parent root = (Parent) loader.load();
@@ -215,6 +217,23 @@ public class GameplayController {
                 break;
             case 2:
                 // load Paradise landmark scene
+//                Stage currentStage = (Stage) carImageView.getScene().getWindow();
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+//                Parent root = (Parent) loader.load();
+//                LandmarkController landmarkController = loader.getController();
+//                landmarkController.storePlayer(player);
+//                landmarkController.storeSavingObj(savingObj);
+//                landmarkController.updateLandmarkStatsLabels(player);
+//                Stage stage = new Stage();
+//                Scene scene = new Scene(root);
+//
+//                stage.setTitle("You are at a Landmark. Make the right choice!");
+//                stage.setScene(scene);
+//
+//                System.out.println(landmarkController);
+//
+//                stage.show();
+//                currentStage.close();
                 break;
             case 3:
                 // load CBS landmark scene
