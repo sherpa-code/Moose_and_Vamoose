@@ -5,7 +5,7 @@ import java.text.ParseException;
 public class PlayerStats extends Main {
 
     private double rateFactor = 10000;
-    private double massStatModifier = 1;
+    private double massStatModifier = 0.5;
 
     // Rate values are the base used in further calculations
     // i.e. fuelRate is first calculated (multiplied? divided?) with speed before it impacts the base variable fuel
@@ -34,6 +34,11 @@ public class PlayerStats extends Main {
             {"Paradise", "11", "small"},
             {"CBS", "33", "large"},
             {"Holyrood", "47", "small"},
+//            {"Home", "0", "none"}, // DEBUG TEST DISTANCES
+//            {"St. John's", "1", "large"}, // DEBUG TEST DISTANCES
+//            {"Paradise", "2", "small"}, // DEBUG TEST DISTANCES
+//            {"CBS", "3", "large"}, // DEBUG TEST DISTANCES
+//            {"Holyrood", "4", "small"}, // DEBUG TEST DISTANCES
             {"Brigus Junction", "70", "small"},
             {"Bellevue", "124", "small"},
             {"Goobies", "164", "small"},

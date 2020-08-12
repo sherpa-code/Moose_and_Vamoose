@@ -193,30 +193,32 @@ public class GameplayController {
         return false;
     }
 
+    // attempt to refactor function
     public void loadNextLandmarkScene() throws IOException {
-        switch(player.getLastLandmarkIndex()+1) { // switch on the index of the reachedLandmark
-            case 1:
-                // load St. John's landmark scene
-                Stage currentStage = (Stage) carImageView.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-                Parent root = (Parent) loader.load();
-                LandmarkController landmarkController = loader.getController();
-                landmarkController.storePlayer(player);
-                landmarkController.storeSavingObj(savingObj);
-                landmarkController.updateLandmarkStatsLabels(player);
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
+        Stage currentStage = (Stage) carImageView.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+        Parent root = (Parent) loader.load();
+        LandmarkController landmarkController = loader.getController();
+        landmarkController.storePlayer(player);
+        landmarkController.storeSavingObj(savingObj);
+        landmarkController.updateLandmarkStatsLabels(player);
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
 
-                stage.setTitle("You are at a Landmark. Make the right choice!");
-                stage.setScene(scene);
+        stage.setTitle("You are at a Landmark. Make the right choice!");
+        stage.setScene(scene);
 
-                System.out.println(landmarkController);
+        System.out.println(landmarkController);
 
-                stage.show();
-                currentStage.close();
-                break;
-            case 2:
-                // load Paradise landmark scene
+        stage.show();
+        currentStage.close();
+    }
+
+    // BACKUP VERSION OF FUNCTION
+//    public void loadNextLandmarkScene() throws IOException {
+//        switch(player.getLastLandmarkIndex()+1) { // switch on the index of the reachedLandmark
+//            case 1:
+//                // load St. John's landmark scene
 //                Stage currentStage = (Stage) carImageView.getScene().getWindow();
 //                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
 //                Parent root = (Parent) loader.load();
@@ -234,68 +236,88 @@ public class GameplayController {
 //
 //                stage.show();
 //                currentStage.close();
-                break;
-            case 3:
-                // load CBS landmark scene
-                break;
-            case 4:
-                // load Holyrood landmark scene
-                break;
-            case 5:
-                // load Brigus Junction landmark scene
-                break;
-            case 6:
-                // load Bellevue landmark scene
-                break;
-            case 7:
-                // load Goobies landmark scene
-                break;
-            case 8:
-                // load Clarenville landmark scene
-                break;
-            case 9:
-                // load Glovertown landmark scene
-                break;
-            case 10:
-                // load Gambo landmark scene
-                break;
-            case 11:
-                // load Gander landmark scene
-                break;
-            case 12:
-                // load Glenwood landmark scene
-                break;
-            case 13:
-                // load Bishop's Falls landmark scene
-                break;
-            case 14:
-                // load Grand Falls - Windsor landmark scene
-                break;
-            case 15:
-                // load Badger landmark scene
-                break;
-            case 16:
-                // load South Brook landmark scene
-                break;
-            case 17:
-                // load Sheppardville landmark scene
-                break;
-            case 18:
-                // load Deer Lake landmark scene
-                break;
-            case 19:
-                // load Pasadena landmark scene
-                break;
-            case 20:
-                // load Corner Brook OR load the Game Win function
-                break;
-        }
-//        for (int i=0; i < player.landmarkAttributes.length; i++) {
-//            if (player.getLastLandmarkIndex()+1 == 1) {
-//                // load St. John's scene
-//            }
+//                break;
+//            case 2:
+//                // load Paradise landmark scene
+////                Stage currentStage = (Stage) carImageView.getScene().getWindow();
+////                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
+////                Parent root = (Parent) loader.load();
+////                LandmarkController landmarkController = loader.getController();
+////                landmarkController.storePlayer(player);
+////                landmarkController.storeSavingObj(savingObj);
+////                landmarkController.updateLandmarkStatsLabels(player);
+////                Stage stage = new Stage();
+////                Scene scene = new Scene(root);
+////
+////                stage.setTitle("You are at a Landmark. Make the right choice!");
+////                stage.setScene(scene);
+////
+////                System.out.println(landmarkController);
+////
+////                stage.show();
+////                currentStage.close();
+//                break;
+//            case 3:
+//                // load CBS landmark scene
+//                break;
+//            case 4:
+//                // load Holyrood landmark scene
+//                break;
+//            case 5:
+//                // load Brigus Junction landmark scene
+//                break;
+//            case 6:
+//                // load Bellevue landmark scene
+//                break;
+//            case 7:
+//                // load Goobies landmark scene
+//                break;
+//            case 8:
+//                // load Clarenville landmark scene
+//                break;
+//            case 9:
+//                // load Glovertown landmark scene
+//                break;
+//            case 10:
+//                // load Gambo landmark scene
+//                break;
+//            case 11:
+//                // load Gander landmark scene
+//                break;
+//            case 12:
+//                // load Glenwood landmark scene
+//                break;
+//            case 13:
+//                // load Bishop's Falls landmark scene
+//                break;
+//            case 14:
+//                // load Grand Falls - Windsor landmark scene
+//                break;
+//            case 15:
+//                // load Badger landmark scene
+//                break;
+//            case 16:
+//                // load South Brook landmark scene
+//                break;
+//            case 17:
+//                // load Sheppardville landmark scene
+//                break;
+//            case 18:
+//                // load Deer Lake landmark scene
+//                break;
+//            case 19:
+//                // load Pasadena landmark scene
+//                break;
+//            case 20:
+//                // load Corner Brook OR load the Game Win function
+//                break;
 //        }
-    }
+////        for (int i=0; i < player.landmarkAttributes.length; i++) {
+////            if (player.getLastLandmarkIndex()+1 == 1) {
+////                // load St. John's scene
+////            }
+////        }
+//    }
 
     /**
      * has a change to spawn a moose
@@ -305,7 +327,7 @@ public class GameplayController {
         Random random = new Random();
         Float roll = random.nextFloat();
 
-        if (roll <= 0.001f && mooseActive == false) {
+        if (roll <= 0.0005f && mooseActive == false) {
             return true;
         } else {
             return false;
@@ -381,15 +403,6 @@ public class GameplayController {
 
     public void main(String[] args) throws InterruptedException {}
 
-    public void startDriving() {
-
-    }
-
-    public void enterLandmark() {
-        cancelTick();
-        // load new scene, making sure it has a reference to the current player object
-    }
-
     public void backToMainMenu() throws IOException {
         Stage currentStage = (Stage) carImageView.getScene().getWindow();
 
@@ -437,8 +450,12 @@ public class GameplayController {
         });
     }
 
+    /**
+     * allows another Controller to pass in the existing player object
+     * @param Player
+     */
     public void storePlayer(PlayerStats Player) {
-        System.out.println("GameplayController storePlayer(player)");
+        //System.out.println("GameplayController storePlayer(player)");
         player = Player;
     }
 
@@ -487,7 +504,6 @@ public class GameplayController {
      */
     @FXML
     public void activateMooseEvent() {
-        //System.out.println("Moose has spawned"); //debug
         mooseActive = true;
 
         //place moose
@@ -505,7 +521,7 @@ public class GameplayController {
      */
     @FXML
     public void resetMooseEvent() {
-        System.out.println("Moose event reset (has been de-spawned)"); //debug
+        //System.out.println("Moose event reset (has been de-spawned)"); //debug
         mooseActive = false;
 
         moose.setTranslateX(0);

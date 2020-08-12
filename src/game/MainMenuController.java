@@ -275,6 +275,6 @@ public class MainMenuController {
             }
             else {break;}
         }
-        return Integer.parseInt(resultStr)-1;
+        return Integer.parseInt(resultStr);
     }
 }

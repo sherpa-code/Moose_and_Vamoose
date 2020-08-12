@@ -105,7 +105,7 @@ public class LandmarkController {
      */
     //TODO: Should updates stats of the player during a time period (per second?!)
     public void updateLandmarkStatsLabels(PlayerStats player) {
-        System.out.println("hunger = "+player.getHunger());
+        //System.out.println("hunger = "+player.getHunger());
         hungerValueLabel.setText(String.valueOf((int) player.getHunger()));
         thirstValueLabel.setText(String.valueOf((int) player.getThirst()));
         fuelValueLabel.setText(String.valueOf((int) player.getFuel()));
@@ -119,7 +119,7 @@ public class LandmarkController {
 
     private void setLandmarkVisibility(){
         String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
-        System.out.println(landmarkSize);
+        //System.out.println(landmarkSize);
         if (landmarkSize == "large") {
             hotelImageView.setVisible(true);
             gasStationImageView.setVisible(true);
@@ -149,12 +149,12 @@ public class LandmarkController {
     }
 
     public void storePlayer(PlayerStats Player) {
-        System.out.println("LandmarkController storePlayer(player)");
+        //System.out.println("LandmarkController storePlayer(player)");
         player = Player;
     }
 
     public void storeSavingObj(String[][] SavingObj) {
-        System.out.println("LandmarkController storeSavingObj(savingObj)");
+        //System.out.println("LandmarkController storeSavingObj(savingObj)");
         savingObj = SavingObj;
     }
 
@@ -170,16 +170,16 @@ public class LandmarkController {
 ////        player.getLastLandmarkIndex(landmarkIndex)
 //    }
 
-    @FXML
-    void saveGameAtLandmarkClicked(ActionEvent event) {
-        System.out.println("saveGameAtLandmarkClicked()");
-//        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
-//        System.out.println(landmarkSize);
-        setLandmarkVisibility();
-    }
+//    @FXML
+//    void saveGameAtLandmarkClicked(ActionEvent event) {
+//        System.out.println("saveGameAtLandmarkClicked()");
+////        String landmarkSize = player.landmarkAttributes[player.getLastLandmarkIndex()+1][2];
+////        System.out.println(landmarkSize);
+////        setLandmarkVisibility();
+//    }
 
     @FXML
-    void saveGameClicked(ActionEvent event) throws IOException {
+    void saveGameAtLandmarkClicked(ActionEvent event) throws IOException {
         System.out.println("saveGameClicked()");
         // --------------------- String [] [] saving point codes:
         try {
@@ -200,6 +200,21 @@ public class LandmarkController {
             // Moh: Contents of saveObj are being coppied to the text file
             FileWriter writerObj = new FileWriter("SavedData.txt");
 
+            //MOH ------------------------------savingObj has been moved to here (inside the function) ----
+            String [][] savingObj = {
+                    {"hunger", String.valueOf(player.getHunger())},
+                    {"thirst", String.valueOf(player.getThirst())},
+                    {"fuel", String.valueOf(player.getFuel())},
+//            {"restroom", String.valueOf(player.getRestroom())}, // restroom is removed
+                    {"fatigue", String.valueOf(player.getFatigue())},
+                    {"speed", String.valueOf(player.getSpeed())},
+                    {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
+                    {"cash", String.valueOf(player.getCash())},
+                    {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
+            };
+
+            //------------------------------
+
             for (int i = 0; i < savingObj.length; i++) {
                 writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
             }
@@ -209,18 +224,48 @@ public class LandmarkController {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
+//        System.out.println("saveGameClicked()");
+//        // --------------------- String [] [] saving point codes:
+//        try {
+//            // MOH: Writes & Stores all current stats from "savingObj" to "SavedData.txt" file
+//
+//            File myObj = new File("SavedData.txt"); // Text file created
+//            if (myObj.createNewFile()) {
+//                System.out.println("File created: " + myObj.getName());
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            // Moh: Contents of saveObj are being coppied to the text file
+//            FileWriter writerObj = new FileWriter("SavedData.txt");
+//
+//            for (int i = 0; i < savingObj.length; i++) {
+//                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
+//            }
+//            writerObj.close();
+//        }
+//        catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
     }
 
 
     @FXML
     void buyDrinkAtLandmarkClicked(ActionEvent event) {
-        System.out.println("buyDrinkAtLandmarkClicked()");
+        //System.out.println("buyDrinkAtLandmarkClicked()");
 //        System.out.println(player.getThirst());
 ////        System.out.println("Drink is ready");
 //        System.out.println("Current cash: " + player.getCash());
         //System.out.println(String.valueOf(Double.parseDouble(landmarkDrinkCostLabel.getText())));
         if (player.getCash() < 3) {
-            System.out.println("Sorry! Not enough money");
+            //System.out.println("Sorry! Not enough money");
             landmarkInsufficientFundsLabel.setVisible(true);
             buyDrinkButton.setVisible(false);
 
@@ -248,11 +293,11 @@ public class LandmarkController {
 
     @FXML
     void buyFoodAtLandmarkClicked(ActionEvent event) {
-        System.out.println("buyFoodAtLandmarkClicked(");
+        //System.out.println("buyFoodAtLandmarkClicked(");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println("Hunger: "+player.getHunger());
         if (player.getCash() < 12) {
-            System.out.println("Sorry! Not enough money");
+            //System.out.println("Sorry! Not enough money");
             landmarkInsufficientFundsLabel.setVisible(true);
             buyHungerButton.setVisible(false);
         } else {
@@ -279,11 +324,11 @@ public class LandmarkController {
 
     @FXML
     void buyFuelAtLandmarkClicked(ActionEvent event) {
-        System.out.println("buyFuelAtLandmarkClicked()");
+        //System.out.println("buyFuelAtLandmarkClicked()");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println(player.getFuel());
         if (player.getCash() < 20) {
-            System.out.println("Sorry! Not enough money");
+            //System.out.println("Sorry! Not enough money");
             landmarkInsufficientFundsLabel.setVisible(true);
             buyFuelButton.setVisible(false);
         } else {
@@ -310,11 +355,11 @@ public class LandmarkController {
 
     @FXML
     void rentHotelRoomAtLandmarkClicked(ActionEvent event) {
-        System.out.println("rentRoomAtLandmarkClicked()");
+        //System.out.println("rentRoomAtLandmarkClicked()");
 //        System.out.println("Current cash: " + player.getCash());
 //        System.out.println(player.getFatigue());
         if (player.getCash() < 125) {
-            System.out.println("Sorry! Not enough money");
+            //System.out.println("Sorry! Not enough money");
             landmarkInsufficientFundsLabel.setVisible(true);
             rentHotelButton.setVisible(false);
         } else {
@@ -342,7 +387,7 @@ public class LandmarkController {
 
     @FXML
     void departCurrentLandmarkClicked(ActionEvent event) throws IOException {
-        System.out.println("departCurrentLandmarkClicked()");
+        //System.out.println("departCurrentLandmarkClicked()");
 
         Stage currentStage = (Stage) departLandmarkButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
@@ -378,6 +423,7 @@ public class LandmarkController {
 //        gameplayController.player.setCash(Double.parseDouble(this.fatigueValueLabel.getText()));
 
         stage.show();
+        //setLandmarkVisibility(); // TODO: this needs to be added in the correct place to set images in Landmark
         currentStage.close();
 
     }
