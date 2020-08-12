@@ -295,7 +295,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" />
+                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" />
                   <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" />
                   <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">
                      <image>

@@ -327,7 +327,7 @@ public class GameplayController {
         Random random = new Random();
         Float roll = random.nextFloat();
 
-        if (roll <= 0.0005f && mooseActive == false) {
+        if (roll <= 0.00075f && mooseActive == false) {
             return true;
         } else {
             return false;
