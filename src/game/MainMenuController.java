@@ -84,10 +84,7 @@ public class MainMenuController {
 
     @FXML void loadGameBtnClicked(ActionEvent event) throws ParseException {
         System.out.println("loadGameBtnClicked()");
-        PlayerStats player = new PlayerStats(
-                extractedHunger, extractedThirst, extractedFuel, extractedFatigue,
-                0, extractedDistanceTraveled, extractedCash, extractedLastLandmarkIndex
-        );
+
         // TODO: REPLACE THIS WITH VALUES EXTRACTED FROM LOADED STRING
 //        PlayerStats player = new PlayerStats(
 //                5, 10, 100, 20,0,
@@ -109,7 +106,10 @@ public class MainMenuController {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+        PlayerStats player = new PlayerStats(
+                extractedHunger, extractedThirst, extractedFuel, extractedFatigue,
+                0, extractedDistanceTraveled, extractedCash, extractedLastLandmarkIndex
+        );
 
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
