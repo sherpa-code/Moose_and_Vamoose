@@ -39,3 +39,6 @@ Special thanks:
 - Mark James (via qubodop) on OpenGameArt.org for the icon pack.
 - bart on OpenGameArt.org for the UI panel element.
 - maketext.io for the title text
+- Sogomn on OpenGameArt.org for the explosion sprite.
+- laavis on OpenGameArt.org for the hotel and store sprites.
+- IchiDiego on reddit.com for the gas station sprite.
