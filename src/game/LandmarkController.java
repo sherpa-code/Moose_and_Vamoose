@@ -151,6 +151,8 @@ public class LandmarkController {
     public void storePlayer(PlayerStats Player) {
         //System.out.println("LandmarkController storePlayer(player)");
         player = Player;
+        setLandmarkVisibility();
+
     }
 
     public void storeSavingObj(String[][] SavingObj) {

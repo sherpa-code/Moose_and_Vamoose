@@ -369,6 +369,31 @@ public class GameplayController {
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
+        gameOverFromStats(); // Player game over due to lack of sources (Fuel etc  ...)
+    }
+
+    /**
+     * A method that evaluates player's stats at a time and checks if they are beyond critical acceptable values
+     * Causes game over due to extreme conditions raised by current stats values
+     */
+    public void gameOverFromStats(){
+        if (player.getFuel() <=0) {
+            gameOver("You run out of fuel!");
+        }
+
+        if (player.getHunger() >= 100) {
+            gameOver("You are extremely starving! ");
+        }
+
+        if (player.getThirst() >= 100) {
+            gameOver("You are extremely thirsty! ");
+        }
+
+        if (player.getFatigue() >= 100) {
+            gameOver("You are too tired to continue! ");
+        }
+
+
     }
 
     /**

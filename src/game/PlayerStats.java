@@ -5,18 +5,18 @@ import java.text.ParseException;
 public class PlayerStats extends Main {
 
     private double rateFactor = 10000;
-    private double massStatModifier = 0.5;
+    private double massStatModifier = 0.6;
 
     // Rate values are the base used in further calculations
     // i.e. fuelRate is first calculated (multiplied? divided?) with speed before it impacts the base variable fuel
     private double hunger;
-    private double hungerRate = 30*massStatModifier/rateFactor;
+    private double hungerRate = 30 * massStatModifier/rateFactor;
     private double thirst;
-    private double thirstRate = 50*massStatModifier/rateFactor;
+    private double thirstRate = 50 * massStatModifier/rateFactor;
     private double fuel;
-    private double fuelRate = massStatModifier/rateFactor;
+    private double fuelRate = 0.2 * massStatModifier/rateFactor;
     private double fatigue;
-    private double fatigueRate = 12*massStatModifier/rateFactor;
+    private double fatigueRate = 12 * massStatModifier/rateFactor;
     private int cash = 500;
 
     private double speed;
