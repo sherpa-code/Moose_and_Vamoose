@@ -1,1 +1,1 @@
-hunger=2.205|thirst=3.6750000000000282|fuel=97.33895799999877|fatigue=0.0|speed=300.0|distanceTraveled=2.0|cash=0|lastLandmarkIndex=0|
+hunger=20.575799999995862|thirst=14.178000000000425|fuel=87.30557199998987|fatigue=8.230320000000981|speed=890.0|distanceTraveled=33.0|cash=457|lastLandmarkIndex=2|

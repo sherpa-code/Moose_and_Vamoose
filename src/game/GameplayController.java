@@ -1,7 +1,6 @@
 package game;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.io.*;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,26 +23,10 @@ public class GameplayController {
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
 
-    PlayerStats player = new PlayerStats(
+    PlayerStats player = new PlayerStats( // default error values
             50, 51, 52, 53,0,
             10.5, 55, 1
     );
-    // player is always initialized to default values, will be loaded in separate function
-//    PlayerStats player = new PlayerStats(
-//        0, 0, 100, 0,0,
-//        1.95, 500
-//    );
-//    debug test - just before victory condition (game win at 692 traveled)
-//    PlayerStats player = new PlayerStats(
-//        0, 0, 100, 0,0,
-//        0, 691, 500, 19
-//    );
-
-    // default player stats
-//    PlayerStats player = new PlayerStats(
-//            0, 0, 100, 0,0,
-//            0, 0.1, 500
-//    );
     public boolean mooseActive;
     Timer currentGameTickTimer;
     Timer carAnimationTimer;
@@ -73,9 +54,6 @@ public class GameplayController {
     @FXML private Label distanceTraveledValueLabel;
     @FXML private Label speedValueLabel;
     @FXML private Label cashValueLabel;
-    @FXML private Button speedUpButton;
-    @FXML private Button slowDownButton;
-    @FXML private Button saveGameButton;
     @FXML public ImageView moose;
     @FXML public ImageView carImageView;
     @FXML public GridPane insertPane;
@@ -84,8 +62,9 @@ public class GameplayController {
     @FXML public Button backToMainMenuButton;
     @FXML public ImageView explosion;
 
+    public GameplayController() throws ParseException, IOException, ClassNotFoundException {}
 
-
+    public void main(String[] args) throws InterruptedException {}
 
     /**
      * Fired when the .fxml and controller has loaded.
@@ -146,43 +125,6 @@ public class GameplayController {
         };
         currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
     }
-//    public void beginTick() {
-//        updatePlayerStatsLabels(player);
-//        currentGameTickTimer = new Timer();
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//                Platform.runLater(() -> {
-//                    updatePlayerStats(player);
-//
-//                    if(player.getSpeed() > 0) {
-//                        rumbleCar();
-//                    }
-//
-//                    if (mooseActive) {
-//                        tickMoose();
-//                    } else if (reachedLandmark()) {
-//                        cancelTick();
-//                        if (player.getLastLandmarkIndex()+1 == 21) {
-//                            gameVictory();
-//                        } else {
-//
-//                            try {
-//                                loadNextLandmarkScene();
-//                            } catch (IOException ioException) {
-//                                ioException.printStackTrace();
-//                            }
-//                        }
-//                    } else {
-//                        if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
-//                            activateMooseEvent();
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//        currentGameTickTimer.scheduleAtFixedRate(task, 0, tickRateMS);
-//    }
 
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
@@ -214,111 +156,6 @@ public class GameplayController {
         currentStage.close();
     }
 
-    // BACKUP VERSION OF FUNCTION
-//    public void loadNextLandmarkScene() throws IOException {
-//        switch(player.getLastLandmarkIndex()+1) { // switch on the index of the reachedLandmark
-//            case 1:
-//                // load St. John's landmark scene
-//                Stage currentStage = (Stage) carImageView.getScene().getWindow();
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-//                Parent root = (Parent) loader.load();
-//                LandmarkController landmarkController = loader.getController();
-//                landmarkController.storePlayer(player);
-//                landmarkController.storeSavingObj(savingObj);
-//                landmarkController.updateLandmarkStatsLabels(player);
-//                Stage stage = new Stage();
-//                Scene scene = new Scene(root);
-//
-//                stage.setTitle("You are at a Landmark. Make the right choice!");
-//                stage.setScene(scene);
-//
-//                System.out.println(landmarkController);
-//
-//                stage.show();
-//                currentStage.close();
-//                break;
-//            case 2:
-//                // load Paradise landmark scene
-////                Stage currentStage = (Stage) carImageView.getScene().getWindow();
-////                FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-////                Parent root = (Parent) loader.load();
-////                LandmarkController landmarkController = loader.getController();
-////                landmarkController.storePlayer(player);
-////                landmarkController.storeSavingObj(savingObj);
-////                landmarkController.updateLandmarkStatsLabels(player);
-////                Stage stage = new Stage();
-////                Scene scene = new Scene(root);
-////
-////                stage.setTitle("You are at a Landmark. Make the right choice!");
-////                stage.setScene(scene);
-////
-////                System.out.println(landmarkController);
-////
-////                stage.show();
-////                currentStage.close();
-//                break;
-//            case 3:
-//                // load CBS landmark scene
-//                break;
-//            case 4:
-//                // load Holyrood landmark scene
-//                break;
-//            case 5:
-//                // load Brigus Junction landmark scene
-//                break;
-//            case 6:
-//                // load Bellevue landmark scene
-//                break;
-//            case 7:
-//                // load Goobies landmark scene
-//                break;
-//            case 8:
-//                // load Clarenville landmark scene
-//                break;
-//            case 9:
-//                // load Glovertown landmark scene
-//                break;
-//            case 10:
-//                // load Gambo landmark scene
-//                break;
-//            case 11:
-//                // load Gander landmark scene
-//                break;
-//            case 12:
-//                // load Glenwood landmark scene
-//                break;
-//            case 13:
-//                // load Bishop's Falls landmark scene
-//                break;
-//            case 14:
-//                // load Grand Falls - Windsor landmark scene
-//                break;
-//            case 15:
-//                // load Badger landmark scene
-//                break;
-//            case 16:
-//                // load South Brook landmark scene
-//                break;
-//            case 17:
-//                // load Sheppardville landmark scene
-//                break;
-//            case 18:
-//                // load Deer Lake landmark scene
-//                break;
-//            case 19:
-//                // load Pasadena landmark scene
-//                break;
-//            case 20:
-//                // load Corner Brook OR load the Game Win function
-//                break;
-//        }
-////        for (int i=0; i < player.landmarkAttributes.length; i++) {
-////            if (player.getLastLandmarkIndex()+1 == 1) {
-////                // load St. John's scene
-////            }
-////        }
-//    }
-
     /**
      * has a change to spawn a moose
      * @return if a moose was spawned by this
@@ -336,16 +173,17 @@ public class GameplayController {
 
     /**
      * Sets the player object's new stat values,
-     * ensures the values are within the range 0 to 100, and
+     * ensures the values are within the range 0 to 100,
+     * checks if a Game Over state has been reached and ends game if so, and
      * updates the corresponding Labels in the UI.
      *
      * @param player
      */
     public void updatePlayerStats(PlayerStats player) {
-        if (player.getSpeed() <= 110) { // Player burns 20% more fuel traveling over 110kmh
+        if (player.getSpeed() <= 110) { // Player burns 15% more fuel traveling over 110kmh
             player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed());
         } else {
-            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.1);
+            player.setFuel(player.getFuel() - player.getFuelRate() * player.getSpeed() * 1.15);
         }
         savingObj[2][1] = String.valueOf(player.getFuel());
 
@@ -369,7 +207,7 @@ public class GameplayController {
 
         player.clampPlayerStats();
         updatePlayerStatsLabels(player);
-        gameOverFromStats(); // Player game over due to lack of sources (Fuel etc  ...)
+        gameOverFromStats(); // Check if game over from a player stat reaching a critical level
     }
 
     /**
@@ -378,22 +216,20 @@ public class GameplayController {
      */
     public void gameOverFromStats(){
         if (player.getFuel() <=0) {
-            gameOver("You run out of fuel!");
+            gameOver("    GAME OVER\n   You ran out of fuel!");
         }
 
         if (player.getHunger() >= 100) {
-            gameOver("You are extremely starving! ");
+            gameOver("    GAME OVER\n   You starved!");
         }
 
         if (player.getThirst() >= 100) {
-            gameOver("You are extremely thirsty! ");
+            gameOver("    GAME OVER\n   You fainted of thirst!");
         }
 
         if (player.getFatigue() >= 100) {
-            gameOver("You are too tired to continue! ");
+            gameOver("    GAME OVER\n   You are too tired to continue!");
         }
-
-
     }
 
     /**
@@ -419,15 +255,15 @@ public class GameplayController {
      * Stops the game tick (i.e. player stat updates and moose spawning)
      */
     public void cancelTick() {
-        // This will be called when a landmark is reached and when game over happens.
         currentGameTickTimer.cancel();
         currentGameTickTimer.purge();
     }
 
-    public GameplayController() throws ParseException, IOException, ClassNotFoundException {}
 
-    public void main(String[] args) throws InterruptedException {}
-
+    /**
+     * Returns to the Main Menu scene after closing the current scene/stage.
+     * @throws IOException
+     */
     public void backToMainMenu() throws IOException {
         Stage currentStage = (Stage) carImageView.getScene().getWindow();
 
@@ -440,6 +276,12 @@ public class GameplayController {
         currentStage.close();
     }
 
+
+    /**
+     * Stops the game update tick and
+     * displays the Game Over label and Back to Main Menu button
+     * @param reason
+     */
     public void gameOver(String reason) {
         cancelTick();
         System.out.println(reason);
@@ -454,16 +296,18 @@ public class GameplayController {
         });
     }
 
+    /**
+     * Stops the game update tick,
+     * sets the existing (but invisible) game over label to "You win!",
+     * displays the label, and
+     * displays the Back to Main Menu button
+     */
     public void gameVictory() {
-        System.out.println("gameVictory() has been triggered"); //debug
         cancelTick();
-        System.out.println("cancelTick() should have fired"); //debug
 
-        //change game over label to victory label
         gameOverLabel.setText("You win!");
         gameOverLabel.setVisible(true);
 
-        //main menu button, but fancied up
         backToMainMenuButton.setText("End game");
         backToMainMenuButton.setVisible(true);
         backToMainMenuButton.setOnAction(event -> {
@@ -480,7 +324,6 @@ public class GameplayController {
      * @param Player
      */
     public void storePlayer(PlayerStats Player) {
-        //System.out.println("GameplayController storePlayer(player)");
         player = Player;
     }
 
@@ -493,14 +336,16 @@ public class GameplayController {
      */
     @FXML
     public Boolean checkIfMooseCollision(ImageView moose, ImageView car) {
-        // calculate movement/collision bounds of the moose
         double mooseXPosMax = moose.getBoundsInParent().getMaxX();
         double carXPosMin = car.getBoundsInParent().getMinX();
         return (mooseXPosMax >= carXPosMin);
     }
 
+    /**
+     * Removes the spawned moose from the screen when Avoid button is clicked
+     */
     @FXML
-    public void avoidButtonClicked(ActionEvent event) {
+    public void avoidButtonClicked() {
         mooseActive = false;
         resetMooseEvent();
     }
@@ -546,7 +391,6 @@ public class GameplayController {
      */
     @FXML
     public void resetMooseEvent() {
-        //System.out.println("Moose event reset (has been de-spawned)"); //debug
         mooseActive = false;
 
         moose.setTranslateX(0);
@@ -557,7 +401,6 @@ public class GameplayController {
     }
 
 
-
     /**
      * animates moose relative to player's current speed
      */
@@ -565,23 +408,26 @@ public class GameplayController {
     public void animateMooseAtSpeed() {
         double mooseXPosition = moose.getTranslateX();
         moose.setTranslateX(mooseXPosition + (player.getSpeed() / 25));
-        //System.out.println("animateMooseAtSpeed() fired");//DEBUG
     }
 
+    /**
+     * lowers the player's speed attribute by 5, within acceptable bounds
+     */
     @FXML
-    void slowDownBtnClicked(ActionEvent event) {
+    void slowDownBtnClicked() {
         if ((player.getSpeed()-5) > 0) {
             double newSpeed = player.getSpeed() - 5;
             player.setSpeed(newSpeed);
             speedValueLabel.setText(String.valueOf((player.getSpeed())));
-            //System.out.println(newSpeed);
         }
     }
 
+    /**
+     * increasess the player's speed attribute by 5, within acceptable bounds
+     */
     @FXML
-    void speedUpBtnClicked(ActionEvent event) {
+    void speedUpBtnClicked() {
         double newSpeed = player.getSpeed() + 5;
-        //System.out.println(newSpeed);
         player.setSpeed(newSpeed);
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
         if (newSpeed > 75) {
@@ -589,20 +435,27 @@ public class GameplayController {
         }
     }
 
+    /**
+     * sets the player's speed attribute to 50
+     */
     @FXML
-    void speed50BtnClicked(ActionEvent event) {
-        //System.out.println(50);
+    void speed50BtnClicked() {
         player.setSpeed(50);
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
     }
 
+    /**
+     * sets the player's speed attribute to 100
+     */
     @FXML
-    void speed100BtnClicked(ActionEvent event) {
-        //System.out.println(100);
+    void speed100BtnClicked() {
         player.setSpeed(100);
         speedValueLabel.setText(String.valueOf((player.getSpeed())));
     }
 
+    /**
+     * helps in creating an animation of the moving car
+     */
     @FXML
     public void rumbleCar() {
         if (carImageView.getRotate() != 1) {
@@ -612,6 +465,10 @@ public class GameplayController {
         }
     }
 
+    /**
+     * sets the explosion sprite to visible;
+     * happens when moose collision occurs.
+     */
     @FXML
     public void showExplosion() {
         explosion.setVisible(true);
