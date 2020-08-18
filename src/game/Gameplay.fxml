@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -287,32 +289,58 @@
             <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="900.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="60.0" prefHeight="73.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="9.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" />
-                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" />
-                  <ImageView fx:id="moose" visible="false" GridPane.rowIndex="2">
+                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" GridPane.rowIndex="2" />
+                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" GridPane.rowIndex="2" />
+                  <ImageView fx:id="moose" visible="false" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/moose.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="BACK TO MAIN MENU" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="1">
+                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="Return to Main Menu" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Georgia" size="64.0" />
+                        <Font name="Gill Sans MT Bold" size="94.0" />
                      </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startY="0.8285714285714286">
+                           <stops>
+                              <Stop color="#afff07" />
+                              <Stop color="#d80070" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
                   </Label>
-                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/explosion.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="gameOverReasonLabel" text="Reason" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Gill Sans MT Italic" size="64.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startY="0.8285714285714286">
+                           <stops>
+                              <Stop color="#d90071" />
+                              <Stop color="#b0ff08" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
                </children>
             </GridPane>
          </children>

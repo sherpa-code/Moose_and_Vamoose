@@ -295,7 +295,8 @@ public class LandmarkController {
     void departCurrentLandmarkClicked() throws IOException {
         Stage currentStage = (Stage) departLandmarkButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
-        Parent root = (Parent) loader.load();
+        //Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         GameplayController gameplayController = loader.getController();
         gameplayController.cancelTick();
         Stage stage = new Stage();
