@@ -7,29 +7,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameplayController {
-    /**
-     * Simply instantiation of a player object
-     */
     double fuelConsumptionRate = 1.0;
     int tickRateMS = 10;
-
+    public boolean mooseExists = false;
+    Timer currentGameTickTimer;
+    Timer carAnimationTimer;
     PlayerStats player = new PlayerStats( // default error values
             55, 55, 55, 55,0,
             55, 55, 1
     );
-    public boolean mooseActive;
-    Timer currentGameTickTimer;
-    Timer carAnimationTimer;
     String [][] savingObj = {
             {"hunger", String.valueOf(player.getHunger())},
             {"thirst", String.valueOf(player.getThirst())},
@@ -41,8 +39,6 @@ public class GameplayController {
             {"cash", String.valueOf(player.getCash())},
             {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
     };
-
-
 
     @FXML private Label hungerValueLabel;
     @FXML private Label thirstValueLabel;
@@ -63,9 +59,13 @@ public class GameplayController {
     @FXML public Label gameOverReasonLabel;
     @FXML public Button backToMainMenuButton;
     @FXML public ImageView explosion;
+    @FXML public Button speed50Button;
+    @FXML public Button speed100Button;
+    @FXML public Button speedUpButton;
+    @FXML public Button slowDownButton;
+    @FXML public GridPane backgroundGridPane;
 
     public GameplayController() throws ParseException {}
-
     public void main(String[] args) {}
 
     /**
@@ -75,11 +75,7 @@ public class GameplayController {
     public void initialize() {
         cashValueLabel.setText(String.valueOf(player.getCash()));
         beginTick();
-        mooseActive = false;
-        //System.out.println("Initial lastLandmarkIndex = "+player.getLastLandmarkIndex());
     }
-
-
 
     /**
      * Creates a Timer and Task that will execute every tickRateMS;
@@ -99,8 +95,7 @@ public class GameplayController {
                 if(player.getSpeed() > 0) {
                     rumbleCar();
                 }
-
-                if (mooseActive) {
+                if (mooseExists) {
                     tickMoose();
                 } else if (reachedLandmark()) {
                     cancelTick();
@@ -108,7 +103,6 @@ public class GameplayController {
                     if (player.getLastLandmarkIndex()+1 == 20) {
                         gameVictory();
                     } else {
-
                         try {
                             loadNextLandmarkScene();
                         } catch (IOException ioException) {
@@ -116,7 +110,7 @@ public class GameplayController {
                         }
                     }
                 } else {
-                    if (player.getSpeed() > 0 && mooseSpawnRoll() == true) {
+                    if (player.getSpeed() > 0 && mooseSpawnRoll()) {
                         activateMooseEvent();
                     }
                 }
@@ -133,7 +127,6 @@ public class GameplayController {
     public boolean reachedLandmark() {
         if (player.getDistanceTraveled() >=
                 Integer.parseInt(player.landmarkAttributes[player.getLastLandmarkIndex()+1][1])) {
-            //System.out.println("reachedLandmark(); Last landmark index = "+player.getLastLandmarkIndex());
             return true;
         }
         return false;
@@ -157,21 +150,19 @@ public class GameplayController {
         stage.setTitle("You are at a Landmark. Make the right choice!");
         stage.setScene(scene);
 
-        System.out.println(landmarkController);
-
         stage.show();
         currentStage.close();
     }
 
     /**
-     * has a change to spawn a moose
+     * has a chance to spawn a moose
      * @return if a moose was spawned by this
      */
     public Boolean mooseSpawnRoll() {
         Random random = new Random();
         Float roll = random.nextFloat();
 
-        if (roll <= 0.00075f && mooseActive == false) {
+        if (roll <= 0.00075f && !mooseExists) {
             return true;
         } else {
             return false;
@@ -206,7 +197,7 @@ public class GameplayController {
 
         savingObj[4][1] = String.valueOf(player.getSpeed());
 
-        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // numeric value controls the ratio between distance traveled and speed
+        player.setDistanceTraveled(player.getDistanceTraveled() + player.getSpeed()/100000); // controls the ratio between distance traveled and speed
         savingObj[5][1] = String.valueOf(player.getDistanceTraveled());
 
         savingObj[6][1] = String.valueOf(player.getCash());
@@ -225,17 +216,11 @@ public class GameplayController {
     public void checkIfGameOverFromStats(){
         if (player.getFuel() <=0) {
             gameOver("You ran out of fuel.");
-        }
-
-        if (player.getHunger() >= 100) {
+        } else if (player.getHunger() >= 100) {
             gameOver("You starved.");
-        }
-
-        if (player.getThirst() >= 100) {
+        } else if (player.getThirst() >= 100) {
             gameOver("You fainted of thirst.");
-        }
-
-        if (player.getFatigue() >= 100) {
+        } else if (player.getFatigue() >= 100) {
             gameOver("You fell asleep.");
         }
     }
@@ -291,8 +276,10 @@ public class GameplayController {
      */
     public void gameOver(String reason) {
         cancelTick();
-        System.out.println(reason);
-        //gameOverLabel.setText(reason); // TODO: text isnt being shown properly in the label
+        speed50Button.setDisable(true);
+        speed100Button.setDisable(true);
+        speedUpButton.setDisable(true);
+        slowDownButton.setDisable(true);
         gameOverLabel.setVisible(true);
         gameOverReasonLabel.setText(reason);
         gameOverReasonLabel.setVisible(true);
@@ -314,6 +301,10 @@ public class GameplayController {
      */
     public void gameVictory() {
         cancelTick();
+        speed50Button.setDisable(true);
+        speed100Button.setDisable(true);
+        speedUpButton.setDisable(true);
+        slowDownButton.setDisable(true);
 
         gameOverLabel.setText("You win!");
         gameOverLabel.setVisible(true);
@@ -356,7 +347,7 @@ public class GameplayController {
      */
     @FXML
     public void avoidButtonClicked() {
-        mooseActive = false;
+        mooseExists = false;
         resetMooseEvent();
     }
 
@@ -365,17 +356,14 @@ public class GameplayController {
      */
     @FXML
     public void tickMoose() {
-        if (mooseActive == true) {
+        if (mooseExists) {
             if (checkIfMooseCollision(moose, carImageView)) {
                 showExplosion();
-                cancelTick();
-                gameOver("Game Over.\n You hit a moose."); //replace later
+                gameOver("You hit a moose.");
                 resetMooseEvent();
             } else {
-                animateMooseAtSpeed();
+                animateMoose();
             }
-        } else {
-            //System.out.println("tickMoose() fired while mooseActive==false"); //DEBUG
         }
     }
 
@@ -384,24 +372,41 @@ public class GameplayController {
      */
     @FXML
     public void activateMooseEvent() {
-        mooseActive = true;
-
-        //place moose
-        moose.setTranslateX(0);
+        mooseExists = true;
+        //moose.setTranslateX(-80);
+        moose.setTranslateX(0); // set to 0 to develop spawning the tree ImageView
         moose.setVisible(true);
-
-        //place button
         double newButtonPositionX = 300 + (Math.random() * 100);
         avoidButton.setVisible(true);
         avoidButton.setTranslateX(newButtonPositionX);
 
+
+
+//        Image image = new Image("file:img/treeConiferousSprite.png");
+//        ImageView imageView = new ImageView(image);
+//        backgroundGridPane.getChildren().add(imageView);
+//        imageView.setVisible(true);
+//        imageView.setTranslateX(moose.getTranslateX());
+//        imageView.setTranslateY(moose.getTranslateY());
+
+
+
+        //imageView.setTranslateX(newButtonPositionX);
+        //backgroundGridPane.add(new Image("file:img/treeConiferousSprite.png"));
+        //Image image = new Image("FIle:img/treeConiferousSprite.png");
+
+
+        //TODO: set the Y positions as well, but within a range of the default
+        // - so save the value first, update the translate
+        // then set it back to the saved
     }
+
     /**
      * resets the moose event to its original state
      */
     @FXML
     public void resetMooseEvent() {
-        mooseActive = false;
+        mooseExists = false;
 
         moose.setTranslateX(0);
         moose.setVisible(false);
@@ -415,35 +420,11 @@ public class GameplayController {
      * animates moose relative to player's current speed
      */
     @FXML
-    public void animateMooseAtSpeed() {
+    public void animateMoose() {
         double mooseXPosition = moose.getTranslateX();
         moose.setTranslateX(mooseXPosition + (player.getSpeed() / 25));
     }
 
-    /**
-     * lowers the player's speed attribute by 5, within acceptable bounds
-     */
-    @FXML
-    void slowDownBtnClicked() {
-        if ((player.getSpeed()-5) > 0) {
-            double newSpeed = player.getSpeed() - 5;
-            player.setSpeed(newSpeed);
-            speedValueLabel.setText(String.valueOf((player.getSpeed())));
-        }
-    }
-
-    /**
-     * increasess the player's speed attribute by 5, within acceptable bounds
-     */
-    @FXML
-    void speedUpBtnClicked() {
-        double newSpeed = player.getSpeed() + 5;
-        player.setSpeed(newSpeed);
-        speedValueLabel.setText(String.valueOf((player.getSpeed())));
-        if (newSpeed > 75) {
-            //TODO: Fuel should get consumed in faster rate
-        }
-    }
 
     /**
      * sets the player speed and updates relevant labels
@@ -472,7 +453,28 @@ public class GameplayController {
     }
 
     /**
+     * lowers the player's speed attribute by 5, within acceptable bounds
+     */
+    @FXML
+    void slowDownBtnClicked() {
+        if ((player.getSpeed()-5) > 0) {
+            setSpeedToValue((int) player.getSpeed() - 5);
+        }
+    }
+
+    /**
+     * increasess the player's speed attribute by 5, within acceptable bounds
+     */
+    @FXML
+    void speedUpBtnClicked() {
+        if ((player.getSpeed()+5) <= 250) {
+            setSpeedToValue((int) player.getSpeed() + 5);
+        }
+    }
+
+    /**
      * helps in creating an animation of the moving car
+     * //TODO: new function to handle smoother animation
      */
     @FXML
     public void rumbleCar() {

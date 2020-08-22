@@ -29,7 +29,7 @@ public class PlayerStats extends Main {
      * String array that contains the landmark names, distance from the starting point, and size (amenities available).
      */
     String[][] landmarkAttributes = {
-            {"Home", "1", "none"},
+            {"Home", "1", "none"}, // 0
             {"St. John's", "2", "large"},
             {"Paradise", "11", "small"},
             {"CBS", "33", "large"},

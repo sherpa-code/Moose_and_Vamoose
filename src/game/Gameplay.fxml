@@ -277,7 +277,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2b2b2" height="80.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="3" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ddff00" height="8.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="2" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2b2b2" height="50.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#358294" height="286.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
+            <Rectangle fx:id="skyBackgroundRectangle" arcHeight="5.0" arcWidth="5.0" fill="#358294" height="286.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
             <ImageView fx:id="carImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="54.0" right="50.0" />
@@ -286,7 +286,7 @@
                   <Image url="@img/carSpriteDefault.png" />
                </image>
             </ImageView>
-            <GridPane>
+            <GridPane fx:id="backgroundGridPane">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="900.0" prefWidth="100.0" />
@@ -303,13 +303,34 @@
                </rowConstraints>
                <children>
                   <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" GridPane.rowIndex="2" />
-                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" GridPane.rowIndex="2" />
                   <ImageView fx:id="moose" visible="false" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/moose.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="Return to Main Menu" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@img/explosion.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets right="300.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="treeDeciduous" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" scaleX="5.0" scaleY="5.0" smooth="false" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeDeciduousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferous" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.7" scaleY="0.7" smooth="false" visible="false" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeDead" fitHeight="1100.0" fitWidth="1590.0" layoutX="10.0" layoutY="-794.0" smooth="false" visible="false">
+                     <image>
+                        <Image url="@img/treeDeadSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Gill Sans MT Bold" size="94.0" />
@@ -323,11 +344,7 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <image>
-                        <Image url="@img/explosion.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="Return to Main Menu" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Label fx:id="gameOverReasonLabel" text="Reason" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Gill Sans MT Italic" size="64.0" />
@@ -341,6 +358,7 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
+                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

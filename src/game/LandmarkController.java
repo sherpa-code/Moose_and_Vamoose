@@ -114,21 +114,20 @@ public class LandmarkController {
      * @throws IOException
      */
     @FXML
-    void saveGameAtLandmarkClicked() throws IOException {
-        System.out.println("saveGameClicked()");
+    void saveGameAtLandmarkClicked() {
         try { // writes & Stores all current stats from "savingObj" to "SavedData.txt" file
             File myObj = new File("SavedData.txt"); // Text file created
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
+                //System.out.println("File created: " + myObj.getName());
             } else {
-                System.out.println("File already exists.");
+                //System.out.println("File already exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        try { // contents of saveObj are being coppied to the text file
+        try { // contents of saveObj are being copied to the text file
             FileWriter writerObj = new FileWriter("SavedData.txt");
             String [][] savingObj = {
                     {"hunger", String.valueOf(player.getHunger())},
@@ -152,6 +151,44 @@ public class LandmarkController {
         }
     }
 
+//    @FXML
+//    void saveGameAtLandmarkClicked() throws IOException {
+//        try { // writes & Stores all current stats from "savingObj" to "SavedData.txt" file
+//            File myObj = new File("SavedData.txt"); // Text file created
+//            if (myObj.createNewFile()) {
+//                System.out.println("File created: " + myObj.getName());
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//
+//        try { // contents of saveObj are being copied to the text file
+//            FileWriter writerObj = new FileWriter("SavedData.txt");
+//            String [][] savingObj = {
+//                    {"hunger", String.valueOf(player.getHunger())},
+//                    {"thirst", String.valueOf(player.getThirst())},
+//                    {"fuel", String.valueOf(player.getFuel())},
+////            {"restroom", String.valueOf(player.getRestroom())}, // restroom is removed
+//                    {"fatigue", String.valueOf(player.getFatigue())},
+//                    {"speed", String.valueOf(player.getSpeed())},
+//                    {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
+//                    {"cash", String.valueOf(player.getCash())},
+//                    {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
+//            };
+//
+//            for (int i = 0; i < savingObj.length; i++) {
+//                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
+//            }
+//            writerObj.close();
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//    }
+
     /**
      * checks if the player has sufficient cash for the attribute restoration, then either:
      * 1) if player has enough cash:
@@ -165,7 +202,6 @@ public class LandmarkController {
     @FXML
     void buyDrinkAtLandmarkClicked() {
         if (player.getCash() < 3) {
-            //System.out.println("Sorry! Not enough money");
             landmarkInsufficientFundsLabel.setVisible(true);
             buyDrinkButton.setVisible(false);
 
@@ -173,12 +209,10 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 3);
 
-            if( player.getThirst() - Double.parseDouble(landmarkThirstQuantity.getText()) < 0 ) {
+            if (player.getThirst() - Double.parseDouble(landmarkThirstQuantity.getText()) < 0) {
                 player.setThirst(0.0);
             } else {
-                player.setThirst(
-                        player.getThirst() - Double.parseDouble(landmarkThirstQuantity.getText())
-                );
+                player.setThirst(player.getThirst() - Double.parseDouble(landmarkThirstQuantity.getText()));
             }
             cashValueLabel.setText(String.valueOf(player.getCash()));
             thirstValueLabel.setText(String.valueOf((int) player.getThirst()));
@@ -205,13 +239,11 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 12);
 
-            if( player.getHunger() - Double.parseDouble(landmarkFoodQuantity.getText()) < 0 ) {
+            if (player.getHunger() - Double.parseDouble(landmarkFoodQuantity.getText()) < 0) {
                 player.setHunger(0.0);
             }
             else {
-                player.setHunger(
-                        player.getHunger() - Double.parseDouble(landmarkFoodQuantity.getText())
-                );
+                player.setHunger(player.getHunger() - Double.parseDouble(landmarkFoodQuantity.getText()));
             }
             cashValueLabel.setText(String.valueOf(player.getCash()));
             hungerValueLabel.setText(String.valueOf((int) player.getHunger()));
@@ -238,19 +270,15 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 20);
 
-            if( player.getFuel() + Double.parseDouble(landmarkFuelQuantity.getText()) >= 100.00 ) {
+            if (player.getFuel() + Double.parseDouble(landmarkFuelQuantity.getText()) >= 100.00) {
                 player.setFuel(100.0);
             }
             else {
-                player.setFuel(
-                        player.getFuel() + Double.parseDouble(landmarkFuelQuantity.getText())
-                );
-
+                player.setFuel(player.getFuel() + Double.parseDouble(landmarkFuelQuantity.getText()));
             }
             cashValueLabel.setText(String.valueOf(player.getCash()));
             fuelValueLabel.setText(String.valueOf((int) player.getFuel()));
         }
-
     }
 
     /**
@@ -272,13 +300,11 @@ public class LandmarkController {
             landmarkInsufficientFundsLabel.setVisible(false);
             player.setCash(player.getCash() - 125);
 
-            if( player.getFatigue() - Double.parseDouble(landmarkFatigueQuantity.getText()) <= 0.0 ) {
+            if (player.getFatigue() - Double.parseDouble(landmarkFatigueQuantity.getText()) <= 0.0) {
                 player.setFatigue(0.0);
             }
             else {
-                player.setFatigue(
-                        player.getFatigue() - Double.parseDouble(landmarkFatigueQuantity.getText())
-                );
+                player.setFatigue(player.getFatigue() - Double.parseDouble(landmarkFatigueQuantity.getText()));
             }
             cashValueLabel.setText(String.valueOf(player.getCash()));
             fatigueValueLabel.setText(String.valueOf((int) player.getFatigue()));
