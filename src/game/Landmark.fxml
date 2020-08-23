@@ -16,7 +16,7 @@
 
 <!--<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">-->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.LandmarkController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -284,6 +284,16 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <ImageView fx:id="landmarkBackgroundLargeImageView" fitHeight="196.0" fitWidth="390.0" layoutX="59.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" scaleX="2.8" scaleY="1.4" smooth="false" translateY="-40.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/landmarkLargeBackdrop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="landmarkBackgroundSmallImageView" fitWidth="390.0" layoutX="59.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" scaleX="2.8" scaleY="2.0" smooth="false" translateY="-28.0" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/landmarkSmallBackdrop.png" />
+                     </image>
+                  </ImageView>
 <!--                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#animateMoose" text="TEST" />-->
                   <ImageView fx:id="hotelImageView" fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
@@ -294,6 +304,9 @@
                      <image>
                         <Image url="@img/landmarkStore.png" />
                      </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                   </ImageView>
                   <ImageView fx:id="gasStationImageView" fitHeight="250.0" fitWidth="600.0" pickOnBounds="true" scaleX="-1.0" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>

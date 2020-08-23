@@ -40,6 +40,8 @@ public class LandmarkController {
     @FXML    private Label landmarkNameLabel;
     @FXML    private Label landmarkSizeLabel;
     @FXML    private Label landmarkInsufficientFundsLabel;
+    @FXML    public ImageView landmarkBackgroundLargeImageView;
+    @FXML    public ImageView landmarkBackgroundSmallImageView;
     private PlayerStats player;
     String [][] savingObj;
 
@@ -70,6 +72,8 @@ public class LandmarkController {
             hotelImageView.setVisible(true);
             gasStationImageView.setVisible(true);
             storeImageView.setVisible(false);
+            landmarkBackgroundLargeImageView.setVisible(true);
+            landmarkBackgroundSmallImageView.setVisible(false);
         } else if(landmarkSize == "small"){
             storeImageView.setVisible(true);
             hotelImageView.setVisible(false);
@@ -86,6 +90,9 @@ public class LandmarkController {
             landmarkFuelQuantity.setVisible(false);
             advertisedFuelForLabel.setVisible(false);
             advertisedFuelLabel.setVisible(false);
+
+            landmarkBackgroundLargeImageView.setVisible(false);
+            landmarkBackgroundSmallImageView.setVisible(true);
         }
         else {
             System.out.println("Something went wrong here for background image");
