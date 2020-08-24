@@ -96,9 +96,6 @@ public class GameplayController {
     @FXML public ImageView treeConiferousImageViewForeground4;
     @FXML public ImageView treeConiferousImageViewForeground5;
 
-
-
-
     public GameplayController() throws ParseException {}
     public void main(String[] args) {}
 
@@ -183,8 +180,6 @@ public class GameplayController {
 
         stage.setTitle("You are at a Landmark. Make the right choice!");
         stage.setScene(scene);
-
-        //System.out.println(player.landmarkAttributes[player.getLastLandmarkIndex()+1][2]);
 
         stage.show();
         currentStage.close();
@@ -413,22 +408,6 @@ public class GameplayController {
         double newButtonPositionX = 300 + (Math.random() * 150);
         avoidButton.setVisible(true);
         avoidButton.setTranslateX(newButtonPositionX);
-
-//        Image image = new Image("file:img/treeConiferousSprite.png");
-//        ImageView imageView = new ImageView(image);
-//        backgroundGridPane.getChildren().add(imageView);
-//        imageView.setVisible(true);
-//        imageView.setTranslateX(moose.getTranslateX());
-//        imageView.setTranslateY(moose.getTranslateY());
-
-        //imageView.setTranslateX(newButtonPositionX);
-        //backgroundGridPane.add(new Image("file:img/treeConiferousSprite.png"));
-        //Image image = new Image("FIle:img/treeConiferousSprite.png");
-
-
-        //TODO: set the Y positions as well, but within a range of the default
-        // - so save the value first, update the translate
-        // then set it back to the saved
     }
 
     /**
@@ -459,21 +438,6 @@ public class GameplayController {
      * animates moose relative to player's current speed
      */
     @FXML
-    public void animateTrees() {
-        // TODO: set the tree passing speed to have
-        //  some variation to imply that trees are not perfectly in a line as you drive by
-        double treeDeciduousXPosition = treeDeciduousImageViewForeground.getTranslateX();
-        double treeConiferousXPosition = treeConiferousImageViewBackground.getTranslateX();
-        //TODO: add a random number gen here and pass that in instead of the denominator below to satisfy above?
-        treeDeciduousImageViewForeground.setTranslateX(treeDeciduousXPosition + (player.getSpeed() / 4));
-        //treeConiferousImageView.setTranslateX(treeXPosition + (player.getSpeed() / 18));
-        treeConiferousImageViewBackground.setTranslateX(treeConiferousXPosition + (player.getSpeed() / 12));
-    }
-
-    /**
-     * animates moose relative to player's current speed
-     */
-    @FXML
     public void animateAllTrees() {
         // TODO: set the tree passing speed to have
         //  some variation to imply that trees are not perfectly in a line as you drive by
@@ -482,7 +446,7 @@ public class GameplayController {
         if (treeDeadForeground_1_XPosition > treeXTranslateResetDistance) {
             treeDeadForeground_1_XPosition = -250;
         }
-//
+
 //        double treeDeciduousBackground_1_XPosition = treeDeciduousImageViewBackground.getTranslateX(); // TODO: doesnt exist yet in FXML
 
         double treeConiferousBackground_1_XPosition = treeConiferousImageViewBackground.getTranslateX();
@@ -528,8 +492,6 @@ public class GameplayController {
             treeConiferousForeground_5_XPosition = -430;
         }
 
-
-
         treeDeadImageViewForeground.setTranslateX(treeDeadForeground_1_XPosition + (player.getSpeed() / treeDeadImageViewForeground_1_Speed)*treeImageViewGlobalSpeedModifier);
 
 //        treeDeciduousImageViewBackground.setTranslateX(treeDeciduousBackground_1_XPosition + (player.getSpeed()) / 14); // TODO: enable once implemented in fXML
@@ -546,45 +508,7 @@ public class GameplayController {
         treeConiferousImageViewForeground3.setTranslateX(treeConiferousForeground_3_XPosition + (player.getSpeed() / treeConiferousImageViewForeground_3_Speed)*treeImageViewGlobalSpeedModifier);
         treeConiferousImageViewForeground4.setTranslateX(treeConiferousForeground_4_XPosition + (player.getSpeed() / treeConiferousImageViewForeground_4_Speed)*treeImageViewGlobalSpeedModifier);
         treeConiferousImageViewForeground5.setTranslateX(treeConiferousForeground_5_XPosition + (player.getSpeed() / treeConiferousImageViewForeground_5_Speed)*treeImageViewGlobalSpeedModifier);
-
-
     }
-
-
-
-
-
-//    public void updateAllTreePositions() {
-//        double treeDeadForeground_1_XPosition = treeDeadImageViewForeground.getTranslateX();
-//
-//        double treeDeciduousBackground_1_XPosition = treeDeciduousImageViewBackground.getTranslateX();
-//
-//        double treeConiferousBackground_1_XPosition = treeConiferousImageViewBackground.getTranslateX();
-//
-//        double treeDeciduousForeground_1_XPosition = treeDeciduousImageViewForeground.getTranslateX();
-//        double treeDeciduousForeground_2_XPosition = treeDeciduousImageViewForeground2.getTranslateX();
-//        double treeDeciduousForeground_3_XPosition = treeDeciduousImageViewForeground3.getTranslateX();
-//        double treeDeciduousForeground_4_XPosition = treeDeciduousImageViewForeground4.getTranslateX();
-//
-//        double treeConiferousForeground_1_XPosition = treeConiferousImageViewForeground.getTranslateX();
-//        double treeConiferousForeground_2_XPosition = treeConiferousImageViewForeground2.getTranslateX();
-//        double treeConiferousForeground_3_XPosition = treeConiferousImageViewForeground3.getTranslateX();
-//        double treeConiferousForeground_4_XPosition = treeConiferousImageViewForeground4.getTranslateX();
-//        double treeConiferousForeground_5_XPosition = treeConiferousImageViewForeground5.getTranslateX();
-//    }
-//
-//
-//    public void setAllTreeTranslates() {
-//        //TODO: add a random number gen here and pass that in instead of the denominator below to satisfy above?
-//        treeDeciduousImageViewForeground.setTranslateX(treeDeciduousXPosition + (player.getSpeed() / 4));
-//        //treeConiferousImageView.setTranslateX(treeXPosition + (player.getSpeed() / 18));
-//        treeConiferousImageViewBackground.setTranslateX(treeConiferousXPosition + (player.getSpeed() / 12));
-//
-//
-//
-//        treeDeadImageViewForeground.setTranslateX(treeDeadForeground_1_XPosition + (player.getSpeed() / 4));
-//
-//    }
 
     /**
      * sets the player speed and updates relevant labels

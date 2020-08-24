@@ -122,7 +122,7 @@ public class LandmarkController {
      */
     @FXML
     void saveGameAtLandmarkClicked() {
-        try { // writes & Stores all current stats from "savingObj" to "SavedData.txt" file
+        try { // stores all current stats from "savingObj" to "SavedData.txt" file
             File myObj = new File("SavedData.txt"); // Text file created
             if (myObj.createNewFile()) {
                 //System.out.println("File created: " + myObj.getName());
@@ -157,44 +157,6 @@ public class LandmarkController {
             e.printStackTrace();
         }
     }
-
-//    @FXML
-//    void saveGameAtLandmarkClicked() throws IOException {
-//        try { // writes & Stores all current stats from "savingObj" to "SavedData.txt" file
-//            File myObj = new File("SavedData.txt"); // Text file created
-//            if (myObj.createNewFile()) {
-//                System.out.println("File created: " + myObj.getName());
-//            } else {
-//                System.out.println("File already exists.");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//
-//        try { // contents of saveObj are being copied to the text file
-//            FileWriter writerObj = new FileWriter("SavedData.txt");
-//            String [][] savingObj = {
-//                    {"hunger", String.valueOf(player.getHunger())},
-//                    {"thirst", String.valueOf(player.getThirst())},
-//                    {"fuel", String.valueOf(player.getFuel())},
-////            {"restroom", String.valueOf(player.getRestroom())}, // restroom is removed
-//                    {"fatigue", String.valueOf(player.getFatigue())},
-//                    {"speed", String.valueOf(player.getSpeed())},
-//                    {"distanceTraveled", String.valueOf(player.getDistanceTraveled())},
-//                    {"cash", String.valueOf(player.getCash())},
-//                    {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
-//            };
-//
-//            for (int i = 0; i < savingObj.length; i++) {
-//                writerObj.write(savingObj[i][0] + "=" + savingObj[i][1]+"|");
-//            }
-//            writerObj.close();
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//    }
 
     /**
      * checks if the player has sufficient cash for the attribute restoration, then either:
@@ -328,7 +290,6 @@ public class LandmarkController {
     void departCurrentLandmarkClicked() throws IOException {
         Stage currentStage = (Stage) departLandmarkButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameplay.fxml"));
-        //Parent root = (Parent) loader.load();
         Parent root = loader.load();
         GameplayController gameplayController = loader.getController();
         gameplayController.cancelTick();

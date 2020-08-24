@@ -9,12 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.Scanner;
 
+import javax.sound.midi.*;
+import java.io.File;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 /**
  * Contains the functionality accessible through the Main Menu scene.
  */
@@ -29,6 +33,23 @@ public class MainMenuController {
     private int extractedCash;
     private int extractedLastLandmarkIndex;
     public String loadedStr = ""; // Gets updated from "loadGameBtnClicked" method (when "Load Game" gets clicked)
+
+    public void initialize() throws Exception {
+        // disabled midi music // TODO: resolve how to control volume, currently plays at full volume
+//        // Obtains the default Sequencer connected to a default device.
+//        Sequencer sequencer = MidiSystem.getSequencer();
+//
+//        sequencer.open(); // Opens device, it should now acquire any system resources it requires and launch.
+//
+//        // create a stream from a file
+//        InputStream is = new BufferedInputStream(new FileInputStream(new File("src\\game\\midi\\odenfld.mid")));
+//
+//        sequencer.setSequence(is); // Sets the current sequence for sequencer. The stream must point to MIDI file data.
+//        sequencer.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
+//
+//        sequencer.start(); // Starts playback of the MIDI data in the currently loaded sequence.
+    }
+
 
     /**
      * Handles functionality of clicking Start New Game on main menu
@@ -55,7 +76,6 @@ public class MainMenuController {
 
             stage.show();
             currentStage.close();
-
         } catch(Exception e){
             System.out.println("Can't Start New Game!");
         }
@@ -88,7 +108,7 @@ public class MainMenuController {
         try {
             Stage currentStage = (Stage) startNewGameButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Landmark.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             LandmarkController landmarkController  = loader.getController();
             landmarkController.storePlayer(player);
             landmarkController.updateLandmarkStatsLabels(player);
@@ -108,9 +128,8 @@ public class MainMenuController {
 
     /**
      * Handles functionality of clicking Quit on main menu
-     * @param event
      */
-    @FXML void quitBtnClicked(ActionEvent event) {
+    @FXML void quitBtnClicked() {
         Platform.exit();
 
     }
