@@ -273,19 +273,43 @@
                   </GridPane>
                </children>
             </VBox>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#034d18" height="80.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="4" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2b2b2" height="80.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="4">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.7333333333333333" startX="1.0" startY="0.4285714285714285">
+                     <stops>
+                        <Stop color="#034d18" />
+                        <Stop color="#043c14" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="3">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5761904761904761" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="#616161" />
+                        <Stop color="#b2b2b2" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill></Rectangle>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ddff00" height="8.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2b2b2" height="50.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="1" />
-            <Rectangle fx:id="skyBackgroundRectangle" arcHeight="5.0" arcWidth="5.0" fill="#358294" height="286.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
-            <ImageView fx:id="carImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="54.0" right="50.0" />
-               </GridPane.margin>
-               <image>
-                  <Image url="@img/carSpriteDefault.png" />
-               </image>
-            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="1024.0" GridPane.rowIndex="1">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.15238095238095234" startX="1.0">
+                     <stops>
+                        <Stop color="#656565" />
+                        <Stop color="#b2b2b2" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill></Rectangle>
+            <Rectangle fx:id="skyBackgroundRectangle" arcHeight="5.0" arcWidth="5.0" height="286.0" stroke="BLACK" strokeType="INSIDE" width="1024.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#00d9ff" />
+                        <Stop color="#00657c" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill></Rectangle>
             <ImageView fx:id="sunImageView" scaleX="0.8" scaleY="0.8" translateX="-90.0" translateY="-140.0">
                <image>
                   <Image url="@img/sun_shiny.png" />
@@ -317,6 +341,14 @@
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="carImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="130.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="54.0" right="50.0" />
+                     </GridPane.margin>
+                     <image>
+                        <Image url="@img/carSpriteDefault.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="moose" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/moose.png" />
@@ -330,52 +362,52 @@
                         <Insets right="300.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="treeDeadImageViewForeground" fitHeight="1100.0" fitWidth="1590.0" layoutX="10.0" layoutY="207.0" scaleX="0.22" scaleY="0.22" smooth="false" translateX="-250.0" translateY="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <ImageView fx:id="treeDeadImageViewForeground" fitHeight="1100.0" fitWidth="1590.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.22" scaleY="0.22" smooth="false" translateX="-250.0" translateY="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@img/treeDeadSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="207.0" scaleX="0.24" scaleY="0.24" smooth="false" translateX="-440.0" translateY="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.24" scaleY="0.24" smooth="false" translateX="-440.0" translateY="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" scaleX="0.14" scaleY="0.14" smooth="false" translateX="-430.0" translateY="160.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.14" scaleY="0.14" smooth="false" translateX="-430.0" translateY="160.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground2" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" scaleX="3.8" scaleY="3.8" smooth="false" translateX="-300.0" translateY="60.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground2" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.8" scaleY="3.8" smooth="false" translateX="-300.0" translateY="60.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground3" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-392.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-460.0" translateY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground3" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-392.0" opacity="0.43" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-460.0" translateY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground3" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground3" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground4" fitHeight="840.0" fitWidth="710.0" scaleX="0.14" scaleY="0.2" smooth="false" translateX="-430.0" translateY="164.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground4" fitHeight="840.0" fitWidth="710.0" opacity="0.43" scaleX="0.14" scaleY="0.2" smooth="false" translateX="-430.0" translateY="164.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground4" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" scaleX="3.0" scaleY="3.0" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground4" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.0" scaleY="3.0" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground5" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" scaleX="0.2" scaleY="0.2" smooth="false" translateX="-430.0" translateY="144.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <ImageView fx:id="treeConiferousImageViewForeground5" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.2" scaleY="0.2" smooth="false" translateX="-430.0" translateY="144.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>

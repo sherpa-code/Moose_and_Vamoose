@@ -40,19 +40,19 @@ public class GameplayController {
             {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
     };
     double treeImageViewGlobalSpeedModifier = 1.3;
-    double treeDeadImageViewBackground_1_Speed = 12;
+    double treeDeadImageViewForeground_1_Speed = 16;
 
-    double treeConiferousImageViewBackground_1_Speed = 20;
+    double treeConiferousImageViewBackground_1_Speed = 60;
 
     double treeConiferousImageViewForeground_1_Speed = 24;
     double treeDeciduousImageViewForeground_1_Speed = 32;
-    double treeConiferousImageViewForeground_2_Speed = 16;
+    double treeConiferousImageViewForeground_2_Speed = 10;
     double treeDeciduousImageViewForeground_2_Speed = 40;
     double treeConiferousImageViewForeground_3_Speed = 26;
     double treeDeciduousImageViewForeground_3_Speed = 22;
     double treeConiferousImageViewForeground_4_Speed = 44;
     double treeDeciduousImageViewForeground_4_Speed = 28;
-    double treeConiferousImageViewForeground_5_Speed = 12;
+    double treeConiferousImageViewForeground_5_Speed = 14;
 
 
 
@@ -530,7 +530,7 @@ public class GameplayController {
 
 
 
-        treeDeadImageViewForeground.setTranslateX(treeDeadForeground_1_XPosition + (player.getSpeed() / treeDeadImageViewBackground_1_Speed)*treeImageViewGlobalSpeedModifier);
+        treeDeadImageViewForeground.setTranslateX(treeDeadForeground_1_XPosition + (player.getSpeed() / treeDeadImageViewForeground_1_Speed)*treeImageViewGlobalSpeedModifier);
 
 //        treeDeciduousImageViewBackground.setTranslateX(treeDeciduousBackground_1_XPosition + (player.getSpeed()) / 14); // TODO: enable once implemented in fXML
 

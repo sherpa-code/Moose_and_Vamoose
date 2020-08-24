@@ -49,7 +49,7 @@ public class PlayerStats extends Main {
             {"Glenwood", "357", "small"},
             {"Bishop's Falls", "414", "small"},
             {"Grand Falls - Windsor", "430", "large"},
-            {"Badger", "458", "none"},
+            {"Badger", "458", "small"},
             {"South Brook", "511", "small"},
             {"Sheppardville", "553", "small"},
             {"Deer Lake", "640", "large"},
