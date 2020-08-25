@@ -40,10 +40,19 @@ public class GameplayController {
             {"lastLandmarkIndex", String.valueOf(player.getLastLandmarkIndex())}
     };
     double treeImageViewGlobalSpeedModifier = 1.3;
+
+    double treeConiferousImageViewBackground_1_Speed = 262;
+    double treeConiferousImageViewBackground_2_Speed = 124;
+    double treeConiferousImageViewBackground_3_Speed = 68;
+    double treeConiferousImageViewBackground_4_Speed = 174;
+    double treeConiferousImageViewBackground_5_Speed = 82;
+    double treeConiferousImageViewBackground_6_Speed = 222;
+    double treeConiferousImageViewBackground_7_Speed = 200;
+
+    double treeDeciduousImageViewBackground_1_Speed = 102;
+    double treeDeciduousImageViewBackground_2_Speed = 82;
+
     double treeDeadImageViewForeground_1_Speed = 16;
-
-    double treeConiferousImageViewBackground_1_Speed = 60;
-
     double treeConiferousImageViewForeground_1_Speed = 24;
     double treeDeciduousImageViewForeground_1_Speed = 32;
     double treeConiferousImageViewForeground_2_Speed = 10;
@@ -53,8 +62,6 @@ public class GameplayController {
     double treeConiferousImageViewForeground_4_Speed = 44;
     double treeDeciduousImageViewForeground_4_Speed = 28;
     double treeConiferousImageViewForeground_5_Speed = 14;
-
-
 
     @FXML private Label hungerValueLabel;
     @FXML private Label thirstValueLabel;
@@ -82,8 +89,17 @@ public class GameplayController {
     @FXML public GridPane backgroundGridPane;
 
     @FXML public ImageView treeDeadImageViewForeground;
+
     @FXML public ImageView treeDeciduousImageViewBackground;
+    @FXML public ImageView treeDeciduousImageViewBackground2;
+
     @FXML public ImageView treeConiferousImageViewBackground;
+    @FXML public ImageView treeConiferousImageViewBackground2;
+    @FXML public ImageView treeConiferousImageViewBackground3;
+    @FXML public ImageView treeConiferousImageViewBackground4;
+    @FXML public ImageView treeConiferousImageViewBackground5;
+    @FXML public ImageView treeConiferousImageViewBackground6;
+    @FXML public ImageView treeConiferousImageViewBackground7;
 
     @FXML public ImageView treeDeciduousImageViewForeground;
     @FXML public ImageView treeDeciduousImageViewForeground2;
@@ -125,7 +141,6 @@ public class GameplayController {
 
                 if (player.getSpeed() > 0) { // animates the car during motion
                     rumbleCar();
-                    //animateTrees();
                     animateAllTrees();
                 }
                 if (mooseExists) {
@@ -441,62 +456,108 @@ public class GameplayController {
     public void animateAllTrees() {
         // TODO: set the tree passing speed to have
         //  some variation to imply that trees are not perfectly in a line as you drive by
+
+        double treeConiferousBackground_1_XPosition = treeConiferousImageViewBackground.getTranslateX();
+        if (treeConiferousBackground_1_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_1_XPosition = -600;
+        }
+        double treeConiferousBackground_2_XPosition = treeConiferousImageViewBackground2.getTranslateX();
+        if (treeConiferousBackground_2_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_2_XPosition = -620;
+        }
+        double treeConiferousBackground_3_XPosition = treeConiferousImageViewBackground3.getTranslateX();
+        if (treeConiferousBackground_3_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_3_XPosition = -640;
+        }
+        double treeConiferousBackground_4_XPosition = treeConiferousImageViewBackground4.getTranslateX();
+        if (treeConiferousBackground_4_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_4_XPosition = -660;
+        }
+        double treeConiferousBackground_5_XPosition = treeConiferousImageViewBackground5.getTranslateX();
+        if (treeConiferousBackground_5_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_5_XPosition = -680;
+        }
+        double treeConiferousBackground_6_XPosition = treeConiferousImageViewBackground6.getTranslateX();
+        if (treeConiferousBackground_6_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_6_XPosition = -700;
+        }
+        double treeConiferousBackground_7_XPosition = treeConiferousImageViewBackground7.getTranslateX();
+        if (treeConiferousBackground_7_XPosition > treeXTranslateResetDistance) {
+            treeConiferousBackground_7_XPosition = -720;
+        }
+
+        double treeDeciduousBackground_1_XPosition = treeDeciduousImageViewBackground.getTranslateX();
+        if (treeDeciduousBackground_1_XPosition > treeXTranslateResetDistance) {
+            treeDeciduousBackground_1_XPosition = -600;
+        }
+        double treeDeciduousBackground_2_XPosition = treeDeciduousImageViewBackground2.getTranslateX();
+        if (treeDeciduousBackground_2_XPosition > treeXTranslateResetDistance) {
+            treeDeciduousBackground_2_XPosition = -620;
+        }
+
+        treeConiferousImageViewBackground.setTranslateX(treeConiferousBackground_1_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_1_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground2.setTranslateX(treeConiferousBackground_2_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_2_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground3.setTranslateX(treeConiferousBackground_3_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_3_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground4.setTranslateX(treeConiferousBackground_4_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_4_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground5.setTranslateX(treeConiferousBackground_5_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_5_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground6.setTranslateX(treeConiferousBackground_6_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_6_Speed)*treeImageViewGlobalSpeedModifier);
+        treeConiferousImageViewBackground7.setTranslateX(treeConiferousBackground_7_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_7_Speed)*treeImageViewGlobalSpeedModifier);
+
+        treeDeciduousImageViewBackground.setTranslateX(treeDeciduousBackground_1_XPosition + (player.getSpeed() / treeDeciduousImageViewBackground_1_Speed)*treeImageViewGlobalSpeedModifier);
+        treeDeciduousImageViewBackground2.setTranslateX(treeDeciduousBackground_2_XPosition + (player.getSpeed() / treeDeciduousImageViewBackground_2_Speed)*treeImageViewGlobalSpeedModifier);
+
+
+
+
         double treeDeadForeground_1_XPosition = treeDeadImageViewForeground.getTranslateX();
-        //System.out.println(treeDeadForeground_1_XPosition);
         if (treeDeadForeground_1_XPosition > treeXTranslateResetDistance) {
             treeDeadForeground_1_XPosition = -250;
         }
 
 //        double treeDeciduousBackground_1_XPosition = treeDeciduousImageViewBackground.getTranslateX(); // TODO: doesnt exist yet in FXML
 
-        double treeConiferousBackground_1_XPosition = treeConiferousImageViewBackground.getTranslateX();
-        if (treeConiferousBackground_1_XPosition > treeXTranslateResetDistance) {
-            treeConiferousBackground_1_XPosition = -500;
-        }
-
         double treeDeciduousForeground_1_XPosition = treeDeciduousImageViewForeground.getTranslateX();
-        double treeDeciduousForeground_2_XPosition = treeDeciduousImageViewForeground2.getTranslateX();
-        double treeDeciduousForeground_3_XPosition = treeDeciduousImageViewForeground3.getTranslateX();
-        double treeDeciduousForeground_4_XPosition = treeDeciduousImageViewForeground4.getTranslateX();
         if (treeDeciduousForeground_1_XPosition > treeXTranslateResetDistance) {
-            treeDeciduousForeground_1_XPosition = -300;
+            treeDeciduousForeground_1_XPosition = -600;
         }
+        double treeDeciduousForeground_2_XPosition = treeDeciduousImageViewForeground2.getTranslateX();
         if (treeDeciduousForeground_2_XPosition > treeXTranslateResetDistance) {
-            treeDeciduousForeground_2_XPosition = -300;
+            treeDeciduousForeground_2_XPosition = -600;
         }
+        double treeDeciduousForeground_3_XPosition = treeDeciduousImageViewForeground3.getTranslateX();
         if (treeDeciduousForeground_3_XPosition > treeXTranslateResetDistance) {
-            treeDeciduousForeground_3_XPosition = -300;
+            treeDeciduousForeground_3_XPosition = -600;
         }
+        double treeDeciduousForeground_4_XPosition = treeDeciduousImageViewForeground4.getTranslateX();
         if (treeDeciduousForeground_4_XPosition > treeXTranslateResetDistance) {
-            treeDeciduousForeground_4_XPosition = -300;
+            treeDeciduousForeground_4_XPosition = -600;
         }
 
         double treeConiferousForeground_1_XPosition = treeConiferousImageViewForeground.getTranslateX();
-        double treeConiferousForeground_2_XPosition = treeConiferousImageViewForeground2.getTranslateX();
-        double treeConiferousForeground_3_XPosition = treeConiferousImageViewForeground3.getTranslateX();
-        double treeConiferousForeground_4_XPosition = treeConiferousImageViewForeground4.getTranslateX();
-        double treeConiferousForeground_5_XPosition = treeConiferousImageViewForeground5.getTranslateX();
         if (treeConiferousForeground_1_XPosition > treeXTranslateResetDistance) {
-            treeConiferousForeground_1_XPosition = -440;
+            treeConiferousForeground_1_XPosition = -640;
         }
+        double treeConiferousForeground_2_XPosition = treeConiferousImageViewForeground2.getTranslateX();
         if (treeConiferousForeground_2_XPosition > treeXTranslateResetDistance) {
-            treeConiferousForeground_2_XPosition = -430;
+            treeConiferousForeground_2_XPosition = -630;
         }
+        double treeConiferousForeground_3_XPosition = treeConiferousImageViewForeground3.getTranslateX();
         if (treeConiferousForeground_3_XPosition > treeXTranslateResetDistance) {
-            treeConiferousForeground_3_XPosition = -460;
+            treeConiferousForeground_3_XPosition = -660;
         }
+        double treeConiferousForeground_4_XPosition = treeConiferousImageViewForeground4.getTranslateX();
         if (treeConiferousForeground_4_XPosition > treeXTranslateResetDistance) {
-            treeConiferousForeground_4_XPosition = -430;
+            treeConiferousForeground_4_XPosition = -630;
         }
+        double treeConiferousForeground_5_XPosition = treeConiferousImageViewForeground5.getTranslateX();
         if (treeConiferousForeground_5_XPosition > treeXTranslateResetDistance) {
-            treeConiferousForeground_5_XPosition = -430;
+            treeConiferousForeground_5_XPosition = -630;
         }
+
+
+
 
         treeDeadImageViewForeground.setTranslateX(treeDeadForeground_1_XPosition + (player.getSpeed() / treeDeadImageViewForeground_1_Speed)*treeImageViewGlobalSpeedModifier);
-
-//        treeDeciduousImageViewBackground.setTranslateX(treeDeciduousBackground_1_XPosition + (player.getSpeed()) / 14); // TODO: enable once implemented in fXML
-
-        treeConiferousImageViewBackground.setTranslateX(treeConiferousBackground_1_XPosition + (player.getSpeed() / treeConiferousImageViewBackground_1_Speed)*treeImageViewGlobalSpeedModifier);
 
         treeDeciduousImageViewForeground.setTranslateX(treeDeciduousForeground_1_XPosition + (player.getSpeed() / treeDeciduousImageViewForeground_1_Speed)*treeImageViewGlobalSpeedModifier);
         treeDeciduousImageViewForeground2.setTranslateX(treeDeciduousForeground_2_XPosition + (player.getSpeed() / treeDeciduousImageViewForeground_2_Speed)*treeImageViewGlobalSpeedModifier);

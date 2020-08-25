@@ -318,6 +318,7 @@
             <GridPane fx:id="backgroundGridPane">
                <columnConstraints>
                   <ColumnConstraints />
+                  <ColumnConstraints />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="26.0" minWidth="10.0" prefWidth="18.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="44.0" minWidth="10.0" prefWidth="44.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="47.0" minWidth="10.0" prefWidth="40.0" />
@@ -335,13 +336,53 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ImageView fx:id="treeConiferousImageViewBackground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-500.0" translateY="325.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <Button fx:id="testButton" mnemonicParsing="false" onAction="#activateMooseEvent" text="TEST" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ImageView fx:id="treeConiferousImageViewBackground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-600.0" translateY="290.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="130.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                  <ImageView fx:id="treeConiferousImageViewBackground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-700.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeDeciduousImageViewBackground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-700.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeDeciduousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferousImageViewBackground3" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-550.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeDeciduousImageViewBackground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-500.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeDeciduousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferousImageViewBackground4" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-750.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferousImageViewBackground5" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-800.0" translateY="325.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferousImageViewBackground6" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-680.0" translateY="300.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="treeConiferousImageViewBackground7" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="186.0" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-540.0" translateY="310.0" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@img/treeConiferousSpriteUpscaled.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="130.0" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets bottom="54.0" right="50.0" />
                      </GridPane.margin>
@@ -349,12 +390,12 @@
                         <Image url="@img/carSpriteDefault.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="moose" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="moose" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/moose.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                  <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="175.0" visible="false" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/explosion.png" />
                      </image>
@@ -362,57 +403,57 @@
                         <Insets right="300.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="treeDeadImageViewForeground" fitHeight="1100.0" fitWidth="1590.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.22" scaleY="0.22" smooth="false" translateX="-250.0" translateY="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <ImageView fx:id="treeDeadImageViewForeground" fitHeight="1100.0" fitWidth="1590.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.22" scaleY="0.22" smooth="false" translateX="-250.0" translateY="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@img/treeDeadSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.24" scaleY="0.24" smooth="false" translateX="-440.0" translateY="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="0.24" scaleY="0.24" smooth="false" translateX="-440.0" translateY="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.14" scaleY="0.14" smooth="false" translateX="-430.0" translateY="160.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground2" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.14" scaleY="0.14" smooth="false" translateX="-430.0" translateY="160.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground2" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.8" scaleY="3.8" smooth="false" translateX="-300.0" translateY="60.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground2" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.8" scaleY="3.8" smooth="false" translateX="-300.0" translateY="60.0" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground3" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-392.0" opacity="0.43" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-460.0" translateY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground3" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-392.0" opacity="0.43" scaleX="0.3" scaleY="0.3" smooth="false" translateX="-460.0" translateY="130.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground3" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground3" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="2.5" scaleY="2.5" smooth="false" translateX="-300.0" translateY="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground4" fitHeight="840.0" fitWidth="710.0" opacity="0.43" scaleX="0.14" scaleY="0.2" smooth="false" translateX="-430.0" translateY="164.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ImageView fx:id="treeConiferousImageViewForeground4" fitHeight="840.0" fitWidth="710.0" opacity="0.43" scaleX="0.14" scaleY="0.2" smooth="false" translateX="-430.0" translateY="164.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeDeciduousImageViewForeground4" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.0" scaleY="3.0" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="treeDeciduousImageViewForeground4" fitHeight="109.0" fitWidth="99.0" layoutX="10.0" layoutY="207.0" opacity="0.43" scaleX="3.0" scaleY="3.0" smooth="false" translateX="-300.0" translateY="140.0" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@img/treeDeciduousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="treeConiferousImageViewForeground5" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.2" scaleY="0.2" smooth="false" translateX="-430.0" translateY="144.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <ImageView fx:id="treeConiferousImageViewForeground5" fitHeight="840.0" fitWidth="710.0" layoutX="10.0" layoutY="-143.0" opacity="0.43" scaleX="0.2" scaleY="0.2" smooth="false" translateX="-430.0" translateY="144.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@img/treeConiferousSpriteUpscaled.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Label fx:id="gameOverLabel" text="Game Over" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Gill Sans MT Bold" size="94.0" />
                      </font>
@@ -425,8 +466,8 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="Return to Main Menu" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Label fx:id="gameOverReasonLabel" text="Reason" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Button fx:id="backToMainMenuButton" mnemonicParsing="false" text="Return to Main Menu" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Label fx:id="gameOverReasonLabel" text="Reason" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Gill Sans MT Italic" size="64.0" />
                      </font>
@@ -439,7 +480,7 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Button fx:id="avoidButton" mnemonicParsing="false" onAction="#avoidButtonClicked" style="-fx-background-color: RED; " text="AVOID" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
