@@ -17,6 +17,7 @@ This game is one of strategy, reaction time, and luck, wherein you drive a motor
 - Open source
 
 ## How to Play:
+![alt text](https://raw.githubusercontent.com/sherpa-code/java2560game/master/src/game/screenshots/gameplay1.png "Traveling the Road")
 You are about to drive across the island, east to west, and you must manage your attributes
     along the way as well as stay vigilant on the road, as moose may suddenly appear and you must not hit them.
     If your attributes hit their critical value or you collide with a moose: GAME OVER! 
