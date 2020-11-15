@@ -6,8 +6,8 @@ This project constitutes the final term project in the CP2560 Advanced J2SE Prog
 
 This game is one of strategy, reaction time, and luck, wherein you drive a motor vehicle from east to west, across Newfoundland, while managing your driver health and remaining vigilant about the province's number one highway travel road hazard - moose!
 
-[Gameplay Demo](www.youtube.com/watch?v=gQNdF8m4POg)
-
+![alt text](https://raw.githubusercontent.com/sherpa-code/java2560game/master/src/game/screenshots/titlescreen.png "Moose and Vamoose Title Screen")
+[Gameplay Demonstration Video (YouTube)](www.youtube.com/watch?v=gQNdF8m4POg)
 
 
 ## Features:
