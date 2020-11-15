@@ -30,6 +30,8 @@ You are about to drive across the island, east to west, and you must manage your
     If any attribute reaches its critical value: GAME OVER.
 3) Never forget: driving 110Km/H or faster means burning more fuel and having less time to react to moose on the road. Be careful.
     Remain vigilant.
+![alt text](https://raw.githubusercontent.com/sherpa-code/java2560game/master/src/game/screenshots/21.png "Refilling at Landmark")
+
 
 ## Notes:
 - The game was developed using JavaFx and JDK13 in the JetBrains IntelliJ IDE.
