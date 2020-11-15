@@ -1,3 +1,9 @@
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+
+
 Moose and Vamoose
 A reimagining of Oregon Trail in JavaFX
 by Joseph Crane, Mohammad F. Rad, Paul Gatto
