@@ -16,6 +16,7 @@ This game is one of strategy, reaction time, and luck, wherein you drive a motor
 - Saving and Loading
 - Open source
 
+
 ## How to Play:
 ![alt text](https://raw.githubusercontent.com/sherpa-code/java2560game/master/src/game/screenshots/gameplay1.png "Traveling the Road")
 You are about to drive across the island, east to west, and you must manage your attributes
@@ -29,8 +30,9 @@ You are about to drive across the island, east to west, and you must manage your
 3) Avoid moose that appear on the road by clicking the Avoid button that appears when a moose is on the road in front of you.
 4) Keep an eye on your attributes. You just left home, you're plenty rested and fed. But you've got a long drive ahead.
     If any attribute reaches its critical value: GAME OVER.
-3) Never forget: driving 110Km/H or faster means burning more fuel and having less time to react to moose on the road. Be careful.
-    Remain vigilant.
+5) Never forget: driving 110Km/H or faster means burning more fuel and having less time to react to moose on the road. Be careful. Remain vigilant.
+
+
 ![alt text](https://raw.githubusercontent.com/sherpa-code/java2560game/master/src/game/screenshots/21.png "Refilling at Landmark")
 
 
@@ -38,10 +40,10 @@ You are about to drive across the island, east to west, and you must manage your
 - The game was developed using JavaFx and JDK13 in the JetBrains IntelliJ IDE.
 
 ## Special thanks:
-- chasersgaming on OpenGameArt.org for the car sprite.
-- Mark James (via qubodop) on OpenGameArt.org for the icon pack.
-- bart on OpenGameArt.org for the UI panel element.
+- chasersgaming on OpenGameArt.org for the car sprite
+- Mark James (via qubodop) on OpenGameArt.org for the icon pack
+- bart on OpenGameArt.org for the UI panel element
 - maketext.io for the title text
-- Sogomn on OpenGameArt.org for the explosion sprite.
-- laavis on OpenGameArt.org for the hotel and store sprites.
-- IchiDiego on reddit.com for the gas station sprite.
+- Sogomn on OpenGameArt.org for the explosion sprite
+- laavis on OpenGameArt.org for the hotel and store sprites
+- IchiDiego on reddit.com for the gas station sprite
